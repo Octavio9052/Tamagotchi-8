@@ -22,7 +22,7 @@ Algunos puntos extras pueden ser obtenidos:
 **Tienda virtual (aplicación web):**
 ![Bosquejo de la aplicación de escritorio](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/ts01.png)
 ![Bosquejo de la aplicación de escritorio 2](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/ts02.png)
-![Bosquejo de la aplicación de escritorio 3](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/ts03.png)
+![Bosquejo de la aplicación de escritorio 3](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/ts03.png)   
 Algunos puntos extras pueden ser obtenidos:
 * 1-3 puntos. [Ejemplo](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/TS_D01.png)
 * 4-8 puntos. [Ejemplo](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/TS_D02.png)
@@ -33,7 +33,7 @@ Algunos puntos extras pueden ser obtenidos:
 ![Bosquejo de la aplicación móvil](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/T02.png)
 ![Bosquejo de la aplicación móvil](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/T03.png)
 ![Bosquejo de la aplicación móvil](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/T04.png)
-![Bosquejo de la aplicación móvil](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/T05.png)
+![Bosquejo de la aplicación móvil](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/T05.png)    
 Algunos puntos extras pueden ser obtenidos:
 * 1-3 puntos. [Ejemplo](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/Tamagochi_D02.png)
 * 4-8 puntos. [Ejemplo](http://xpesdcompany-001-site3.ctempurl.com/sites/cetys/clases/sd/Tamagochi_D03.png)
