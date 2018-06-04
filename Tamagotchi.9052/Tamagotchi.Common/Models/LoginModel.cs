@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tamagotchi.Common.Models
 {
-    class LoginModel : BaseModel
+    public class LoginModel : BaseModel
     {
         public string Email { get; set; }
         public string Password { get; set; }

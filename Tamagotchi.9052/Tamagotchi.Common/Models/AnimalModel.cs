@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tamagotchi.Common.Models
 {
-    class AnimalModel : BaseModel
+    public class AnimalModel : BaseModel
     {
         public string Name { get; set; }
         public string Description { get; set; }

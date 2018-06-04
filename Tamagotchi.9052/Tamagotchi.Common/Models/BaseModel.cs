@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tamagotchi.Common.Models
 {
-    class BaseModel
+    public class BaseModel
     {
         public int Id { get; set; }
         public DateTime DateCreated { get; set; }

@@ -6,7 +6,7 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Common.Messages
 {
-    class LoginMessageRequest
+    public class LoginMessageRequest
     {
         public UserModel Login { get; set; }
     }

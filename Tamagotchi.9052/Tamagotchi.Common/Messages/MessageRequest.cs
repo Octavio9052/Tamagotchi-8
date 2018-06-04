@@ -6,7 +6,7 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Common.Messages
 {
-    class MessageRequest<T> where T : BaseModel
+    public class MessageRequest<T> where T : BaseModel
     {
         public Guid UserToken { get; set; }
         public IEnumerable<T> Body { get; set; }

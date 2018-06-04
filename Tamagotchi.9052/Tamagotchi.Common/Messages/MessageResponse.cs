@@ -7,7 +7,7 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Common.Messages
 {
-    class MessageResponse<T> where T : BaseModel
+    public class MessageResponse<T> where T : BaseModel
     {
         public IEnumerable<T> Body;
         public IEnumerable<string> Errors;

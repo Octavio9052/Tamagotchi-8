@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tamagotchi.Common.Entities
 {
-    class Animal : BaseEntity
+    public class Animal : BaseEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }

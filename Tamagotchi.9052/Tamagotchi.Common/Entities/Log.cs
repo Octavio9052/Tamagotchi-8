@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tamagotchi.Common.Entities
 {
-    class Log : BaseEntity
+    public class Log : BaseEntity
     {
         public string Message { get; set; }
     }

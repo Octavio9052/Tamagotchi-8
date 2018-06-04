@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tamagotchi.Common.Models
 {
-    class SessionModel : BaseModel
+    public class SessionModel : BaseModel
     {
         public Guid Guid { get; set; }
         public int UserId { get; set; }

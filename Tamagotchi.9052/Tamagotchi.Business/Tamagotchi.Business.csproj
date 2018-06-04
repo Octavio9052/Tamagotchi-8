@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{84519763-1A73-4127-8C37-0B03904DB706}</ProjectGuid>
+    <ProjectGuid>{6EAF482C-E1BE-4166-B8F9-5D21D4C43DD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tamagotchi.Common</RootNamespace>
-    <AssemblyName>Tamagotchi.Common</AssemblyName>
+    <RootNamespace>Tamagotchi.Business</RootNamespace>
+    <AssemblyName>Tamagotchi.Business</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,29 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Animal.cs" />
-    <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\Log.cs" />
-    <Compile Include="Entities\Login.cs" />
-    <Compile Include="Entities\Pet.cs" />
-    <Compile Include="Entities\Session.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Enums\Gender.cs" />
-    <Compile Include="Messages\LoginMessageRequest.cs" />
-    <Compile Include="Messages\LoginMessageResponse.cs" />
-    <Compile Include="Messages\MessageRequest.cs" />
-    <Compile Include="Messages\MessageResponse.cs" />
-    <Compile Include="Models\AnimalModel.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\LogModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\PetModel.cs" />
-    <Compile Include="Models\SessionModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Exceptions\TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
