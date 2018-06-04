@@ -1,0 +1,7 @@
+﻿TODO:
+BusinessLayerExceptions
+ServiceRESTExceptions
+ServiceSOAPExceptions
+DataAccessLayerExceptions
+Forbidden
+Invalid
