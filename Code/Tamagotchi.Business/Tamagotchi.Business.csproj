@@ -42,12 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\BaseBusiness.cs" />
+    <Compile Include="BaseBusiness.cs" />
+    <Compile Include="Interfaces\IBaseBusiness.cs" />
     <Compile Include="Interfaces\IAnimalBusiness.cs" />
     <Compile Include="Interfaces\ILoginBusiness.cs" />
     <Compile Include="Interfaces\IPetBusiness.cs" />
+    <Compile Include="Interfaces\ISessionBusiness.cs" />
     <Compile Include="Interfaces\IUserBusiness.cs" />
+    <Compile Include="LoginBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionBusiness.cs" />
+    <Compile Include="UserBusiness.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tamagotchi.Common\Tamagotchi.Common.csproj">
+      <Project>{84519763-1a73-4127-8c37-0b03904db706}</Project>
+      <Name>Tamagotchi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tamagotchi.DataAccess\Tamagotchi.DataAccess.csproj">
+      <Project>{b6955fbd-af07-453b-93e6-c7ad3e293442}</Project>
+      <Name>Tamagotchi.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

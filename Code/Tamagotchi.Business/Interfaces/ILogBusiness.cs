@@ -8,8 +8,7 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Business.Interfaces
 {
-    public interface ILoginBusiness : IBaseBusiness<LoginModel, Login>
+    public interface ILogBusiness : IBaseBusiness<LogModel, Log>
     {
-        int Login(Login login);
     }
 }

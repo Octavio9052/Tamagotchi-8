@@ -10,10 +10,10 @@ namespace Tamagotchi.Business.Interfaces
 {
     public interface IBaseBusiness<T, Y> where T : BaseModel where Y : BaseEntity
     {   
-        T Create(T entity);
+        T Create(T model);
         ICollection<T> GetAll();
-        T Get(T entity);
-        T Update(T entity);
-        void Delete(T entity);
+        T Get(T model);
+        T Update(T model);
+        void Delete(T model);
     }
 }
