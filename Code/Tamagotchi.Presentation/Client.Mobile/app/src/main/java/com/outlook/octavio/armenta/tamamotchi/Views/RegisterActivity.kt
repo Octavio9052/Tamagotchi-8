@@ -1,9 +1,8 @@
-package com.outlook.octavio.armenta.tamamotchi
+package com.outlook.octavio.armenta.tamamotchi.Views
 
 import android.os.Bundle
 import android.app.Activity
-
-import kotlinx.android.synthetic.main.activity_register.*
+import com.outlook.octavio.armenta.tamamotchi.R
 
 class RegisterActivity : Activity() {
 

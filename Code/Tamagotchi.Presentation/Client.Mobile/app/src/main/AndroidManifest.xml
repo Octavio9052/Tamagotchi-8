@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PetActivity">
+        <activity android:name=".Views.PetActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,17 +25,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Views.LoginActivity"
             android:label="@string/title_activity_pet"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Views.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Views.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity
-            android:name=".StoreActivity"
+            android:name=".Views.StoreActivity"
             android:label="@string/title_activity_store"/>
     </application>
 
