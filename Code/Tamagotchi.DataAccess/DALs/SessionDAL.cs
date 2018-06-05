@@ -11,7 +11,7 @@ namespace Tamagotchi.DataAccess.DALs
     {
         public Session GetByGUID(Guid guid)
         {
-            throw new NotImplementedException();
+            return this._dbContext.Set<Session>().FirstOrDefault(x => x.Guid == guid);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Tamagotchi.DataAccess.DALs
     {
         public ICollection<Animal> GetByUser(int id)
         {
-            throw new NotImplementedException();
+            return this._dbContext.Set<Animal>().AsQueryable().Where(x => x.CreatorId == id).ToList();
         }
     }
 }

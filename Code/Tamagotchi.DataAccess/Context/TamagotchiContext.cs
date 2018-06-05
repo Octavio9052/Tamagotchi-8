@@ -11,7 +11,7 @@ namespace Tamagotchi.DataAccess.Context
     {
         public TamagotchiContext() : base("name=Tamagotchi9052ConnString")
         {
-            Database.SetInitializer<TamagotchiContext>(new DropCreateDatabaseAlways<TamagotchiContext>());
+            Database.SetInitializer<TamagotchiContext>(new DropCreateDatabaseIfModelChanges<TamagotchiContext>());
         }
 
         public DbSet<Animal> Animals { get; set; }
