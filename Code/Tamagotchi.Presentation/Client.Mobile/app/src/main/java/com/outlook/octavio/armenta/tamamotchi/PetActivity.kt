@@ -18,7 +18,7 @@ class PetActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         setContentView(R.layout.activity_pet)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
+        fab_play.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
@@ -60,18 +60,6 @@ class PetActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         when (item.itemId) {
             R.id.nav_camera -> {
                 // Handle the camera action
-            }
-            R.id.nav_gallery -> {
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
             }
             R.id.nav_send -> {
 

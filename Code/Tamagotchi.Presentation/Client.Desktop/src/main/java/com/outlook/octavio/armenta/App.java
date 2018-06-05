@@ -10,7 +10,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        stage.setTitle("Hello World Application");
+        stage.setTitle("Tamagotchi - Developer Edition");
         stage.show();
     }
 }
