@@ -9,6 +9,7 @@ namespace Tamagotchi.Common.Entities
     [NotMapped]
     public class Log : BaseEntity
     {
+        [NotMapped]
         public string Message { get; set; }
     }
 }

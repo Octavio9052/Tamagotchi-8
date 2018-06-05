@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Tamagotchi.Common.Entities;
+using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
 {
-    class SessionDAL
+    public class SessionDAL : BaseDAL<Session>, ISessionDAL
     {
+        public Session GetByGUID(Guid guid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

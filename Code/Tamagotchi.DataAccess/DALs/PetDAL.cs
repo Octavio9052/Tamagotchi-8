@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Tamagotchi.Common.Entities;
+using Tamagotchi.DataAccess.DALs.Interfaces;
+
 namespace Tamagotchi.DataAccess.DALs
 {
-    class PetDAL
+    public class PetDAL : BaseDAL<Pet>, IPetDAL
     {
+        public ICollection<Pet> GetByUser(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

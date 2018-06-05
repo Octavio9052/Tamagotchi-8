@@ -17,6 +17,10 @@ namespace Tamagotchi.Common.Entities
 
         public ICollection<Animal> Animal { get; set; }
         public ICollection<Session> Session { get; set; }
+
+        
         public virtual Login Login { get; set; }
+        [Required]
+        public int LoginId { get; set; }
     }
 }

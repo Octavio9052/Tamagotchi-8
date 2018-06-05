@@ -15,15 +15,14 @@ namespace Tamagotchi.DataAccess.Context
         }
 
         public DbSet<Animal> Animals { get; set; }
-        public DbSet<Pet> Pets { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Login> Logins { get; set; }
         public DbSet<Session> Sessions { get; set; }
-        public DbSet<Log> Logs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<User>().HasRequired(x => x.Login)
+                .WithRequiredPrincipal(x => x.User);
             base.OnModelCreating(modelBuilder);
         }
     }
