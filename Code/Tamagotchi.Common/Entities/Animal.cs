@@ -13,11 +13,13 @@ namespace Tamagotchi.Common.Entities
         public string PlayUri { get; set; }
         public string EatUri { get; set; }
         public string SleepUri { get; set; }
-        public int CreatorId { get; set; }
         public int TimesDownloaded { get; set; }
         public Dictionary<string, double> MaxGamePoints { get; set; }
         public string PacketUri { get; set; }
         public bool IsReady { get; set; }
         public bool IsActive { get; set; }
+
+        public int CreatorId { get; set; }
+        public User User { get; set; }
     }
 }

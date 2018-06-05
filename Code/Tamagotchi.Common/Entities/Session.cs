@@ -8,7 +8,10 @@ namespace Tamagotchi.Common.Entities
     public class Session : BaseEntity
     {
         public Guid Guid { get; set; }
-        public int UserId { get; set; }
         public DateTime ExpirationDate { get; set; }
+
+
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }
