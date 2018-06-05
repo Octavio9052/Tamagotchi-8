@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.DALTesting", "Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.SOAP", "Tamagotchi.SOAP\Tamagotchi.SOAP.csproj", "{DABC7EAD-753E-4EFA-A16C-2C06C1B99E8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotch.REST", "Tamagotchi.Rest\Tamagotch.REST.csproj", "{D6B1859D-F7B0-49B5-9883-000801BAF5A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.REST", "Tamagotchi.REST\Tamagotchi.REST.csproj", "{D6B1859D-F7B0-49B5-9883-000801BAF5A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

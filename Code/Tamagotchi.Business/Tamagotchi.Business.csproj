@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalBusiness.cs" />
     <Compile Include="BaseBusiness.cs" />
     <Compile Include="Interfaces\IBaseBusiness.cs" />
     <Compile Include="Interfaces\IAnimalBusiness.cs" />
