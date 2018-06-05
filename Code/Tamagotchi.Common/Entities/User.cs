@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -7,6 +9,7 @@ namespace Tamagotchi.Common.Entities
 {
     public class User : BaseEntity
     {
+        [Required]
         public string Name { get; set; }
         public string PhotoUri { get; set; }
         public Dictionary<int, string> Pets { get; set; }
