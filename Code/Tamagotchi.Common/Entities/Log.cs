@@ -11,5 +11,7 @@ namespace Tamagotchi.Common.Entities
     {
         [NotMapped]
         public string Message { get; set; }
+        [NotMapped]
+        public int AnimalId { get; set; }
     }
 }

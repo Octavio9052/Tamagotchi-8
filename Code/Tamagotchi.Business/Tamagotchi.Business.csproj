@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\BaseBusiness.cs" />
+    <Compile Include="Interfaces\IAnimalBusiness.cs" />
+    <Compile Include="Interfaces\ILoginBusiness.cs" />
+    <Compile Include="Interfaces\IPetBusiness.cs" />
+    <Compile Include="Interfaces\IUserBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

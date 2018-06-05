@@ -6,16 +6,22 @@ using System.Data.Entity;
 using Tamagotchi.Common.Entities;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 using Tamagotchi.DataAccess.Context;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Tamagotchi.DataAccess.DALs
 {
     public class BaseDAL<T> : IBaseDAL<T> where T : BaseEntity
     {
         protected DbContext _dbContext;
+        protected MongoClient _mongoClient;
+        protected IMongoDatabase _database; 
 
         public BaseDAL()
         {
             this._dbContext = new TamagotchiContext();
+            this._mongoClient = new MongoClient("mongodb://180b1f3b-0ee0-4-231-b9ee:xO5kRtGvglx0pvDIC5v9k7wtv9tp0ZBzLjp0K1aWjO9M67IO6a3yxZsL3SqleqFvunHOcvTqW9EgPwp9BrpAaA==@180b1f3b-0ee0-4-231-b9ee.documents.azure.com:10255/?ssl=true&replicaSet=globaldb");
+            this._database = this._mongoClient.GetDatabase("tamagotchi-009052");
         }
 
 
