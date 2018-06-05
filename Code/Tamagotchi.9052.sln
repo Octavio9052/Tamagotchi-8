@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.Core", "Tamagotc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.DALTesting", "Tamagotchi.DALTesting\Tamagotchi.DALTesting.csproj", "{507DE825-E34C-401B-9E4A-FC10578E770E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.SOAP", "Tamagotchi.SOAP\Tamagotchi.SOAP.csproj", "{DABC7EAD-753E-4EFA-A16C-2C06C1B99E8B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{507DE825-E34C-401B-9E4A-FC10578E770E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{507DE825-E34C-401B-9E4A-FC10578E770E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{507DE825-E34C-401B-9E4A-FC10578E770E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DABC7EAD-753E-4EFA-A16C-2C06C1B99E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DABC7EAD-753E-4EFA-A16C-2C06C1B99E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DABC7EAD-753E-4EFA-A16C-2C06C1B99E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DABC7EAD-753E-4EFA-A16C-2C06C1B99E8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

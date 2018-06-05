@@ -45,11 +45,14 @@
     <Compile Include="BaseBusiness.cs" />
     <Compile Include="Interfaces\IBaseBusiness.cs" />
     <Compile Include="Interfaces\IAnimalBusiness.cs" />
+    <Compile Include="Interfaces\ILogBusiness.cs" />
     <Compile Include="Interfaces\ILoginBusiness.cs" />
     <Compile Include="Interfaces\IPetBusiness.cs" />
     <Compile Include="Interfaces\ISessionBusiness.cs" />
     <Compile Include="Interfaces\IUserBusiness.cs" />
+    <Compile Include="LogBusiness.cs" />
     <Compile Include="LoginBusiness.cs" />
+    <Compile Include="PetBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionBusiness.cs" />
     <Compile Include="UserBusiness.cs" />
