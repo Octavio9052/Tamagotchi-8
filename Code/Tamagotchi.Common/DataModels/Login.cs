@@ -5,18 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
-namespace Tamagotchi.Common.Entities
+namespace Tamagotchi.Common.DataModels
 {
-    public class Session : BaseEntity
+    public class Login : BaseEntity
     {
         [Required]
-        [Index("Index_Guid", IsUnique = true)]
-        public Guid Guid { get; set; }
+        [StringLength(150)]
+        [Index("Index_Email", IsUnique = true)]
+        public string Email { get; set; }
         [Required]
-        public DateTime ExpirationDate { get; set; }
+        public string Password { get; set; }
 
         [Required]
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

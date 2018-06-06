@@ -8,15 +8,15 @@ using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
-namespace Tamagotchi.Business
+namespace Tamagotchi.Business.Interfaces
 {
-    public class BaseBusiness<T, Y> : IBaseBusiness<T, Y> where T : BaseModel where Y : BaseEntity
+    public class BaseMongoBusiness<T, Y> : IBaseMongoBusiness<T, Y> where T : BaseModel where Y : BaseDocument
     {
-        protected readonly IBaseDAL<Y> _baseDAL;
+        protected readonly IBaseMongoDAL<Y> _baseMongoDAL;
 
-        public BaseBusiness(IBaseDAL<Y> baseDAL)
+        public BaseMongoBusiness(IBaseMongoDAL<Y> baseMongoDAL)
         {
-            this._baseDAL = baseDAL;
+            this._baseMongoDAL = baseMongoDAL;
         }
 
         public virtual T Create(T model)

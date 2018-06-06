@@ -8,10 +8,12 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Business.Interfaces
 {
-    public interface IAnimalBusiness : IBaseBusiness<AnimalModel, Animal>
+    public interface IBaseMongoBusiness<T, Y> where T: BaseModel where Y : BaseDocument
     {
-        ICollection<AnimalModel> GetByUser(int id);
-        AnimalModel Create(Animal animal, byte[] package);
-        AnimalModel Update(Animal animal, byte[] package);
+        T Create(T model);
+        ICollection<T> GetAll();
+        T Get(T model);
+        T Update(T model);
+        void Delete(T model);
     }
 }

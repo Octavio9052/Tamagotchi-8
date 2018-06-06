@@ -6,8 +6,9 @@ using Tamagotchi.Common.DataModels;
 
 namespace Tamagotchi.DataAccess.DALs.Interfaces
 {
-    public interface IAnimalDAL : IBaseDAL<Animal>
+    public interface IPetMongoDAL : IBaseMongoDAL<Pet>
     {
-        ICollection<Animal> GetByUser(int id);
+        ICollection<Pet> GetByUser(int userId);
+        ICollection<Pet> GetByAnimal(int animalId);
     }
 }

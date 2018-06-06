@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tamagotchi.DataAccess.DALs;
-using Tamagotchi.Common.Entities;
+using Tamagotchi.Common.DataModels;
 
 namespace Tamagotchi.DALTesting
 {

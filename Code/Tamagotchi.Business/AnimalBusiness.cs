@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.DataAccess.DALs.Interfaces;
-using Tamagotchi.Common.Entities;
+using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Business

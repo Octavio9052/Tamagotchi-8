@@ -72,11 +72,13 @@
     <Compile Include="Context\TamagotchiContext.cs" />
     <Compile Include="DALs\AnimalDAL.cs" />
     <Compile Include="DALs\BaseDAL.cs" />
+    <Compile Include="DALs\BaseMongoDAL.cs" />
     <Compile Include="DALs\Interfaces\IAnimalDAL.cs" />
     <Compile Include="DALs\Interfaces\IBaseDAL.cs" />
-    <Compile Include="DALs\Interfaces\ILogDAL.cs" />
+    <Compile Include="DALs\Interfaces\ILogMongoDAL.cs" />
     <Compile Include="DALs\Interfaces\ILoginDAL.cs" />
-    <Compile Include="DALs\Interfaces\IPetDAL.cs" />
+    <Compile Include="DALs\Interfaces\IBaseMongoDAL.cs" />
+    <Compile Include="DALs\Interfaces\IPetMongoDAL.cs" />
     <Compile Include="DALs\Interfaces\ISessionDAL.cs" />
     <Compile Include="DALs\Interfaces\IUserDAL.cs" />
     <Compile Include="DALs\LoginDAL.cs" />

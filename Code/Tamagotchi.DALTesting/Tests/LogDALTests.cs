@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tamagotchi.DataAccess.DALs;
-using Tamagotchi.Common.Entities;
+using Tamagotchi.Common.DataModels;
 
 namespace Tamagotchi.DALTesting
 {
@@ -13,17 +13,20 @@ namespace Tamagotchi.DALTesting
         public void Create()
         {
             var logDal = new LogDAL();
+
             var log = new Log
             {
                 DateCreated = DateTime.Now,
                 LastModified = DateTime.Now,
+                Message = "Testing " + DateTime.Now,
                 AnimalId = 2,
-                Message = "Testing " + DateTime.Now
+                UserId = 1
             };
 
-            // logDal.AddLogs(log);
+            var amountLogs = logDal.GetAll("Log").Count;
+            logDal.AddLogs(log);
 
-            Assert.AreEqual(true, true);
+            Assert.AreEqual(amountLogs + 1 , logDal.GetAll("Log").Count);
         }
     }
 }

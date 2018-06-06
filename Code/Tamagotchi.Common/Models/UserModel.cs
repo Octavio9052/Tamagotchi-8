@@ -9,7 +9,7 @@ namespace Tamagotchi.Common.Models
     {
         public string Name { get; set; }
         public string PhotoUri { get; set; }
-        public Dictionary<int, string> Pets { get; set; }
+        public Dictionary<string, string> Pets { get; set; }
         public Dictionary<int, string> Creations { get; set; }
         public string Session { get; set; }
     }

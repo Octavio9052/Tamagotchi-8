@@ -44,8 +44,10 @@
   <ItemGroup>
     <Compile Include="AnimalBusiness.cs" />
     <Compile Include="BaseBusiness.cs" />
+    <Compile Include="Interfaces\BaseMongoBusiness.cs" />
     <Compile Include="Interfaces\IBaseBusiness.cs" />
     <Compile Include="Interfaces\IAnimalBusiness.cs" />
+    <Compile Include="Interfaces\IBaseMongoBusiness.cs" />
     <Compile Include="Interfaces\ILogBusiness.cs" />
     <Compile Include="Interfaces\ILoginBusiness.cs" />
     <Compile Include="Interfaces\IPetBusiness.cs" />
