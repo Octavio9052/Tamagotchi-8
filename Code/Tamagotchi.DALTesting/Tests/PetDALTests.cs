@@ -2,8 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tamagotchi.DataAccess.DALs;
 using Tamagotchi.Common.DataModels;
+using System.Collections.Generic;
 
-namespace Tamagotchi.DALTesting
+namespace Tamagotchi.DataAccessMongoTests
 {
     [TestClass]
     public class PetDALTests
@@ -12,38 +13,33 @@ namespace Tamagotchi.DALTesting
         public void Create()
         {
             var petDal = new PetDAL();
-
             var amount = petDal.GetAll("Pet").Count;
-
-            for (int i = 0; i < 4; i++) { 
-                var newPet = new Pet()
-                {
-                    Nickname = "Gansito",
-                    OwnerId = 7,
-                    AnimalId = 343,
-                    Gender = Common.Enums.Gender.Male,
-                    Logs = { },
-                    CurrentGamePoints = { }
-                };
-                petDal.Create(newPet);
-            }
-
-            var newUniquePet = new Pet()
+            
+            var newPet = new Pet()
             {
-                Nickname = "Gansito n" + (amount + 5),
-                OwnerId = 7,
-                AnimalId = amount+5,
-                Gender = Common.Enums.Gender.Female,
+                Nickname = "Gansito",
+                OwnerId = 1,
+                AnimalId = amount,
+                Gender = Common.Enums.Gender.Male,
                 Logs = { },
                 CurrentGamePoints = { }
             };
-            petDal.Create(newUniquePet);
+            petDal.Create(newPet);
 
-            Assert.AreEqual(amount + 5, petDal.GetAll("Pet").Count);
+            Assert.AreEqual(amount + 1, petDal.GetAll("Pet").Count);
         }
 
         [TestMethod]
-        public void Read()
+        public void ReadSingle()
+        {
+            var petDal = new PetDAL();
+            var single = petDal.Get("5b1798478956300a507e83e9", "Pet");
+
+            Assert.AreEqual("5b1798478956300a507e83e9", single.Id);
+        }
+
+        [TestMethod]
+        public void ReadAll()
         {
             var petDal = new PetDAL();
             var all = petDal.GetAll("Pet");
@@ -55,22 +51,26 @@ namespace Tamagotchi.DALTesting
         public void Update()
         {
             var petDal = new PetDAL();
-
-            var list = petDal.GetByUser(7);
-
-            var updatePet = new Pet();
-
-            foreach(var item in list)
+            var toUpdate = petDal.Get("5b1798478956300a507e83e9", "Pet");
+            var preUpdate = new Pet()
             {
-                updatePet = item;
-            }
+                Id = toUpdate.Id,
+                DateCreated = toUpdate.DateCreated,
+                LastModified = toUpdate.LastModified,
+                Nickname = toUpdate.Nickname,
+                Gender = toUpdate.Gender,
+                AnimalId = toUpdate.AnimalId,
+                CurrentGamePoints = toUpdate.CurrentGamePoints,
+                Logs = toUpdate.Logs,
+                OwnerId = toUpdate.OwnerId
+            };
 
-            updatePet.Nickname = "Pacnhito";
-            updatePet.OwnerId = 300;
 
-            petDal.Update(updatePet);
+            toUpdate.Nickname = "Arturito" + DateTime.Now.ToString();
+            petDal.Update(toUpdate);
 
-            Assert.IsTrue(updatePet.OwnerId == 300);
+
+            Assert.AreNotEqual(preUpdate, toUpdate);
         }
 
         [TestMethod]
@@ -78,9 +78,28 @@ namespace Tamagotchi.DALTesting
         {
             var petDal = new PetDAL();
             var amount = petDal.GetAll("Pet").Count;
-            // petDal.Delete(0, "Pet");
+            var all = petDal.GetAll("Pet");
+            List<Pet> list = new List<Pet>();
 
-            Assert.Equals(amount + 1, petDal.GetAll("Pet").Count);
+            foreach(var pet in all)
+            {
+                if (!pet.Id.Equals("5b1798478956300a507e83e9")) list.Add(pet);
+            }
+
+
+            Console.WriteLine(amount);
+
+            if(list.Capacity > 3)
+            {
+                petDal.Delete(list[2].Id, "Pet");
+                var newAmount = petDal.GetAll("Pet").Count;
+                Assert.AreEqual(amount - 1, newAmount);
+            }
+            else
+            {
+                Assert.Inconclusive();
+            }
+
         }
     }
 }

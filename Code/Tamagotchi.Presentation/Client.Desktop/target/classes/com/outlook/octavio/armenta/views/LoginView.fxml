@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefWidth="231.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.outlook.octavio.armenta.views.HelloWorldView">
+<StackPane prefWidth="231.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.outlook.octavio.armenta.views.LoginView">
     <children>
         <StackPane>
             <children>

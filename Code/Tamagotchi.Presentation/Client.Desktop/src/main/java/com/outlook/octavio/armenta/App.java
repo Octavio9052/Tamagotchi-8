@@ -1,7 +1,7 @@
 package com.outlook.octavio.armenta;
 
 import com.outlook.octavio.armenta.viewmodels.LoginViewModel;
-import com.outlook.octavio.armenta.views.HelloWorldView;
+import com.outlook.octavio.armenta.views.LoginView;
 import de.saxsys.mvvmfx.FluentViewLoader;
 import de.saxsys.mvvmfx.ViewTuple;
 import javafx.application.Application;
@@ -20,7 +20,7 @@ public class App extends Application {
         stage.setTitle("Tamagotchi - Developer Edition 2018 ®");
         stage.getIcons().add(new Image("faviconpng.png"));
 
-        ViewTuple<HelloWorldView, LoginViewModel> viewTuple = FluentViewLoader.fxmlView(HelloWorldView.class).load();
+        ViewTuple<LoginView, LoginViewModel> viewTuple = FluentViewLoader.fxmlView(LoginView.class).load();
 
         Parent root = viewTuple.getView();
         stage.setScene(new Scene(root));

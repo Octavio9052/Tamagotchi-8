@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace Tamagotchi.DataAccess.DALs.Interfaces
         T Get(string id, string collectionName);
         ICollection<T> GetAll(string collectionName);
         T Create(T document);
-        void Delete(int id, string collectionName);
+        void Delete(string id, string collectionName);
         T Update(T document);
     }
 }

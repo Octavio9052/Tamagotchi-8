@@ -31,27 +31,28 @@ namespace Tamagotchi.DataAccess.DALs
             return document;
         }
 
-        public void Delete(int id, string collectionName)
+        public void Delete(string id, string collectionName)
         {
-            var filter = Builders<T>.Filter.Eq("id", id);
+            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
             this._dbMongo.GetCollection<T>(collectionName).DeleteOne(filter);
         }
 
         public T Get(string id, string collectionName)
         {
-            var filter = Builders<T>.Filter.Eq("id", id);
-            return this._dbMongo.GetCollection<T>(collectionName).Find(filter).Single<T>();
+            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
+            var test = this._dbMongo.GetCollection<T>(collectionName).Find(filter).FirstOrDefault();
+            return test;
         }
 
         public ICollection<T> GetAll(string collectionName)
         {
-            return this._dbMongo.GetCollection<T>(collectionName).Find(new BsonDocument()).ToList<T>();
+            return this._dbMongo.GetCollection<T>(collectionName).Find(new BsonDocument()).ToList();
         }
 
         public T Update(T document)
         {
-            var filter = Builders<T>.Filter.Eq("id", document.Id);
-            return this._dbMongo.GetCollection<T>(document.ToString()).FindOneAndReplace(filter, document);
+            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(document.Id));
+            return this._dbMongo.GetCollection<T>(document.ToString()).FindOneAndReplace<T>(filter, document);
         }
     }
 }
