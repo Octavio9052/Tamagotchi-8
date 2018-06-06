@@ -7,12 +7,13 @@ using Tamagotchi.Business.Interfaces;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
+using AutoMapper;
 
 namespace Tamagotchi.Business
 {
     public class AnimalBusiness : BaseBusiness<AnimalModel, Animal>, IAnimalBusiness
     {
-        public AnimalBusiness(IAnimalDAL baseDAL) : base(baseDAL)
+        public AnimalBusiness(IAnimalDAL baseDAL, IMapper mapper) : base(baseDAL, mapper)
         {
 
         }

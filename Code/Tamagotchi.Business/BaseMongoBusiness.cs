@@ -7,41 +7,48 @@ using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DALs.Interfaces;
+using AutoMapper;
 
 namespace Tamagotchi.Business.Interfaces
 {
     public class BaseMongoBusiness<T, Y> : IBaseMongoBusiness<T, Y> where T : BaseModel where Y : BaseDocument
     {
         protected readonly IBaseMongoDAL<Y> _baseMongoDAL;
+        protected readonly IMapper _mapper;
 
-        public BaseMongoBusiness(IBaseMongoDAL<Y> baseMongoDAL)
+        public BaseMongoBusiness(IBaseMongoDAL<Y> baseMongoDAL, IMapper mapper)
         {
             this._baseMongoDAL = baseMongoDAL;
+            this._mapper = mapper;
         }
 
         public virtual T Create(T model)
         {
-            throw new NotImplementedException();
+            var document = this._mapper.Map<Y>(model);
+            return this._mapper.Map<T>(this._baseMongoDAL.Create(document));
         }
 
         public virtual void Delete(T model)
         {
-            throw new NotImplementedException();
+            var document = this._mapper.Map<Y>(model);
+            this._baseMongoDAL.Delete(document.Id, document.ToString());
         }
 
         public virtual T Get(T model)
         {
-            throw new NotImplementedException();
+            var document = this._mapper.Map<Y>(model);
+            return this._mapper.Map<T>(this._baseMongoDAL.Get(document.Id, document.ToString()));
         }
 
         public virtual ICollection<T> GetAll()
         {
-            throw new NotImplementedException();
+            return this._mapper.Map<ICollection<T>>(this._baseMongoDAL.GetAll(_baseMongoDAL.ToString()));
         }
 
         public virtual T Update(T model)
         {
-            throw new NotImplementedException();
+            var document = this._mapper.Map<Y>(model);
+            return this._mapper.Map<T>(this._baseMongoDAL.Update(document));
         }
     }
 }

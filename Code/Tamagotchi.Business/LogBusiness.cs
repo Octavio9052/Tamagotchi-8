@@ -7,12 +7,13 @@ using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
 using Tamagotchi.Common.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
+using AutoMapper;
 
 namespace Tamagotchi.Business
 {
     public class LogBusiness : BaseMongoBusiness<LogModel, Log>, ILogBusiness
     {
-        public LogBusiness(ILogMongoDAL baseMongoDAL) : base(baseMongoDAL)
+        public LogBusiness(ILogMongoDAL baseMongoDAL, IMapper mapper) : base(baseMongoDAL, mapper)
         {
 
         }

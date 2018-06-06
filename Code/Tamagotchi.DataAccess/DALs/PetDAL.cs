@@ -23,5 +23,10 @@ namespace Tamagotchi.DataAccess.DALs
             var filter = Builders<Pet>.Filter.Eq("ownerId", userId);
             return this._dbMongo.GetCollection<Pet>("Pet").Find(new BsonDocument()).ToList<Pet>();
         }
+
+        public override string ToString()
+        {
+            return "Pet";
+        }
     }
 }

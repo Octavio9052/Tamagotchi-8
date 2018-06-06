@@ -35,5 +35,10 @@ namespace Tamagotchi.DataAccess.DALs
             return this._dbMongo.GetCollection<Log>("Log")
                 .Find(filter).ToList<Log>();
         }
+
+        public override string ToString()
+        {
+            return "Log";
+        }
     }
 }

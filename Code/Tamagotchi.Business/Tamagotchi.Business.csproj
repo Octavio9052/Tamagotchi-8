@@ -33,8 +33,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +48,7 @@
   <ItemGroup>
     <Compile Include="AnimalBusiness.cs" />
     <Compile Include="BaseBusiness.cs" />
-    <Compile Include="Interfaces\BaseMongoBusiness.cs" />
+    <Compile Include="BaseMongoBusiness.cs" />
     <Compile Include="Interfaces\IBaseBusiness.cs" />
     <Compile Include="Interfaces\IAnimalBusiness.cs" />
     <Compile Include="Interfaces\IBaseMongoBusiness.cs" />
@@ -69,6 +73,9 @@
       <Project>{b6955fbd-af07-453b-93e6-c7ad3e293442}</Project>
       <Name>Tamagotchi.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
