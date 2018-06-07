@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
+<?import javafx.scene.control.PasswordField?>
 <VBox alignment="CENTER_LEFT" prefHeight="338.0" prefWidth="326.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.outlook.octavio.armenta.views.SignUpView">
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -45,8 +46,8 @@
         </rowConstraints>
         <TextField fx:id="usernameField" GridPane.columnIndex="1" />
         <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <TextField fx:id="passwordConfirmationField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <PasswordField fx:id="passwordConfirmationField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <Label text="Username:" />
         <Label text="E-mail:" GridPane.rowIndex="1" />
         <Label text="Password:" GridPane.rowIndex="2" />

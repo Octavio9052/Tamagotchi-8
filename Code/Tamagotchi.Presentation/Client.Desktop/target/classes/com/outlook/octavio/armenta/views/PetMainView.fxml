@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.outlook.octavio.armenta.views.PetsMainView">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.outlook.octavio.armenta.views.PetMainView">
    <top>
       <HBox spacing="10.0" BorderPane.alignment="CENTER">
          <padding>

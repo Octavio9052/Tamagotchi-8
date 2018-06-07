@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PetsMainView implements FxmlView<PetMainViewModel>, Initializable {
+public class PetMainView implements FxmlView<PetMainViewModel>, Initializable {
     @FXML
     public Label usernameLabel;
     @FXML

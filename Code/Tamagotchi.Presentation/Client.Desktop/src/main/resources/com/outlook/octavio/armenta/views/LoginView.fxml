@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.PasswordField?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" prefHeight="363.0" prefWidth="299.0" spacing="15.0"
       xmlns="http://javafx.com/javafx/8.0.121" fx:controller="com.outlook.octavio.armenta.views.LoginView">
     <padding>
@@ -15,6 +16,6 @@
         <Image url="@faviconpng.png"/>
     </ImageView>
     <TextField fx:id="emailField" promptText="E-mail"/>
-    <TextField fx:id="passwordField" promptText="Password"/>
+    <PasswordField fx:id="passwordField" promptText="Password"/>
     <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Log In"/>
 </VBox>
