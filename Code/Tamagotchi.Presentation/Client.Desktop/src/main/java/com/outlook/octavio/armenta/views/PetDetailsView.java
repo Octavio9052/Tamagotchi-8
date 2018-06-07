@@ -4,12 +4,16 @@ import com.google.inject.Inject;
 import com.outlook.octavio.armenta.viewmodels.PetDetailsViewModel;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -17,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -38,13 +43,15 @@ public class PetDetailsView implements FxmlView<PetDetailsViewModel>, Initializa
     public TextField descriptionField;
     @FXML
     public TextField packageField;
+    @FXML
+    public TextField propNameField;
 
     @FXML
-    public TableView dynamicPropsTable;
+    public TableView<Map.Entry<StringProperty, StringProperty>> dynamicPropsTable;
     @FXML
-    public TableColumn dynamicPropNameColumn;
+    public TableColumn<Map.Entry<StringProperty, StringProperty>, String> dynamicPropNameColumn;
     @FXML
-    public TableColumn dynamicPropValueColumn;
+    public TableColumn<Map.Entry<StringProperty, StringProperty>, String> dynamicPropValueColumn;
 
     @FXML
     public Button idleBrowseButton;
@@ -68,6 +75,21 @@ public class PetDetailsView implements FxmlView<PetDetailsViewModel>, Initializa
     private PetDetailsViewModel viewModel;
 
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        viewModel.dynamicPropsProperty().addListener((observable, oldValue, newValue) -> {
+            SimpleListProperty<Map.Entry<StringProperty, StringProperty>> items = new SimpleListProperty<>(FXCollections.observableArrayList());
+
+            items.addAll(newValue.entrySet());
+            dynamicPropsTable.itemsProperty().setValue(items);
+        });
+
+        dynamicPropNameColumn.setCellValueFactory(param -> param.getValue().getKey());
+        dynamicPropValueColumn.setCellValueFactory(param -> param.getValue().getValue());
+        dynamicPropNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        dynamicPropValueColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+
         idleImageView.imageProperty().bind(viewModel.idleImageProperty());
         playImageView.imageProperty().bind(viewModel.playImageProperty());
         sleepImageView.imageProperty().bind(viewModel.sleepImageProperty());
@@ -76,6 +98,7 @@ public class PetDetailsView implements FxmlView<PetDetailsViewModel>, Initializa
         nameField.textProperty().bindBidirectional(viewModel.nameFieldProperty());
         descriptionField.textProperty().bindBidirectional(viewModel.descriptionFieldProperty());
         packageField.textProperty().bindBidirectional(viewModel.packageFieldProperty());
+        propNameField.textProperty().bindBidirectional(viewModel.propNameProperty());
 
         idleBrowseButton.setOnAction(e -> viewModel.getIdleBrowseCommand().execute());
         playBrowseButton.setOnAction

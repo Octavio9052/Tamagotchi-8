@@ -5,10 +5,13 @@ import de.saxsys.mvvmfx.utils.commands.Action;
 import de.saxsys.mvvmfx.utils.commands.Command;
 import de.saxsys.mvvmfx.utils.commands.DelegateCommand;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PetDetailsViewModel implements ViewModel {
@@ -29,8 +32,9 @@ public class PetDetailsViewModel implements ViewModel {
     private StringProperty nameField = new SimpleStringProperty();
     private StringProperty descriptionField = new SimpleStringProperty();
     private StringProperty packageField = new SimpleStringProperty();
+    private StringProperty propName = new SimpleStringProperty();
 
-    private MapProperty<String, String> dynamicProps;
+    private MapProperty<StringProperty, StringProperty> dynamicProps = new SimpleMapProperty<>(FXCollections.observableHashMap());
 
     private Command idleBrowseCommand;
     private Command playBrowseCommand;
@@ -115,7 +119,10 @@ public class PetDetailsViewModel implements ViewModel {
     }
 
     public void doAddProp() {
+        final String key = this.propNameProperty().get();
+        this.propNameProperty().set("");
 
+        this.dynamicProps.put(new SimpleStringProperty(key), new SimpleStringProperty());
     }
 
     public void doCreate() {
@@ -186,11 +193,19 @@ public class PetDetailsViewModel implements ViewModel {
         return packageField;
     }
 
-    public ObservableMap<String, String> getDynamicProps() {
+    public String getPropName() {
+        return propName.get();
+    }
+
+    public StringProperty propNameProperty() {
+        return propName;
+    }
+
+    public ObservableMap<StringProperty, StringProperty> getDynamicProps() {
         return dynamicProps.get();
     }
 
-    public MapProperty<String, String> dynamicPropsProperty() {
+    public MapProperty<StringProperty, StringProperty> dynamicPropsProperty() {
         return dynamicProps;
     }
 
