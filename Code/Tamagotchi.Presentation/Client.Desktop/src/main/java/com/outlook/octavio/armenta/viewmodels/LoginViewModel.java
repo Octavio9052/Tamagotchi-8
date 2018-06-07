@@ -8,15 +8,15 @@ public class LoginViewModel implements ViewModel {
 
     private StringProperty helloMessage = new SimpleStringProperty("Hello World");
 
-    public StringProperty helloMessageProperty(){
+    public StringProperty helloMessageProperty() {
         return helloMessage;
     }
 
-    public String getHelloMessage(){
+    public String getHelloMessage() {
         return helloMessage.get();
     }
 
-    public void setHelloMessage(String message){
+    public void setHelloMessage(String message) {
         helloMessage.set(message);
     }
 }

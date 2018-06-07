@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox alignment="CENTER_LEFT" prefHeight="338.0" prefWidth="326.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.outlook.octavio.armenta.views.SignUpView">
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+    <Label text="Mochisgotchi">
+        <font>
+          <Font size="16.0" />
+        </font>
+    </Label>
+    <TextFlow>
+        <VBox.margin>
+            <Insets />
+        </VBox.margin>
+        <padding>
+            <Insets bottom="5.0" right="5.0" top="5.0" />
+        </padding>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="News: Something super cool about the app" />
+    </TextFlow>
+    <GridPane hgap="5.0" vgap="5.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+        </rowConstraints>
+        <TextField fx:id="usernameField" GridPane.columnIndex="1" />
+        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="passwordConfirmationField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Username:" />
+        <Label text="E-mail:" GridPane.rowIndex="1" />
+        <Label text="Password:" GridPane.rowIndex="2" />
+        <Label text="Confirm Password:" GridPane.rowIndex="3" />
+        <CheckBox fx:id="termsCheckbox" mnemonicParsing="false" text=" I have read and agree with everything" GridPane.columnSpan="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets top="15.0" />
+         </GridPane.margin></CheckBox>
+    </GridPane>
+    <Button fx:id="signUpButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Sign Up" VBox.vgrow="NEVER" />
+</VBox>

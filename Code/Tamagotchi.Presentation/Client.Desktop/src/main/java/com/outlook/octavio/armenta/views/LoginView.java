@@ -6,24 +6,24 @@ import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginView implements FxmlView<LoginViewModel>, Initializable  {
+public class LoginView implements FxmlView<LoginViewModel>, Initializable {
 
     @FXML
-    private Label helloLabel;
-
+    public TextField passwordField;
     @FXML
-    private Button loginButton;
+    public Button loginButton;
+    @FXML
+    public TextField emailField;
 
     @InjectViewModel
     private LoginViewModel viewModel;
 
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // helloLabel.textProperty().bind(viewModel.helloMessageProperty());
+
     }
 }
