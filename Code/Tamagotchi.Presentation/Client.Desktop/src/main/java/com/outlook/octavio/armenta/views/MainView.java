@@ -30,6 +30,5 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
     private void adaptChildren() {
         ((Region) mainPane.getChildren().get(0)).prefWidthProperty().bind(mainPane.widthProperty());
         ((Region) mainPane.getChildren().get(0)).prefHeightProperty().bind(mainPane.heightProperty());
-
     }
 }
