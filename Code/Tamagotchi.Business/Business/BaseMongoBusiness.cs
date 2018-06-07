@@ -34,10 +34,9 @@ namespace Tamagotchi.Business.Interfaces
             this._baseMongoDAL.Delete(document.Id, document.ToString());
         }
 
-        public virtual T Get(T model)
+        public virtual T Get(string id)
         {
-            var document = this._mapper.Map<Y>(model);
-            return this._mapper.Map<T>(this._baseMongoDAL.Get(document.Id, document.ToString()));
+            return this._mapper.Map<T>(this._baseMongoDAL.Get(id, this._baseMongoDAL.ToString()));
         }
 
         public virtual ICollection<T> GetAll()

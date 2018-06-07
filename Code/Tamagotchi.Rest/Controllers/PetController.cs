@@ -11,7 +11,6 @@ namespace Tamagotchi.Rest.Controllers
 {
     public class PetController : ApiController
     {
-
         private readonly IPetBusiness _petBusiness;
 
         public PetController(IPetBusiness petBusiness)
@@ -25,9 +24,9 @@ namespace Tamagotchi.Rest.Controllers
         }
 
         // GET: api/Pet/5
-        public PetModel Get(int id)
+        public PetModel Get(string id)
         {
-            return _petBusiness.Get(null);
+            return _petBusiness.Get(id);
         }
 
         // POST: api/Pet
@@ -37,13 +36,13 @@ namespace Tamagotchi.Rest.Controllers
         }
 
         // PUT: api/Pet/5
-        public PetModel Put(int id, [FromBody]PetModel value)
+        public PetModel Put(string id, [FromBody]PetModel value)
         {
             return _petBusiness.Update(value);
         }
 
         // DELETE: api/Pet/5
-        public void Delete(int id)
+        public void Delete(string id)
         {
             _petBusiness.Delete(null);
         }

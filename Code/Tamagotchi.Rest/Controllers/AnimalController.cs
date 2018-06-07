@@ -18,6 +18,7 @@ namespace Tamagotchi.Rest.Controllers
         {
             _animalBusiness = animalBusiness;
         }
+
         // GET: api/Animal
         public IEnumerable<AnimalModel> Get()
         {

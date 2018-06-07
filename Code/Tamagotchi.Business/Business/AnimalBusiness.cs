@@ -9,19 +9,21 @@ using Tamagotchi.DataAccess.DALs.Interfaces;
 using Tamagotchi.Common.Exceptions;
 using System.Threading;
 using System.IO;
+using ICSharpCode.SharpZipLib.Zip;
+using Tamagotchi.Business.Services;
 
 namespace Tamagotchi.Business
 {
     public class AnimalBusiness : BaseBusiness<AnimalModel, Animal>, IAnimalBusiness
     {
-        public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
-        // private Helpers.StorageService _storageService;
+        public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".GIF", ".PNG" };
+        private CloudService _cloudService;
         private ILogMongoDAL _logMongoDAL;
 
 
-        public AnimalBusiness(IAnimalDAL baseDal, IMapper mapper, /*Helpers.StorageService storageService,*/ ILogMongoDAL logMongoDAL) : base(baseDal, mapper)
+        public AnimalBusiness(IAnimalDAL baseDal, IMapper mapper, CloudService cloudService, ILogMongoDAL logMongoDAL) : base(baseDal, mapper)
         {
-            //this._storageService = storageService;
+            this._cloudService = cloudService;
             this._logMongoDAL = logMongoDAL;
         }
 
@@ -52,10 +54,10 @@ namespace Tamagotchi.Business
 
 
             var animalModel = base.Create(animal);
-            /*
+         
             var backgroundWorkerThread = new Thread(() => SaveFiles(zipFile, animalModel));
             backgroundWorkerThread.IsBackground = true;
-            backgroundWorkerThread.Start();*/
+            backgroundWorkerThread.Start();
 
             return animalModel;
         }
@@ -70,13 +72,14 @@ namespace Tamagotchi.Business
             }
 
             animalModel.IsReady = false;
-            /*
+
             var backgroundWorkerThread = new Thread(() => SaveFiles(zipFile, animalModel));
             backgroundWorkerThread.IsBackground = true;
             backgroundWorkerThread.Start();
-            */
+
             return base.Update(animalModel);
         }
+
 
         public override void Delete(AnimalModel animalModel)
         {
@@ -104,14 +107,14 @@ namespace Tamagotchi.Business
             var entity = this._logMongoDAL.LoadLogs(animalId);
             return this._mapper.Map<ICollection<LogModel>>(entity);
         }
-        /*
+
         private async Task<string> FindSaveFile(ZipEntry entryFile, ZipFile file, string fileName)
         {
             try
             {
                 using (var stream = file.GetInputStream(entryFile))
                 {
-                    return await this._storageService.ProcessImageFromStream(stream, fileName);
+                    return await this._cloudService.ProcessImageFromStream(stream, fileName);
                 }
             }
             catch (Exception ex)
@@ -126,8 +129,8 @@ namespace Tamagotchi.Business
             {
                 using (var stream = new MemoryStream(zipFile))
                 {
-                    var task = this._storageService.ProcessFileFromStream(stream, animalModel.Id + "_zip.zip");
-                    animalModel.ZipFileLocation = task.Result;
+                    var task = this._cloudService.ProcessFileFromStream(stream, animalModel.Id + "_zip.zip");
+                    animalModel.PacketUri = task.Result;
                     stream.Position = 0;
                     using (var zipArchive = new ZipFile(stream))
                     {
@@ -201,7 +204,8 @@ namespace Tamagotchi.Business
 
             }
 
-        }*/
+        }
+
 
         public AnimalModel Create(Animal animal, byte[] package)
         {
@@ -212,5 +216,6 @@ namespace Tamagotchi.Business
         {
             throw new NotImplementedException();
         }
+
     }
 }

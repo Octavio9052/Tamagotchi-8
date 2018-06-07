@@ -12,7 +12,7 @@ namespace Tamagotchi.Business.Interfaces
     {
         T Create(T model);
         ICollection<T> GetAll();
-        T Get(T model);
+        T Get(string id);
         T Update(T model);
         void Delete(T model);
     }
