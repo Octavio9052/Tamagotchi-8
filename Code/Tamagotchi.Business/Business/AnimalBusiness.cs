@@ -43,7 +43,7 @@ namespace Tamagotchi.Business
             {
                 if (entry.Value <= 0 && !entry.Key.Contains("Max")) throw new BusinessLayerExceptions("Not valid: " + entry.Key);
             }
-            if (animal.CreatorId == 0 || animal.CreatorId < 0) throw new BusinessLayerExceptions("Empty or not valid: HealthPoints");
+            if (animal.Creator.Id == 0 || animal.Creator.Id < 0) throw new BusinessLayerExceptions("Empty or not valid: HealthPoints");
             if (zipFile == null) throw new BusinessLayerExceptions("Empty or not valid: File");
 
             // Fill blanks

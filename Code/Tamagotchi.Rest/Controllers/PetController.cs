@@ -6,45 +6,72 @@ using System.Net.Http;
 using System.Web.Http;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
+using Tamagotchi.Common.Enums;
+using Tamagotchi.Common.Exceptions;
+using Tamagotchi.Common.Messages;
 
-namespace Tamagotchi.Rest.Controllers
+
+namespace Tamagotchi.REST.Controllers
 {
     public class PetController : ApiController
     {
         private readonly IPetBusiness _petBusiness;
+        private readonly ISessionBusiness _sessionBusiness;
 
-        public PetController(IPetBusiness petBusiness)
+        public PetController(IPetBusiness petBusiness, ISessionBusiness sessionBusiness)
         {
-            _petBusiness = petBusiness;
+            this._petBusiness = petBusiness;
+            this._sessionBusiness = sessionBusiness;
         }
+
+
         // GET: api/Pet
-        public IEnumerable<PetModel> Get()
+        public IEnumerable<string> Get()
         {
-            return _petBusiness.GetAll();
+            return new string[] { "value1", "value2" };
         }
 
         // GET: api/Pet/5
-        public PetModel Get(string id)
+        public HttpResponseMessage Get(string id)
         {
-            return _petBusiness.Get(id);
+            var messageResponse = new MessageResponse<PetModel>();
+            var statusCode = HttpStatusCode.OK;
+
+            try
+            {
+                var pet = this._petBusiness.Get(id);
+
+                if (pet.Owner.Id != pet.Owner.Session.UserId) throw new ForbiddenExceptions();
+
+                messageResponse.Body = new List<PetModel>
+                {
+                    pet
+                };
+            }
+            catch (Exception e)
+            {
+                messageResponse.Errors = new List<string> { e.Message };
+                if (e is ForbiddenExceptions || e is InvalidSessionExceptions) statusCode = HttpStatusCode.Forbidden;
+                else if (e is BusinessLayerExceptions) statusCode = HttpStatusCode.BadRequest;
+                else statusCode = HttpStatusCode.InternalServerError;
+            }
+
+            return Request.CreateResponse(statusCode, messageResponse, "application/json");
         }
 
         // POST: api/Pet
-        public PetModel Post([FromBody]PetModel value)
+        public void Post([FromBody]string value)
         {
-            return _petBusiness.Create(value);
         }
 
         // PUT: api/Pet/5
-        public PetModel Put(string id, [FromBody]PetModel value)
+        public void Put(int id, [FromBody]string value)
         {
-            return _petBusiness.Update(value);
         }
 
         // DELETE: api/Pet/5
-        public void Delete(string id)
+        public void Delete(int id)
         {
-            _petBusiness.Delete(null);
         }
     }
 }

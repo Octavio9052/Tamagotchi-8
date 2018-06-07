@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Tamagotchi.Rest
+namespace Tamagotchi.REST
 {
     public class FilterConfig
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace Tamagotchi.Rest
+namespace Tamagotchi.REST
 {
     public static class WebApiConfig
     {
