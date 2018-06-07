@@ -12,5 +12,4 @@ namespace Tamagotchi.Core
         GameStatus Sleep();
         GameStatus Play();
     }
-    }
 }

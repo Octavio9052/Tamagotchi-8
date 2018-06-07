@@ -42,10 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseGameRules.cs" />
-    <Compile Include="GameStatus.cs" />
-    <Compile Include="IBaseGameRules.cs" />
-    <Compile Include="PetStatus.cs" />
+    <Compile Include="GameRules\BaseGameRules.cs" />
+    <Compile Include="PlayStatus\GameStatus.cs" />
+    <Compile Include="GameRules\IBaseGameRules.cs" />
+    <Compile Include="PlayStatus\PetStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

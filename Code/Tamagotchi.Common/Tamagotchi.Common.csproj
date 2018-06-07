@@ -75,7 +75,14 @@
     <Compile Include="DataModels\Pet.cs" />
     <Compile Include="DataModels\Session.cs" />
     <Compile Include="DataModels\User.cs" />
+    <Compile Include="Enums\Actio.cs" />
     <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Exceptions\BusinessLayerExceptions.cs" />
+    <Compile Include="Exceptions\DataAccessLayerExceptions.cs" />
+    <Compile Include="Exceptions\ForbiddenExceptions.cs" />
+    <Compile Include="Exceptions\InvalidSessionExceptions.cs" />
+    <Compile Include="Exceptions\ServiceRESTLayerExceptions.cs" />
+    <Compile Include="Exceptions\ServiceSOAPLayerExceptions.cs" />
     <Compile Include="Messages\LoginMessageRequest.cs" />
     <Compile Include="Messages\LoginMessageResponse.cs" />
     <Compile Include="Messages\MessageRequest.cs" />
@@ -88,9 +95,6 @@
     <Compile Include="Models\SessionModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Exceptions\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

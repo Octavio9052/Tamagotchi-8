@@ -13,14 +13,16 @@ namespace Tamagotchi.Business
 {
     public class UserBusiness : BaseBusiness<UserModel, User>, IUserBusiness
     {
-        public UserBusiness(IUserDAL baseDAL, IMapper mapper) : base(baseDAL, mapper)
-        {
+        private readonly ISessionBusiness _sessionBusiness;
 
+        public UserBusiness(IUserDAL baseDAL, IMapper mapper, ISessionBusiness sessionBusiness) : base(baseDAL, mapper)
+        {
+            this._sessionBusiness = sessionBusiness;
         }
 
         public UserModel Create(LoginModel login, string name, string photoUri)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

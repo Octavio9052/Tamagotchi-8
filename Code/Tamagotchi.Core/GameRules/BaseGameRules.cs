@@ -11,13 +11,14 @@ namespace Tamagotchi.Core
         protected const string eatMessage = " has finished eating";
         protected const string sleepMessage = " has finished sleeping";
         protected const string playMessage = " has finished playing";
+        private readonly string[] _defaultsKeys = { "Food", "Fun", "Rest" };
 
         protected PetStatus petStatus;
 
         public BaseGameRules(PetStatus petStatus)
         {
             this.petStatus = petStatus;
-            _checkDefaultGamePoints(new string[] { "Food", "Fun", "Rest" });
+            _checkDefaultGamePoints(_defaultsKeys);
         }
 
         public virtual GameStatus Eat()
