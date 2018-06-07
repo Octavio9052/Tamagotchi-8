@@ -8,9 +8,6 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * @author J. Pichardo
- */
 public class AuthView implements FxmlView<AuthViewModel>, Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 

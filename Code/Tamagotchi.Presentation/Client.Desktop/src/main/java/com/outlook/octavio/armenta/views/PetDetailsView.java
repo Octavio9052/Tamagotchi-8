@@ -13,9 +13,6 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * @author J. Pichardo
- */
 public class PetDetailsView implements FxmlView<PetDetailsViewModel>, Initializable {
     @FXML
     public ImageView idleImageView;

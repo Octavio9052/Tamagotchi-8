@@ -10,9 +10,6 @@ import javafx.scene.control.ListView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * @author J. Pichardo
- */
 public class PetListView implements FxmlView<PetListViewModel>, Initializable {
     @FXML
     public Button newButton;

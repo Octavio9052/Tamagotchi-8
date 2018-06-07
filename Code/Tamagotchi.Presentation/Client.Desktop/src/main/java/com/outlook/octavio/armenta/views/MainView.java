@@ -12,9 +12,6 @@ import javafx.scene.layout.Region;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * @author J. Pichardo
- */
 public class MainView implements FxmlView<MainViewModel>, Initializable {
     @FXML
     public AnchorPane mainPane;

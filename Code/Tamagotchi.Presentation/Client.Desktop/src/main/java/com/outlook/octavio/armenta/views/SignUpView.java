@@ -11,9 +11,6 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * @author J. Pichardo
- */
 public class SignUpView implements FxmlView<MainViewModel>, Initializable {
 
     @FXML
