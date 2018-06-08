@@ -1,7 +1,7 @@
 package com.outlook.octavio.armenta.views;
 
 import com.google.inject.Inject;
-import com.outlook.octavio.armenta.viewmodels.PetDetailsViewModel;
+import com.outlook.octavio.armenta.viewmodels.AnimalDetailsViewModel;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
 import javafx.beans.property.SimpleListProperty;
@@ -25,9 +25,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
-import static com.outlook.octavio.armenta.viewmodels.PetDetailsViewModel.*;
+import static com.outlook.octavio.armenta.viewmodels.AnimalDetailsViewModel.*;
 
-public class PetDetailsView implements FxmlView<PetDetailsViewModel>, Initializable {
+public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Initializable {
     @FXML
     public ImageView idleImageView;
     @FXML
@@ -72,7 +72,7 @@ public class PetDetailsView implements FxmlView<PetDetailsViewModel>, Initializa
     private Stage stage;
 
     @InjectViewModel
-    private PetDetailsViewModel viewModel;
+    private AnimalDetailsViewModel viewModel;
 
     public void initialize(URL location, ResourceBundle resources) {
 

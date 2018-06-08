@@ -8,7 +8,7 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Business.Interfaces
 {
-    public interface IBaseMongoBusiness<T, Y> where T: BaseModel where Y : BaseDocument
+    public interface IBaseMongoBusiness<T, Y> where T: BaseMnModel where Y : BaseDocument
     {
         T Create(T model);
         ICollection<T> GetAll();

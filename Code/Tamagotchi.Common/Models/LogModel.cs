@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tamagotchi.Common.Models
 {
-    public class LogModel : BaseModel
+    public class LogModel : BaseMnModel
     {
         public string Message { get; set; }
     }

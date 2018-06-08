@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single"
         android:id="@+id/user_current_pets">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/list_item_pet"
             android:icon="@drawable/ic_sync_black_24dp"
             android:title="Animal 1" />
     </group>

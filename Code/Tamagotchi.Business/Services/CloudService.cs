@@ -24,7 +24,7 @@ namespace Tamagotchi.Business.Services
             if (!CloudStorageAccount.TryParse(storageConnectionString, out _storageAccount)) throw new BusinessLayerExceptions();
             try
             {
-                // Create the CloudBlobClient that represents the Blob storage endpoint for the storage account.
+                // Create the CloudBlobClient, endpoint for the storage account. (blob)
                 CloudBlobClient cloudBlobClient = this._storageAccount.CreateCloudBlobClient();
 
                 // Create a container called 'quickstartblobs' and append a GUID value to it to make the name unique. 

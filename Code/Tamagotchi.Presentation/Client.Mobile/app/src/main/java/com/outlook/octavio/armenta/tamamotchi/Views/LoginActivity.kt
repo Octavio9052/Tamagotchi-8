@@ -2,6 +2,7 @@ package com.outlook.octavio.armenta.tamamotchi.Views
 
 import android.support.v7.app.AppCompatActivity
 import android.app.LoaderManager.LoaderCallbacks
+import android.content.Intent
 import android.content.Loader
 import android.database.Cursor
 import android.os.AsyncTask
@@ -36,11 +37,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         })
 
         email_sign_in_button.setOnClickListener { attemptLogin() }
+        register_btn.setOnClickListener( {
+            startActivity(Intent(this, RegisterActivity::class.java));
+        })
     }
 
 
-    private fun attemptLogin() {
-
+    private fun attemptLogin(){
+        startActivity(Intent(this, PetActivity::class.java))
     }
 
     /**

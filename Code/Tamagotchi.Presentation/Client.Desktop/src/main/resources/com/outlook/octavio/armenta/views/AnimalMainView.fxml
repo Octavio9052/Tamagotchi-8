@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.outlook.octavio.armenta.views.PetMainView">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.outlook.octavio.armenta.views.AnimalMainView">
    <top>
       <HBox spacing="10.0" BorderPane.alignment="CENTER">
          <padding>
@@ -19,9 +19,9 @@
       </HBox>
    </top>
    <left>
-      <fx:include source="PetListView.fxml" />
+      <fx:include source="AnimalListView.fxml" />
    </left>
    <center>
-      <fx:include source="PetDetailsView.fxml" />
+      <fx:include source="AnimalDetailsView.fxml" />
    </center>
 </BorderPane>

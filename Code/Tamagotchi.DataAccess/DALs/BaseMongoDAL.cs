@@ -9,6 +9,7 @@ using Tamagotchi.DataAccess.DALs.Interfaces;
 using Tamagotchi.DataAccess.Context;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Bson.Serialization;
 
 namespace Tamagotchi.DataAccess.DALs
 {
@@ -21,6 +22,17 @@ namespace Tamagotchi.DataAccess.DALs
         public BaseMongoDAL()
         {
             this._dbMongo = new MongoClient(CONNECTION_STRING).GetDatabase(MONGO_DB);
+            RegisterMapIfNeeded<T>();
+        }
+
+
+
+        // Check to see if map is registered before registering class map
+        // This is for the sake of the polymorphic types that we are using so Mongo knows how to deserialize
+        public void RegisterMapIfNeeded<TClass>()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(TClass)))
+                BsonClassMap.RegisterClassMap<TClass>();
         }
 
         public T Create(T document)

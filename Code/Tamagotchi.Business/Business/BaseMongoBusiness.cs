@@ -11,7 +11,7 @@ using AutoMapper;
 
 namespace Tamagotchi.Business.Interfaces
 {
-    public class BaseMongoBusiness<T, Y> : IBaseMongoBusiness<T, Y> where T : BaseModel where Y : BaseDocument
+    public class BaseMongoBusiness<T, Y> : IBaseMongoBusiness<T, Y> where T : BaseMnModel where Y : BaseDocument
     {
         protected readonly IBaseMongoDAL<Y> _baseMongoDAL;
         protected readonly IMapper _mapper;

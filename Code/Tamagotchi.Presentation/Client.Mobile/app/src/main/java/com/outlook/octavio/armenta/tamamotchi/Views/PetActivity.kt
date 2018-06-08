@@ -1,5 +1,6 @@
 package com.outlook.octavio.armenta.tamamotchi.Views
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -59,8 +60,9 @@ class PetActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
+            R.id.list_item_pet -> {
                 // Handle the camera action
+                startActivity(Intent(baseContext, PetActivity::class.java))
             }
             R.id.nav_send -> {
 

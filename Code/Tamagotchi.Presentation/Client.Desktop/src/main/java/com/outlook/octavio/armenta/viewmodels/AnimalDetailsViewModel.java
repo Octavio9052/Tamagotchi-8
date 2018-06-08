@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class PetDetailsViewModel implements ViewModel {
+public class AnimalDetailsViewModel implements ViewModel {
 
     public static final String IDLE_BROWSE = "IDLE_BROWSE";
     public static final String PLAY_BROWSE = "PLAY_BROWSE";

@@ -2,7 +2,7 @@ package com.outlook.octavio.armenta.views;
 
 import com.outlook.octavio.armenta.viewmodels.AuthViewModel;
 import com.outlook.octavio.armenta.viewmodels.MainViewModel;
-import com.outlook.octavio.armenta.viewmodels.PetMainViewModel;
+import com.outlook.octavio.armenta.viewmodels.AnimalMainViewModel;
 import de.saxsys.mvvmfx.FluentViewLoader;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -38,8 +38,8 @@ public class MainView implements FxmlView<MainViewModel>, Initializable {
             mainPane.getChildren().add(tuple.getView());
         });
 
-        viewModel.subscribe(MainViewModel.PET_VIEW, (s, objects) -> {
-            ViewTuple<PetMainView, PetMainViewModel> tuple = FluentViewLoader.fxmlView(PetMainView.class).load();
+        viewModel.subscribe(MainViewModel.ANIMAL_VIEW, (s, objects) -> {
+            ViewTuple<AnimalMainView, AnimalMainViewModel> tuple = FluentViewLoader.fxmlView(AnimalMainView.class).load();
 
             mainPane.getChildren().clear();
             mainPane.getChildren().add(tuple.getView());

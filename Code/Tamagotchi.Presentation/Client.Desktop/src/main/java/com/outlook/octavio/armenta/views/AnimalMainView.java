@@ -1,6 +1,6 @@
 package com.outlook.octavio.armenta.views;
 
-import com.outlook.octavio.armenta.viewmodels.PetMainViewModel;
+import com.outlook.octavio.armenta.viewmodels.AnimalMainViewModel;
 import de.saxsys.mvvmfx.FxmlView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PetMainView implements FxmlView<PetMainViewModel>, Initializable {
+public class AnimalMainView implements FxmlView<AnimalMainViewModel>, Initializable {
     @FXML
     public Label usernameLabel;
     @FXML

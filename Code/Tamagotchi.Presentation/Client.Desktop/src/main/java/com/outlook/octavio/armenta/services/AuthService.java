@@ -18,7 +18,6 @@ public class AuthService implements IAuthService {
         user.email = username;
         user.password = password;
 
-
         this.user.setValue(user);
     }
 

@@ -9,7 +9,7 @@ import java.util.Objects;
 public class MainViewModel implements ViewModel {
 
     public static final String LOGIN_VIEW = "LOGINVIEW";
-    public static final String PET_VIEW = "PETVIEW";
+    public static final String ANIMAL_VIEW = "ANIMALVIEW";
 
     private final IAuthService authService;
 
@@ -24,7 +24,7 @@ public class MainViewModel implements ViewModel {
             if (Objects.isNull(newValue)) {
                 publish(LOGIN_VIEW);
             } else {
-                publish(PET_VIEW);
+                publish(ANIMAL_VIEW);
             }
         });
     }

@@ -85,9 +85,12 @@
     <Compile Include="Exceptions\ServiceSOAPLayerExceptions.cs" />
     <Compile Include="Messages\LoginMessageRequest.cs" />
     <Compile Include="Messages\LoginMessageResponse.cs" />
+    <Compile Include="Messages\MessageMnRequest.cs" />
+    <Compile Include="Messages\MessageMnResponse.cs" />
     <Compile Include="Messages\MessageRequest.cs" />
     <Compile Include="Messages\MessageResponse.cs" />
     <Compile Include="Models\AnimalModel.cs" />
+    <Compile Include="Models\BaseMnModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
