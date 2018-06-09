@@ -14,7 +14,19 @@ namespace Tamagotchi.DataAccessMongoTests
         {
             var petDal = new PetDAL();
             var amount = petDal.GetAll("Pet").Count;
-            
+
+            Dictionary<string, double> test = new Dictionary<string, double>();
+
+            test.Add("Estres", 104.00);
+            test.Add("Magia", 14.00);
+            test.Add("Educacion", 124.00);
+            test.Add("Tolerancia", 64.00);
+            test.Add("Paciencia", 34.00);
+            test.Add("Tristeza", 24.00);
+            test.Add("Hambre", 14.00);
+            test.Add("Experiencia", 54.00);
+
+
             var newPet = new Pet()
             {
                 Nickname = "Gansito",
@@ -22,7 +34,7 @@ namespace Tamagotchi.DataAccessMongoTests
                 AnimalId = amount,
                 Gender = Common.Enums.Gender.Male,
                 Logs = { },
-                CurrentGamePoints = { }
+                CurrentGamePoints = test
             };
             petDal.Create(newPet);
 
@@ -46,8 +58,7 @@ namespace Tamagotchi.DataAccessMongoTests
 
             Assert.IsNotNull(all);
         }
-
-        [TestMethod]
+        
         public void Update()
         {
             var petDal = new PetDAL();
@@ -72,8 +83,7 @@ namespace Tamagotchi.DataAccessMongoTests
 
             Assert.AreNotEqual(preUpdate, toUpdate);
         }
-
-        [TestMethod]
+        
         public void Delete()
         {
             var petDal = new PetDAL();

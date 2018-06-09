@@ -110,28 +110,28 @@ public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Init
         createButton.setOnAction(e -> viewModel.getCreateCommand().execute());
 
         viewModel.subscribe(IDLE_BROWSE, (s, objects) -> {
-            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png");
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
 
             this.openFileChooser(filter, file -> {
                 viewModel.idleImageProperty().setValue(new Image(file.toURI().toString()));
             });
         });
         viewModel.subscribe(PLAY_BROWSE, (s, objects) -> {
-            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png");
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
 
             this.openFileChooser(filter, file -> {
                 viewModel.playImageProperty().setValue(new Image(file.toURI().toString()));
             });
         });
         viewModel.subscribe(SLEEP_BROWSE, (s, objects) -> {
-            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png");
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
 
             this.openFileChooser(filter, file -> {
                 viewModel.sleepImageProperty().setValue(new Image(file.toURI().toString()));
             });
         });
         viewModel.subscribe(EAT_BROWSE, (s, objects) -> {
-            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png");
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Images", "*.jpg", "*.png", "*.gif");
 
             this.openFileChooser(filter, file -> {
                 viewModel.eatImageProperty().setValue(new Image(file.toURI().toString()));

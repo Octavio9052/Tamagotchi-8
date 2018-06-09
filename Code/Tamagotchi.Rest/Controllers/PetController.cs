@@ -62,6 +62,7 @@ namespace Tamagotchi.REST.Controllers
         // POST: api/Pet
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT: api/Pet/5
