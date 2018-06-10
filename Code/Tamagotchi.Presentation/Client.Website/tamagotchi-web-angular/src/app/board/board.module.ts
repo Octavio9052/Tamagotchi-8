@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AnimalCardComponent } from './animal-card/animal-card.component';
@@ -25,7 +25,8 @@ import { DetailsComponent } from './details/details.component';
     MatCardModule,
     BrowserModule,
     NgxChartsModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   declarations: [
     DashboardComponent,
@@ -34,6 +35,7 @@ import { DetailsComponent } from './details/details.component';
     ChartComponent,
     DetailsComponent
   ],
-  exports: []
+  exports: [],
+  entryComponents: [DetailsComponent]
 })
 export class BoardModule { }
