@@ -1,5 +1,9 @@
-.example-icon {
-  padding: 0 10px;
+.logo-icon {
+  margin-top:2px;
+}
+
+.app-name-text {
+  margin-left: 10px;
 }
 
 .example-spacer {
