@@ -3,17 +3,28 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
+import { BoardModule } from './board/board.module';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+
+import { MatToolbarModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    BoardModule,
     AppRoutingModule,
-    HttpClientModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

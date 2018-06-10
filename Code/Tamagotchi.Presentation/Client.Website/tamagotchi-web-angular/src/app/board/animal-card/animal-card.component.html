@@ -1,0 +1,32 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>
+      <div>
+        <b>{{animalName}}</b>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="../../../assets/idle.gif" alt="Idle photo of the animal">
+  <mat-card-content>
+    <div>
+      <b>
+        Downloads:</b>
+    </div>
+    <div>
+      {{numberDownloads}}
+    </div>
+    <div>
+      <b>
+        Creator:
+      </b>
+    </div>
+    <div>
+      {{creatorName}}
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="text-center">
+      <button id="details" mat-raised-button color="primary">Details</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

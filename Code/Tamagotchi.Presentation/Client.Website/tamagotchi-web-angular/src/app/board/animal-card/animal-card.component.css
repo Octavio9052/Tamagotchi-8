@@ -1,0 +1,12 @@
+.example-card {
+    max-width: 200px;
+    margin: 10px;
+}
+
+.example-header-image {
+    background-size: cover;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  

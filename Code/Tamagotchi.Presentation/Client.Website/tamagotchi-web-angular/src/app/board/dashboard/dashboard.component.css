@@ -1,0 +1,17 @@
+.tamoc {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 1%;
+}
+#chart-component{
+    width: 95%;
+    height: 100%;
+}
+#chart-container{
+    display: flex;
+    height: 300px;
+    margin: 20px;
+    outline: 2px solid black;
+}
+.example-card {
+    width: 100%;
+}
