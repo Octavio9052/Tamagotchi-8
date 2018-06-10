@@ -1,3 +1,17 @@
-<p>
-  animal-card works!
-</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title class="text-center"><b>{{animalName}}</b></mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="../../../assets/idle.gif" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      Number of downloads: <b>{{numberDownloads}}</b>
+    </p>
+    <p>
+      Creator: <b>{{creatorName}}</b>
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button id="details" mat-button>Details</button>
+  </mat-card-actions>
+</mat-card>

@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnimalCardComponent implements OnInit {
 
+  animalName: string;
+  numberDownloads: number;
+  creatorName: string;
+
   constructor() { }
 
   ngOnInit() {
+    this.animalName = "Fox";
+    this.numberDownloads = Math.round((Math.random() * 100));
+    this.creatorName = "Alejandro Cruz Jimenez"
   }
 
 }

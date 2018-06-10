@@ -1,3 +1,33 @@
-<p>
-  documentation works!
-</p>
+<mat-horizontal-stepper #stepper>
+  <mat-step>
+
+    <ng-template matStepLabel>Term and conditions</ng-template>
+
+
+    Dummy text ONE
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Download SDK</ng-template>
+
+
+    <button mat-stroked-button>Click here to download the SDK</button>
+
+
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>How to use the SDK</ng-template>
+
+    A DOCUMENTATION THAT IS ACTUALLY USEFUL
+
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
