@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Tamagotchi.Business.Interfaces;
-using Tamagotchi.Common.Models;
-using Tamagotchi.Common.Enums;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Messages;
-
+using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.REST.Controllers
 {
@@ -20,15 +17,15 @@ namespace Tamagotchi.REST.Controllers
 
         public PetController(IPetBusiness petBusiness, ISessionBusiness sessionBusiness)
         {
-            this._petBusiness = petBusiness;
-            this._sessionBusiness = sessionBusiness;
+            _petBusiness = petBusiness;
+            _sessionBusiness = sessionBusiness;
         }
 
 
         // GET: api/Pet
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new[] { "value1", "value2" };
         }
 
         // GET: api/Pet/5
@@ -39,7 +36,7 @@ namespace Tamagotchi.REST.Controllers
 
             try
             {
-                var pet = this._petBusiness.Get(id);
+                var pet = _petBusiness.Get(id);
 
                 if (pet.Owner.Id != pet.Owner.Session.UserId) throw new ForbiddenExceptions();
 

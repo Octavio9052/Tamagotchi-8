@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\TamagotchiContext.cs" />
+    <Compile Include="Context\TamagotchiMongoClient.cs" />
     <Compile Include="DALs\AnimalDAL.cs" />
     <Compile Include="DALs\BaseDAL.cs" />
     <Compile Include="DALs\BaseMongoDAL.cs" />

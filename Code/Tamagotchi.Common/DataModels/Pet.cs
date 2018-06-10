@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using Tamagotchi.Common.Enums;
+﻿using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
+using Tamagotchi.Common.Enums;
 
 namespace Tamagotchi.Common.DataModels
 {

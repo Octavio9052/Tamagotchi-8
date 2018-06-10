@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tamagotchi.Business.Services
 {
@@ -29,7 +26,7 @@ namespace Tamagotchi.Business.Services
 
         public void LoadFromStream(Stream stream)
         {
-            byte[] data = new byte[stream.Length];
+            var data = new byte[stream.Length];
             stream.Read(data, 0, data.Length);
 
             _assembly = Assembly.Load(data);
@@ -44,7 +41,7 @@ namespace Tamagotchi.Business.Services
         {
             ValidatePath(path);
             var assembly = Assembly.LoadFrom(path);
-            foreach (Type item in assembly.GetTypes())
+            foreach (var item in assembly.GetTypes())
             {
                 if (!item.IsClass) continue;
                 if (item.GetInterfaces().Contains(type))
@@ -62,7 +59,7 @@ namespace Tamagotchi.Business.Services
         public object Execute(Type type, string methodName, object[] parameters)
         {
 
-            foreach (Type item in _assembly.GetTypes())
+            foreach (var item in _assembly.GetTypes())
             {
                 if (!item.IsClass) continue;
                 if (item.GetInterfaces().Contains(type))
@@ -74,7 +71,7 @@ namespace Tamagotchi.Business.Services
                     break;
                 }
             }
-            throw new ArgumentException(String.Format("Method Error does not exist"));
+            throw new ArgumentException("Method Error does not exist");
 
         }
 
@@ -82,7 +79,7 @@ namespace Tamagotchi.Business.Services
             object[] parameters)
         {
 
-            foreach (Type item in _assembly.GetTypes())
+            foreach (var item in _assembly.GetTypes())
             {
                 if (!item.IsClass) continue;
                 if (item.GetInterfaces().Contains(type))
@@ -96,14 +93,14 @@ namespace Tamagotchi.Business.Services
                     break;
                 }
             }
-            throw new ArgumentException(String.Format("Method Error does not exist"));
+            throw new ArgumentException("Method Error does not exist");
 
         }
 
         private void ValidatePath(string path)
         {
             if (path == null) throw new ArgumentNullException("path");
-            if (!System.IO.File.Exists(path))
+            if (!File.Exists(path))
                 throw new ArgumentException(String.Format("path \"{0}\" does not exist", path));
         }
     }

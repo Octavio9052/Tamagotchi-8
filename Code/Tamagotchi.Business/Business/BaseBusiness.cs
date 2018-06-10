@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DALs.Interfaces;
-using AutoMapper;
 
 namespace Tamagotchi.Business
 {
@@ -19,37 +15,37 @@ namespace Tamagotchi.Business
 
         public BaseBusiness(IBaseDAL<Y> baseDAL, IMapper mapper)
         {
-            this._baseDAL = baseDAL;
-            this._mapper = mapper;
+            _baseDAL = baseDAL;
+            _mapper = mapper;
         }
 
         public virtual T Create(T model)
         {
-            var entity = this._mapper.Map<Y>(model);
-            return _mapper.Map<T>(this._baseDAL.Create(entity));
+            var entity = _mapper.Map<Y>(model);
+            return _mapper.Map<T>(_baseDAL.Create(entity));
         }
 
         public virtual void Delete(T model)
         {
-            this._baseDAL.Delete(model.Id);
+            _baseDAL.Delete(model.Id);
         }
 
         public virtual T Get(T model)
         {
-            var entity = this._baseDAL.Get(model.Id);
-            return this._mapper.Map<T>(entity);
+            var entity = _baseDAL.Get(model.Id);
+            return _mapper.Map<T>(entity);
         }
 
         public virtual ICollection<T> GetAll()
         {
-            var entities = this._baseDAL.GetAll();
-            return this._mapper.Map<ICollection<T>>(entities);
+            var entities = _baseDAL.GetAll();
+            return _mapper.Map<ICollection<T>>(entities);
         }
 
         public virtual T Update(T model)
         {
-            var entity = this._mapper.Map<Y>(model);
-            return this._mapper.Map<T>(this._baseDAL.Update(entity));
+            var entity = _mapper.Map<Y>(model);
+            return _mapper.Map<T>(_baseDAL.Update(entity));
         }
     }
 }

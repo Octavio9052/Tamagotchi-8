@@ -1,6 +1,6 @@
-﻿using Tamagotchi.Common.DataModels;
+﻿using AutoMapper;
+using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
-using AutoMapper;
 
 public class AutoMapperConfiguration : Profile
 {
