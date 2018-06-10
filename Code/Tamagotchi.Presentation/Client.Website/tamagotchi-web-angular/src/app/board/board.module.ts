@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CardComponent } from './card/card.component';
-import { DetailsComponent } from './details/details.component';
-import { NavdocsComponent } from './navdocs/navdocs.component';
+import { MatStepperModule } from '@angular/material/stepper';
+
+
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AnimalCardComponent } from './animal-card/animal-card.component';
+import { DocumentationComponent } from './documentation/documentation.component';
+
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatStepperModule
   ],
-  declarations: [NavbarComponent, CardComponent, DetailsComponent, NavdocsComponent]
+  declarations: [
+  DashboardComponent,
+  AnimalCardComponent,
+  DocumentationComponent],
+  exports: []
 })
 export class BoardModule { }

@@ -1,0 +1,16 @@
+.example-icon {
+  padding: 0 10px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+a { 
+  color:white;
+  text-decoration: none;
+}
+a:hover { 
+  color:white;
+  text-decoration: none;
+}
