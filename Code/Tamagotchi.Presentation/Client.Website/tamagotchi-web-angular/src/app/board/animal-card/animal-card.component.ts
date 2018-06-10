@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { DetailsComponent } from '../details/details.component';
 
 @Component({
   selector: 'app-animal-card',
@@ -11,7 +13,7 @@ export class AnimalCardComponent implements OnInit {
   numberDownloads: number;
   creatorName: string;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.animalName = "Fox";
@@ -19,4 +21,9 @@ export class AnimalCardComponent implements OnInit {
     this.creatorName = "Alejandro Cruz Jimenez"
   }
 
+  openDialog() {
+    let dialogRef = this.dialog.open(DetailsComponent, {
+      width: '50%'
+    });
+  }
 }
