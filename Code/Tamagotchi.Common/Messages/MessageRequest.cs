@@ -7,7 +7,7 @@ namespace Tamagotchi.Common.Messages
     public class MessageRequest<T> where T : BaseModel
     {
         public Guid UserToken { get; set; }
-        public IEnumerable<T> Body { get; set; }
+        public T Body { get; set; }
         public Byte[] File { get; set; }
     }
 }

@@ -1,0 +1,59 @@
+﻿using AutoMapper;
+using Ninject;
+using Ninject.Extensions.Wcf;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
+using System.Web;
+using Tamagotchi.Business;
+using Tamagotchi.Business.Interfaces;
+using Tamagotchi.Business.Services;
+using Tamagotchi.Common.DataModels;
+using Tamagotchi.Common.Models;
+using Tamagotchi.DataAccess.Context;
+using Tamagotchi.DataAccess.DALs;
+using Tamagotchi.DataAccess.DALs.Interfaces;
+using Tamagotchi.SOAP.App_Start;
+
+namespace Tamagotchi.SOAP.Helpers
+{
+    public class NinjectFileLessServiceHostFactory: NinjectServiceHostFactory
+    {
+        public NinjectFileLessServiceHostFactory()
+        {
+            var kernel = new StandardKernel();
+            kernel.Bind<ServiceHost>().To<NinjectServiceHost>();
+            //EXTRAS DAL
+            kernel.Bind<TamagotchiMongoClient>().To<TamagotchiMongoClient>();
+            kernel.Bind<TamagotchiContext>().To<TamagotchiContext>();
+
+            //DAL INSTANCES
+            kernel.Bind<IUserDAL>().To<UserDAL>();
+            kernel.Bind<IAnimalDAL>().To<AnimalDAL>();
+            kernel.Bind<ISessionDAL>().To<SessionDAL>();
+            kernel.Bind<ILogMongoDAL>().To<LogDAL>();
+
+            //Extras
+            kernel.Bind<IMapper>().ToMethod(AutoMapper).InSingletonScope();
+            kernel.Bind<CloudService>().To<CloudService>();
+
+            //BUSINESS INSTANCES
+            kernel.Bind<ISessionBusiness>().To<SessionBusiness>();
+            kernel.Bind<IUserBusiness>().To<UserBusiness>();
+            kernel.Bind<IAnimalBusiness>().To<AnimalBusiness>();
+
+            kernel.Bind<ISOAPService>().To<SOAPService>();
+            SetKernel(kernel);
+        }
+        private static IMapper AutoMapper(Ninject.Activation.IContext context)
+        {
+            Mapper.Initialize(config =>
+            {
+                config.ConstructServicesUsing(type => context.Kernel.Get(type));
+
+            });
+            return Mapper.Instance;
+        }
+    }
+}
