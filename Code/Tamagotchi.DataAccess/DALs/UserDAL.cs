@@ -6,7 +6,7 @@ namespace Tamagotchi.DataAccess.DALs
 {
     public class UserDAL : BaseDAL<User>, IUserDAL
     {
-        protected UserDAL(TamagotchiContext context) : base(context)
+        public UserDAL(TamagotchiContext context) : base(context)
         {
         }
     }

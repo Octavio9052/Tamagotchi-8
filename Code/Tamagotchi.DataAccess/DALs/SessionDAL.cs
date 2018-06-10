@@ -13,7 +13,7 @@ namespace Tamagotchi.DataAccess.DALs
             return Set.FirstOrDefault(x => x.Guid == guid);
         }
 
-        protected SessionDAL(TamagotchiContext context) : base(context)
+        public SessionDAL(TamagotchiContext context) : base(context)
         {
         }
     }
