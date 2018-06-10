@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Tamagotchi.Common.DataModels;
+using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
@@ -11,7 +10,11 @@ namespace Tamagotchi.DataAccess.DALs
     {
         public Session GetByGUID(Guid guid)
         {
-            return this._dbContext.Set<Session>().FirstOrDefault(x => x.Guid == guid);
+            return Set.FirstOrDefault(x => x.Guid == guid);
+        }
+
+        protected SessionDAL(TamagotchiContext context) : base(context)
+        {
         }
     }
 }

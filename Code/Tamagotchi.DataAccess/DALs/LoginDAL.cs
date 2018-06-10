@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Tamagotchi.Common.DataModels;
+using Tamagotchi.DataAccess.Context;
 
 namespace Tamagotchi.DataAccess.DALs.Interfaces
 {
@@ -10,14 +8,13 @@ namespace Tamagotchi.DataAccess.DALs.Interfaces
     {
         public Login Login(string username, string password)
         {
-            var login = this._dbContext.Set<Login>().FirstOrDefault(x => (x.Email == username) && (x.Password == password));
+            var login = Set.FirstOrDefault(x => (x.Email == username) && (x.Password == password));
 
-            if (login != null)
-            {
-                return login;
-            }
+            return login;
+        }
 
-            return null;
+        protected LoginDAL(TamagotchiContext context) : base(context)
+        {
         }
     }
 }

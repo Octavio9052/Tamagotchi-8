@@ -1,44 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MongoDB.Driver;
+﻿using System.Collections.Generic;
 using MongoDB.Bson;
-
+using MongoDB.Driver;
 using Tamagotchi.Common.DataModels;
+using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
 {
     public class LogDAL : BaseMongoDAL<Log>, ILogMongoDAL
     {
+        
+        public LogDAL(TamagotchiMongoClient client) : base(client, "log")
+        {
+        }
+
         public ICollection<Log> AddLogs(Log log)
         {
-            this._dbMongo.GetCollection<Log>("Log")
-                .InsertOne(log);
+            Collection.InsertOne(log);
 
-            return this._dbMongo.GetCollection<Log>("Log")
-                .FindSync<Log>(new BsonDocument())
-                .ToList<Log>();
-
+            return Collection.FindSync<Log>(new BsonDocument()).ToList();
         }
 
         public ICollection<Log> LoadLogs(int animalId)
         {
-            this._dbMongo.GetCollection<Log>("Log")
+            Collection
                 .FindSync<Log>(new BsonDocument())
-                .ToList<Log>();
+                .ToList();
 
             var builder = Builders<Log>.Filter;
             var filter = builder.Eq("AnimalId", animalId);
 
-            return this._dbMongo.GetCollection<Log>("Log")
-                .Find(filter).ToList<Log>();
+            return Collection.Find(filter).ToList();
         }
 
-        public override string ToString()
-        {
-            return "Log";
-        }
+ 
     }
 }

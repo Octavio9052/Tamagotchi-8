@@ -1,16 +1,16 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using ICSharpCode.SharpZipLib.Zip;
 using Tamagotchi.Business.Interfaces;
+using Tamagotchi.Business.Services;
 using Tamagotchi.Common.DataModels;
+using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DALs.Interfaces;
-using Tamagotchi.Common.Exceptions;
-using System.Threading;
-using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
-using Tamagotchi.Business.Services;
 
 namespace Tamagotchi.Business
 {
@@ -23,15 +23,15 @@ namespace Tamagotchi.Business
 
         public AnimalBusiness(IAnimalDAL baseDal, IMapper mapper, CloudService cloudService, ILogMongoDAL logMongoDAL) : base(baseDal, mapper)
         {
-            this._cloudService = cloudService;
-            this._logMongoDAL = logMongoDAL;
+            _cloudService = cloudService;
+            _logMongoDAL = logMongoDAL;
         }
 
 
         public ICollection<AnimalModel> GetByUser(int Id)
         {
-            var animals = ((IAnimalDAL)this._baseDAL).GetByUser(Id);
-            return this._mapper.Map<ICollection<AnimalModel>>(animals);
+            var animals = ((IAnimalDAL)_baseDAL).GetByUser(Id);
+            return _mapper.Map<ICollection<AnimalModel>>(animals);
         }
 
         public AnimalModel Create(AnimalModel animal, byte[] zipFile)
@@ -39,7 +39,7 @@ namespace Tamagotchi.Business
             // Validate input from desktop
             if (String.IsNullOrEmpty(animal.Name)) throw new BusinessLayerExceptions("Empty or not valid: Name");
             if (String.IsNullOrEmpty(animal.Description)) throw new BusinessLayerExceptions("Empty or not valid: Description");
-            foreach (KeyValuePair<string, double> entry in animal.MaxGamePoints)
+            foreach (var entry in animal.MaxGamePoints)
             {
                 if (entry.Value <= 0 && !entry.Key.Contains("Max")) throw new BusinessLayerExceptions("Not valid: " + entry.Key);
             }
@@ -66,7 +66,7 @@ namespace Tamagotchi.Business
         {
             if (String.IsNullOrEmpty(animalModel.Name)) throw new BusinessLayerExceptions("Empty or not valid: Name");
             if (String.IsNullOrEmpty(animalModel.Description)) throw new BusinessLayerExceptions("Empty or not valid: Description");
-            foreach (KeyValuePair<string, double> entry in animalModel.MaxGamePoints)
+            foreach (var entry in animalModel.MaxGamePoints)
             {
                 if (entry.Value <= 0 && !entry.Key.Contains("Max")) throw new BusinessLayerExceptions("Not valid: " + entry.Key);
             }
@@ -104,8 +104,8 @@ namespace Tamagotchi.Business
 
         private ICollection<LogModel> LoadLogs(int animalId)
         {
-            var entity = this._logMongoDAL.LoadLogs(animalId);
-            return this._mapper.Map<ICollection<LogModel>>(entity);
+            var entity = _logMongoDAL.LoadLogs(animalId);
+            return _mapper.Map<ICollection<LogModel>>(entity);
         }
 
         private async Task<string> FindSaveFile(ZipEntry entryFile, ZipFile file, string fileName)
@@ -114,7 +114,7 @@ namespace Tamagotchi.Business
             {
                 using (var stream = file.GetInputStream(entryFile))
                 {
-                    return await this._cloudService.ProcessImageFromStream(stream, fileName);
+                    return await _cloudService.ProcessImageFromStream(stream, fileName);
                 }
             }
             catch (Exception ex)
@@ -129,7 +129,7 @@ namespace Tamagotchi.Business
             {
                 using (var stream = new MemoryStream(zipFile))
                 {
-                    var task = this._cloudService.ProcessFileFromStream(stream, animalModel.Id + "_zip.zip");
+                    var task = _cloudService.ProcessFileFromStream(stream, animalModel.Id + "_zip.zip");
                     animalModel.PacketUri = task.Result;
                     stream.Position = 0;
                     using (var zipArchive = new ZipFile(stream))
@@ -142,12 +142,12 @@ namespace Tamagotchi.Business
                             if (!zipEntry.IsFile)
                                 continue;
 
-                            String entryFileName = zipEntry.Name; // or Path.GetFileName(zipEntry.Name) to omit folder
+                            var entryFileName = zipEntry.Name; // or Path.GetFileName(zipEntry.Name) to omit folder
 
 
 
                             if (entryFileName.ToLower().Contains("eat") &&
-                                ImageExtensions.Contains(System.IO.Path.GetExtension(entryFileName)
+                                ImageExtensions.Contains(Path.GetExtension(entryFileName)
                                     ?.ToUpperInvariant()))
                             {
                                 taskEat = FindSaveFile(zipEntry, zipArchive,
@@ -155,7 +155,7 @@ namespace Tamagotchi.Business
                                 continue;
                             }
                             if (entryFileName.ToLower().Contains("sleep") &&
-                                ImageExtensions.Contains(System.IO.Path.GetExtension(entryFileName)
+                                ImageExtensions.Contains(Path.GetExtension(entryFileName)
                                     ?.ToUpperInvariant()))
                             {
                                 taskSleep = FindSaveFile(zipEntry, zipArchive,
@@ -163,7 +163,7 @@ namespace Tamagotchi.Business
                                 continue;
                             }
                             if (entryFileName.ToLower().Contains("play") &&
-                                ImageExtensions.Contains(System.IO.Path.GetExtension(entryFileName)
+                                ImageExtensions.Contains(Path.GetExtension(entryFileName)
                                     ?.ToUpperInvariant()))
                             {
                                 taskPlay = FindSaveFile(zipEntry, zipArchive,
@@ -171,7 +171,7 @@ namespace Tamagotchi.Business
                                 continue;
                             }
                             if (entryFileName.ToLower().Contains("main") &&
-                                ImageExtensions.Contains(System.IO.Path.GetExtension(entryFileName)
+                                ImageExtensions.Contains(Path.GetExtension(entryFileName)
                                     ?.ToUpperInvariant()))
                             {
                                 taskMain = FindSaveFile(zipEntry, zipArchive,
@@ -182,7 +182,6 @@ namespace Tamagotchi.Business
                             {
                                 taskDll = FindSaveFile(zipEntry, zipArchive,
                                     animalModel.Id + "_dll" + Path.GetExtension(entryFileName));
-                                continue;
                             }
 
                         }

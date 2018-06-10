@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using Tamagotchi.Common.DataModels;
 
 namespace Tamagotchi.DataAccess.Context
 {
-    class TamagotchiContext : DbContext
+    public class TamagotchiContext : DbContext
     {
         public TamagotchiContext() : base("name=Tamagotchi9052ConnString")
         {
-            Database.SetInitializer<TamagotchiContext>(new DropCreateDatabaseIfModelChanges<TamagotchiContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TamagotchiContext>());
         }
 
         public DbSet<Animal> Animals { get; set; }
@@ -21,8 +17,10 @@ namespace Tamagotchi.DataAccess.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasRequired(x => x.Login)
+            modelBuilder.Entity<User>()
+                .HasRequired(x => x.Login)
                 .WithRequiredPrincipal(x => x.User);
+            
             base.OnModelCreating(modelBuilder);
         }
     }

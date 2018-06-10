@@ -1,35 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
-using Tamagotchi.Common.DataModels;
-using Tamagotchi.DataAccess.DALs.Interfaces;
-using Tamagotchi.DataAccess.Context;
 using MongoDB.Bson;
-using MongoDB.Driver;
 using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
+using Tamagotchi.Common.DataModels;
+using Tamagotchi.DataAccess.Context;
+using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
 {
     public class BaseMongoDAL<T> : IBaseMongoDAL<T> where T : BaseDocument
     {
-        private const string CONNECTION_STRING = "mongodb://localhost";
-        private const string MONGO_DB = "tamagotchi-009052";
-        protected IMongoDatabase _dbMongo;
+        protected readonly IMongoCollection<T> Collection;
 
-        public BaseMongoDAL()
+        protected BaseMongoDAL(TamagotchiMongoClient client, string collectionName)
         {
-            this._dbMongo = new MongoClient(CONNECTION_STRING).GetDatabase(MONGO_DB);
+            Collection = client.Database.GetCollection<T>(collectionName);
             RegisterMapIfNeeded<T>();
         }
 
-
-
         // Check to see if map is registered before registering class map
         // This is for the sake of the polymorphic types that we are using so Mongo knows how to deserialize
-        public void RegisterMapIfNeeded<TClass>()
+        private void RegisterMapIfNeeded<TClass>()
         {
             if (!BsonClassMap.IsClassMapRegistered(typeof(TClass)))
                 BsonClassMap.RegisterClassMap<TClass>();
@@ -39,32 +31,34 @@ namespace Tamagotchi.DataAccess.DALs
         {
             document.DateCreated = DateTime.Now;
             document.LastModified = DateTime.Now;
-            this._dbMongo.GetCollection<T>(document.ToString()).InsertOne(document);
+            
+            Collection.InsertOne(document);
+            
             return document;
         }
 
         public void Delete(string id, string collectionName)
         {
             var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
-            this._dbMongo.GetCollection<T>(collectionName).DeleteOne(filter);
+            Collection.DeleteOne(filter);
         }
 
         public T Get(string id, string collectionName)
         {
             var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
-            var test = this._dbMongo.GetCollection<T>(collectionName).Find(filter).FirstOrDefault();
-            return test;
+            
+            return Collection.Find(filter).FirstOrDefault();
         }
 
         public ICollection<T> GetAll(string collectionName)
         {
-            return this._dbMongo.GetCollection<T>(collectionName).Find(new BsonDocument()).ToList();
+            return Collection.Find(new BsonDocument()).ToList();
         }
 
         public T Update(T document)
         {
             var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(document.Id));
-            return this._dbMongo.GetCollection<T>(document.ToString()).FindOneAndReplace<T>(filter, document);
+            return Collection.FindOneAndReplace<T>(filter, document);
         }
     }
 }

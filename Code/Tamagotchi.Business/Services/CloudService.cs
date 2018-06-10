@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -25,14 +21,14 @@ namespace Tamagotchi.Business.Services
             try
             {
                 // Create the CloudBlobClient, endpoint for the storage account. (blob)
-                CloudBlobClient cloudBlobClient = this._storageAccount.CreateCloudBlobClient();
+                CloudBlobClient cloudBlobClient = _storageAccount.CreateCloudBlobClient();
 
                 // Create a container called 'quickstartblobs' and append a GUID value to it to make the name unique. 
-                this._cloudImageContainer = cloudBlobClient.GetContainerReference("images");
-                this._cloudImageContainer.CreateIfNotExistsAsync();
+                _cloudImageContainer = cloudBlobClient.GetContainerReference("images");
+                _cloudImageContainer.CreateIfNotExistsAsync();
 
-                this._cloudFilesContainer = cloudBlobClient.GetContainerReference("files");
-                this._cloudFilesContainer.CreateIfNotExistsAsync();
+                _cloudFilesContainer = cloudBlobClient.GetContainerReference("files");
+                _cloudFilesContainer.CreateIfNotExistsAsync();
             }
             catch (StorageException ex)
             {
@@ -44,7 +40,7 @@ namespace Tamagotchi.Business.Services
         {
             try
             {
-                CloudBlockBlob cloudBlockBlob = this._cloudImageContainer.GetBlockBlobReference(filename);
+                CloudBlockBlob cloudBlockBlob = _cloudImageContainer.GetBlockBlobReference(filename);
                 cloudBlockBlob.Properties.ContentType = "image";
                 await cloudBlockBlob.UploadFromStreamAsync(stream);
                 return cloudBlockBlob.Uri.ToString();
@@ -59,7 +55,7 @@ namespace Tamagotchi.Business.Services
         {
             try
             {
-                CloudBlockBlob cloudBlockBlob = this._cloudFilesContainer.GetBlockBlobReference(filename);
+                CloudBlockBlob cloudBlockBlob = _cloudFilesContainer.GetBlockBlobReference(filename);
                 cloudBlockBlob.Properties.ContentType = "file";
                 await cloudBlockBlob.UploadFromStreamAsync(stream);
                 return cloudBlockBlob.Uri.ToString();

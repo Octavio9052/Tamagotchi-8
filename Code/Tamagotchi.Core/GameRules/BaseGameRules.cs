@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tamagotchi.Core
+﻿namespace Tamagotchi.Core
 {
     public class BaseGameRules : IBaseGameRules
     {
@@ -23,21 +17,21 @@ namespace Tamagotchi.Core
 
         public virtual GameStatus Eat()
         {
-            double maxFood = this.petStatus.GamePoints["MaxFood"];
-            if (this.petStatus.GamePoints["Food"] + 12 <= maxFood)
+            var maxFood = petStatus.GamePoints["MaxFood"];
+            if (petStatus.GamePoints["Food"] + 12 <= maxFood)
             {
-                this.petStatus.GamePoints["Food"] += 12;
+                petStatus.GamePoints["Food"] += 12;
             }
             else
             {
-                this.petStatus.GamePoints["Food"] = this.petStatus.GamePoints["MaxFood"];
+                petStatus.GamePoints["Food"] = petStatus.GamePoints["MaxFood"];
             }
 
-            GameStatus gameStatus = new GameStatus
+            var gameStatus = new GameStatus
             {
-                Message = this.petStatus.Nickname + eatMessage,
+                Message = petStatus.Nickname + eatMessage,
                 Allowed = true,
-                PetStatus = this.petStatus
+                PetStatus = petStatus
 
             };
             return gameStatus;
@@ -45,22 +39,22 @@ namespace Tamagotchi.Core
 
         public virtual GameStatus Play()
         {
-            double maxFun = this.petStatus.GamePoints["MaxFun"];
-            if (this.petStatus.GamePoints["Fun"] + 8 <=  maxFun)
+            var maxFun = petStatus.GamePoints["MaxFun"];
+            if (petStatus.GamePoints["Fun"] + 8 <=  maxFun)
             {
-                this.petStatus.GamePoints["Fun"] += 8;
+                petStatus.GamePoints["Fun"] += 8;
             }
             else
             {
-                this.petStatus.GamePoints["Fun"] = this.petStatus.GamePoints["MaxFun"];
+                petStatus.GamePoints["Fun"] = petStatus.GamePoints["MaxFun"];
             }
 
 
-            GameStatus gameStatus = new GameStatus
+            var gameStatus = new GameStatus
             {
-                Message = this.petStatus.Nickname + eatMessage,
+                Message = petStatus.Nickname + eatMessage,
                 Allowed = true,
-                PetStatus = this.petStatus
+                PetStatus = petStatus
 
             };
             return gameStatus;
@@ -68,23 +62,23 @@ namespace Tamagotchi.Core
 
         public virtual GameStatus Sleep()
         {
-            double maxFood = this.petStatus.GamePoints["MaxRest"];
-            if (this.petStatus.GamePoints["Rest"] + 10 <= maxFood)
+            var maxFood = petStatus.GamePoints["MaxRest"];
+            if (petStatus.GamePoints["Rest"] + 10 <= maxFood)
             {
-                this.petStatus.GamePoints["Rest"] += 10;
+                petStatus.GamePoints["Rest"] += 10;
             }
             else
             {
-                this.petStatus.GamePoints["Rest"] = this.petStatus.GamePoints["MaxRest"];
+                petStatus.GamePoints["Rest"] = petStatus.GamePoints["MaxRest"];
             }
 
 
 
-            GameStatus gameStatus = new GameStatus
+            var gameStatus = new GameStatus
             {
-                Message = this.petStatus.Nickname + eatMessage,
+                Message = petStatus.Nickname + eatMessage,
                 Allowed = true,
-                PetStatus = this.petStatus
+                PetStatus = petStatus
 
             };
             return gameStatus;
@@ -95,10 +89,10 @@ namespace Tamagotchi.Core
         {
             foreach (var item in defaults)
             {
-                if (!this.petStatus.GamePoints.ContainsKey(item))
+                if (!petStatus.GamePoints.ContainsKey(item))
                 {
-                    this.petStatus.GamePoints.Add(item, 0);
-                    this.petStatus.GamePoints.Add("Max" + item, 100);
+                    petStatus.GamePoints.Add(item, 0);
+                    petStatus.GamePoints.Add("Max" + item, 100);
                 }
             }
         }

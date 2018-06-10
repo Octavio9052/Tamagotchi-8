@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using Tamagotchi.Common.DataModels;
+using Tamagotchi.Common.Enums;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Core;
-using Tamagotchi.Common.Enums;
 
 namespace Tamagotchi.Business.Services
 {
@@ -25,11 +22,6 @@ namespace Tamagotchi.Business.Services
         private List<string> _errorMessages;
         private AssemblyLoaderService _loader;
 
-        public AssemblyExecuterService()
-        {
-
-        }
-
 
         public GameStatus ExecuteAssembly(string url, Actio action, Pet pet)
         {
@@ -40,7 +32,7 @@ namespace Tamagotchi.Business.Services
 
             LoadAssembly(dllFile);
 
-            string methodName = GetMethod(action);
+            var methodName = GetMethod(action);
             var response = WorkClass(pet, methodName);
 
             UnloadAssembly(appDomain);
@@ -55,22 +47,23 @@ namespace Tamagotchi.Business.Services
             {
                 return "Init";
             }
-            else if (action == Actio.Eat)
+
+            if (action == Actio.Eat)
             {
                 return "Eat";
             }
-            else if (action == Actio.Sleep)
+
+            if (action == Actio.Sleep)
             {
                 return "Sleep";
             }
-            else if (action == Actio.Play)
+
+            if (action == Actio.Play)
             {
                 return "Play";
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         private byte[] Load(string url)
@@ -84,10 +77,10 @@ namespace Tamagotchi.Business.Services
 
         private AppDomain CreateAppDomain()
         {
-            Evidence evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
+            var evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
 
-            AppDomain newDomainName = AppDomain.CreateDomain("New Domain", evidence,
-                new AppDomainSetup()
+            var newDomainName = AppDomain.CreateDomain("New Domain", evidence,
+                new AppDomainSetup
                 {
                     ApplicationName = "Loader",
                     ApplicationBase = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath),
@@ -97,7 +90,7 @@ namespace Tamagotchi.Business.Services
                     PrivateBinPath = GetPrivateBin(AppDomain.CurrentDomain.SetupInformation.ApplicationBase)
                 });
 
-            this._loader = (AssemblyLoaderService)newDomainName.CreateInstanceAndUnwrap(
+            _loader = (AssemblyLoaderService)newDomainName.CreateInstanceAndUnwrap(
                 Assembly.GetExecutingAssembly().FullName, typeof(AssemblyLoaderService).FullName);
             return newDomainName;
         }
@@ -128,8 +121,8 @@ namespace Tamagotchi.Business.Services
         {
             try
             {
-                object objectResult = this._loader.ExecuteWithConstructor(typeof(IBaseGameRules), typeof(Pet), method, new object[] { pet }, null);
-                GameStatus gameResponse = (GameStatus)objectResult;
+                var objectResult = _loader.ExecuteWithConstructor(typeof(IBaseGameRules), typeof(Pet), method, new object[] { pet }, null);
+                var gameResponse = (GameStatus)objectResult;
                 return gameResponse;
             }
             catch (Exception ex)
@@ -159,12 +152,12 @@ namespace Tamagotchi.Business.Services
         {
             try
             {
-                this._loader.LoadFromByteArray(stream);
+                _loader.LoadFromByteArray(stream);
                 return true;
             }
             catch (Exception e)
             {
-                this._errorMessages.Add(AssemblyErrorMessage);
+                _errorMessages.Add(AssemblyErrorMessage);
                 return false;
             }
 
