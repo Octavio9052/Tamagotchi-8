@@ -60,15 +60,13 @@
   <ItemGroup>
     <Compile Include="Business\AnimalBusiness.cs" />
     <Compile Include="Business\BaseBusiness.cs" />
-    <Compile Include="Business\BaseMongoBusiness.cs" />
-    <Compile Include="Interfaces\IBaseBusiness.cs" />
-    <Compile Include="Interfaces\IAnimalBusiness.cs" />
-    <Compile Include="Interfaces\IBaseMongoBusiness.cs" />
-    <Compile Include="Interfaces\ILogBusiness.cs" />
-    <Compile Include="Interfaces\ILoginBusiness.cs" />
-    <Compile Include="Interfaces\IPetBusiness.cs" />
-    <Compile Include="Interfaces\ISessionBusiness.cs" />
-    <Compile Include="Interfaces\IUserBusiness.cs" />
+    <Compile Include="Business\Interfaces\IAnimalBusiness.cs" />
+    <Compile Include="Business\Interfaces\IBaseBusiness.cs" />
+    <Compile Include="Business\Interfaces\ILogBusiness.cs" />
+    <Compile Include="Business\Interfaces\ILoginBusiness.cs" />
+    <Compile Include="Business\Interfaces\IPetBusiness.cs" />
+    <Compile Include="Business\Interfaces\ISessionBusiness.cs" />
+    <Compile Include="Business\Interfaces\IUserBusiness.cs" />
     <Compile Include="Business\LogBusiness.cs" />
     <Compile Include="Business\LoginBusiness.cs" />
     <Compile Include="Business\PetBusiness.cs" />

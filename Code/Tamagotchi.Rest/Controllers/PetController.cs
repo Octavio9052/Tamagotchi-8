@@ -31,7 +31,7 @@ namespace Tamagotchi.REST.Controllers
         // GET: api/Pet/5
         public HttpResponseMessage Get(string id)
         {
-            var messageResponse = new MessageMnResponse<PetModel>();
+            var messageResponse = new MessageResponse<PetModel>();
             var statusCode = HttpStatusCode.OK;
 
             try

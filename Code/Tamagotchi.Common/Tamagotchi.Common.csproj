@@ -67,14 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModels\Animal.cs" />
-    <Compile Include="DataModels\BaseDocument.cs" />
-    <Compile Include="DataModels\BaseEntity.cs" />
-    <Compile Include="DataModels\Log.cs" />
-    <Compile Include="DataModels\Login.cs" />
-    <Compile Include="DataModels\Pet.cs" />
-    <Compile Include="DataModels\Session.cs" />
-    <Compile Include="DataModels\User.cs" />
     <Compile Include="Enums\Actio.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Exceptions\BusinessLayerExceptions.cs" />
@@ -85,12 +77,9 @@
     <Compile Include="Exceptions\ServiceSOAPLayerExceptions.cs" />
     <Compile Include="Messages\LoginMessageRequest.cs" />
     <Compile Include="Messages\LoginMessageResponse.cs" />
-    <Compile Include="Messages\MessageMnRequest.cs" />
-    <Compile Include="Messages\MessageMnResponse.cs" />
     <Compile Include="Messages\MessageRequest.cs" />
     <Compile Include="Messages\MessageResponse.cs" />
     <Compile Include="Models\AnimalModel.cs" />
-    <Compile Include="Models\BaseMnModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\LoginModel.cs" />

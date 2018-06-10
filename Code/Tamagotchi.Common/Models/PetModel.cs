@@ -3,7 +3,7 @@ using Tamagotchi.Common.Enums;
 
 namespace Tamagotchi.Common.Models
 {
-    public class PetModel : BaseMnModel
+    public class PetModel : BaseModel
     {
         public string Nickname { get; set; }
 

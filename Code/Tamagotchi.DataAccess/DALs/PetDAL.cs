@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.DataAccess.Context;
+using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
 {
-    public class PetDAL : BaseMongoDAL<Pet>, IPetMongoDAL
+    public class PetDAL : BaseMongoDAL<Pet>, IPetDAL
     {
         
         public PetDAL(TamagotchiMongoClient client) : base(client, "pet")

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Tamagotchi.Common.DataModels;
+using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.DataAccess.DALs.Interfaces
 {
-    public interface ILogMongoDAL : IBaseMongoDAL<Log>
+    public interface ILogDAL : IBaseDAL<Log>
     {
-        ICollection<Log> LoadLogs(int animalId);
+        ICollection<Log> LoadLogs(string animalId);
         ICollection<Log> AddLogs(Log log);
     }
 }

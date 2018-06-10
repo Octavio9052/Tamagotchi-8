@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tamagotchi.Common.DataModels
+namespace Tamagotchi.DataAccess.DataModels
 {
-    public class Login : BaseEntity
+    public class Login : BaseRelationalEntity
     {
         [Required]
         [StringLength(150)]

@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Tamagotchi.Common.Enums;
 
-namespace Tamagotchi.Common.DataModels
+namespace Tamagotchi.DataAccess.DataModels
 {
     public class Pet : BaseDocument
     {

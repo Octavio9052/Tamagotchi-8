@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.DataAccess.Context;
+using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
 {
-    public class LogDAL : BaseMongoDAL<Log>, ILogMongoDAL
+    public class LogDAL : BaseMongoDAL<Log>, ILogDAL
     {
         
         public LogDAL(TamagotchiMongoClient client) : base(client, "log")
@@ -21,7 +21,7 @@ namespace Tamagotchi.DataAccess.DALs
             return Collection.FindSync<Log>(new BsonDocument()).ToList();
         }
 
-        public ICollection<Log> LoadLogs(int animalId)
+        public ICollection<Log> LoadLogs(string animalId)
         {
             Collection
                 .FindSync<Log>(new BsonDocument())

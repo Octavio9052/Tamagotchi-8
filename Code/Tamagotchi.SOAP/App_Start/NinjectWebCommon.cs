@@ -13,7 +13,6 @@ namespace Tamagotchi.SOAP.App_Start
     using Tamagotchi.Business;
     using Tamagotchi.Business.Interfaces;
     using Tamagotchi.Business.Services;
-    using Tamagotchi.Common.DataModels;
     using Tamagotchi.Common.Models;
     using Tamagotchi.DataAccess.Context;
     using Tamagotchi.DataAccess.DALs;

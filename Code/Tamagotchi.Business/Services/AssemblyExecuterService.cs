@@ -4,10 +4,12 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Security.Policy;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Enums;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Core;
+using Tamagotchi.Core.GameRules;
+using Tamagotchi.Core.PlayStatus;
+using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.Business.Services
 {

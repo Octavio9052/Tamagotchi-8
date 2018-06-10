@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace Tamagotchi.Common.DataModels
+namespace Tamagotchi.DataAccess.DataModels
 {
     public class Log : BaseDocument
     {
