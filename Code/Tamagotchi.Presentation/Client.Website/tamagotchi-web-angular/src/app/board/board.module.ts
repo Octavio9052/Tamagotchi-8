@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatTableModule } from '@angular/material/table';
 
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -23,7 +24,8 @@ import { DetailsComponent } from './details/details.component';
     MatButtonModule,
     MatCardModule,
     BrowserModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatTableModule
   ],
   declarations: [
     DashboardComponent,
