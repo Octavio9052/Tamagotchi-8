@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Tamagotchi 9052</string>
+    <string name="app_name">Tamagotchi</string>
+    <string name="img_descriptor">App logo</string>
+    <string name="welcome">Welcome Back</string>
+    <string name="request_email">Email address</string>
+    <string name="request_password">Password</string>
+    <string name="button_login">Sign In</string>
+    <string name="request_register">Doesn\'t have an account? Register here</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

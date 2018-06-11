@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/user_owned_pets">
+        <item
+            android:id="@+id/nav_first_fragment"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Fox" />
+        <item
+            android:id="@+id/nav_second_fragment"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Cat" />
+        <item
+            android:id="@+id/nav_third_fragment"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Dog" />
+        <item
+            android:id="@+id/nav_fourth_fragment"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="Turtle" />
+    </group>
+
+    <item android:title="Store">
+        <menu>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_store_black_24dp"
+                android:title="Adopt a new pet" />
+        </menu>
+    </item>
+
+</menu>
+
+<!--
+tools:showIn="navigation_view">
+-->

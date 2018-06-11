@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/welcome"
+        android:textColor="@color/colorBlack"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/img_descriptor"
+        android:src="@drawable/app_logo" />
+
+    <EditText
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+
+        android:id="@+id/login_input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/request_email"
+        android:inputType="textEmailAddress"
+        android:nextFocusForward="@id/login_input_password"
+        android:nextFocusDown="@id/login_input_password"/>
+
+    <EditText
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+
+        android:id="@+id/login_input_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/request_password"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/login_button_sign_in"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_login"/>
+
+    <TextView
+        android:id="@+id/text_request_register"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/request_register"
+        android:textColor="@color/colorBlack"/>
+
+</LinearLayout>
