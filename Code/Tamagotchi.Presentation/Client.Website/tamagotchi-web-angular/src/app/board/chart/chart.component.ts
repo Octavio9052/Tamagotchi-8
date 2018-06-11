@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { single } from './data';
+import { animals, single } from './data';
+import { ChartModel } from '../../shared/models/ChartModel';
 
 @Component({
   selector: 'app-chart',
@@ -7,8 +8,8 @@ import { single } from './data';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
+  chartData: ChartModel[];
   single: any[] = single;
-
   view: any[];
 
   // options
@@ -34,21 +35,12 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit() {
+    for(var i = 0; i < animals.length; i++){
+      this.chartData[i] = {
+        name: animals[i].name,
+        value: animals[i].numberDownloads
+      }
+    }
+    this.single = this.chartData;
   }
 }
-
-
-/*
-import { Component, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { single } from './data';
-
-@Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  
-}*/
