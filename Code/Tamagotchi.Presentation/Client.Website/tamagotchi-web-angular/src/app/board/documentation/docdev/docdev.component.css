@@ -1,0 +1,11 @@
+#tos{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    padding: 1em;
+    margin-top: 2%;
+    outline-color: black;
+    overflow: scroll;
+    height: 500px;
+    background-color: #f9f7f7;
+}

@@ -1,33 +1,29 @@
-<mat-horizontal-stepper #stepper>
+<mat-horizontal-stepper #stepper class="component-docs">
   <mat-step>
 
     <ng-template matStepLabel>Term and conditions</ng-template>
-
-
-    Dummy text ONE
+    <app-doctos></app-doctos>
     <div>
-      <button mat-button matStepperNext>Next</button>
+      <button mat-raised-button color="primary" class="next-btn" matStepperNext>Next</button>
     </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Download SDK</ng-template>
+      <img src="https://i.imgur.com/dPqsCwj.png" />
+      <button mat-stroked-button class="download-btn">Click here to download the SDK</button>
 
-
-    <button mat-stroked-button>Click here to download the SDK</button>
-
-
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+    <div class="buttons-sdk">
+      <button mat-raised-button color="primary" class="back-btn sdk" matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" class="next-btn sdk" matStepperNext>Next</button>
     </div>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>How to use the SDK</ng-template>
 
-    A DOCUMENTATION THAT IS ACTUALLY USEFUL
+    <app-docdev></app-docdev>
 
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary" class="back-btn" matStepperPrevious>Back</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

@@ -9,14 +9,16 @@
 }
 #chart-container{
     height: 300px;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 5%;
+    margin-right: 7%;
     margin-bottom: 2%;
     margin-top: 2%;
     outline: 2px solid black;
+    background-color: white;
 }
 #card-container {
-    margin-left: 1%;
+    margin-left: 5%;
+    margin-bottom: 1%;
 }
 .row.no-gutters {
     margin-right: 0;

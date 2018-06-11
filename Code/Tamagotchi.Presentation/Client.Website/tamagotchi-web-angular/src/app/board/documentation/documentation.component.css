@@ -1,0 +1,32 @@
+.back-btn{
+    float:left;
+    margin-left: 10%;
+}
+.back-btn.sdk{
+    margin-left: 30%;
+}
+.next-btn{
+    float:right;
+    margin-right: 10%;
+}
+.next-btn.sdk{
+    margin-right: 30%;
+}
+.download-btn {
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.buttons-sdk {
+    padding-top:5%;
+}
+.component-docs{
+    margin-left:15%;
+    margin-right:15%;
+    margin-top:2%;
+}

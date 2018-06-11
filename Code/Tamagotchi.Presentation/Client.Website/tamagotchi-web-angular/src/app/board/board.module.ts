@@ -17,6 +17,8 @@ import { DetailsComponent } from "./details/details.component";
 
 import { AnimalDetailsService } from "../shared/services/AnimalDetailsService";
 import { AnimalService } from "../shared/services/AnimalService";
+import { DoctosComponent } from './documentation/doctos/doctos.component';
+import { DocdevComponent } from './documentation/docdev/docdev.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { AnimalService } from "../shared/services/AnimalService";
     AnimalCardComponent,
     DocumentationComponent,
     ChartComponent,
-    DetailsComponent
+    DetailsComponent,
+    DoctosComponent,
+    DocdevComponent
   ],
   exports: [],
   providers: [
