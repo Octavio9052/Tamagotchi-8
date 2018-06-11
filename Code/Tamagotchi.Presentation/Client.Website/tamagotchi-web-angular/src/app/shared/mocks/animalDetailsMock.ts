@@ -10,5 +10,5 @@ export const animalDetailsMock: AnimalDetails[] = [
     { username: 'Ulises', nickname: 'Lola', date: '2018/06/05', time: '18:12', message: 'The fox was eating' },
     { username: 'Andrea', nickname: 'Lilo', date: '2018/06/05', time: '18:42', message: 'The fox was eating' },
     { username: 'Alex', nickname: 'Stich', date: '2018/06/05', time: '18:35', message: 'The cat was playing' },
-    { username: 'Luis', nickname: 'Gustavo', date: '2018/06/05', time: '11:05', message: 'The fox was eating' },
+    { username: 'Luis', nickname: 'Gustavo', date: '2018/06/05', time: '11:05', message: 'The fox was eating' }
 ];
