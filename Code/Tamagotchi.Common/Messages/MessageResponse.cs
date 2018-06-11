@@ -4,10 +4,10 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Common.Messages
 {
-    public class MessageResponse<T> where T : BaseModel
+    public class MessageResponse<T>
     {
-        public IEnumerable<T> Body;
-        public IEnumerable<string> Errors;
-        public IEnumerable<Stream> Files;
+        public T Body { get; set; }
+        public string Error { get; set; }
+        public IEnumerable<Stream> Files { get; set; }
     }
 }

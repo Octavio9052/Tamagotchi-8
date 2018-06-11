@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
+using Tamagotchi.SOAP.Helpers.DataValidations;
 
 namespace Tamagotchi.SOAP
 {
@@ -11,100 +11,174 @@ namespace Tamagotchi.SOAP
     public class SOAPService : ISOAPService
     {
         private readonly IAnimalBusiness _animalBusiness;
+        private readonly ILoginBusiness _loginBusiness;
         private readonly ISessionBusiness _sessionBusiness;
         private readonly IUserBusiness _userBusiness;
 
-        public SOAPService(IAnimalBusiness animalBusiness, ISessionBusiness sessionBusiness, IUserBusiness userBusiness)
+        public SOAPService(IAnimalBusiness animalBusiness, ISessionBusiness sessionBusiness, IUserBusiness userBusiness,
+            ILoginBusiness loginBusiness)
         {
-            this._animalBusiness = animalBusiness;
-            this._sessionBusiness = sessionBusiness;
-            this._userBusiness = userBusiness;
-
+            _animalBusiness = animalBusiness;
+            _sessionBusiness = sessionBusiness;
+            _userBusiness = userBusiness;
+            _loginBusiness = loginBusiness;
         }
 
         public MessageResponse<AnimalModel> CreateAnimal(MessageRequest<AnimalModel> value)
         {
             var messageResponse = new MessageResponse<AnimalModel>();
-            //AUTENTICATION
-            //AUTHORIZATION
-            //ADD VALIDATIONS
-            messageResponse.Body = new List<AnimalModel>
+            try
             {
-                this._animalBusiness.Create(value.Body)
-            };
-            return messageResponse;
-        }
+                string error;
+                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                    messageResponse.Body = _animalBusiness.Create(value.Body);
+                else
+                    messageResponse.Error = error;
+            }
+            catch (Exception)
+            {
+                messageResponse.Error = "An Error has ocurred.";
+            }
 
-        public MessageResponse<UserModel> CreateUser(MessageRequest<UserModel> value)
-        {
-            var messageResponse = new MessageResponse<UserModel>();
-            //AUTENTICATION
-            //AUTHORIZATION
-            //ADD VALIDATIONS
-            messageResponse.Body = new List<UserModel>
-            {
-                this._userBusiness.Create(value.Body)
-            };
             return messageResponse;
         }
 
         public MessageResponse<AnimalModel> DeleteAnimal(MessageRequest<AnimalModel> value)
         {
             var messageResponse = new MessageResponse<AnimalModel>();
-            //AUTENTICATION
-            //AUTHORIZATION
-            //ADD VALIDATIONS
-            this._animalBusiness.Delete(value.Body);
+            try
+            {
+                string error;
+                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                    _animalBusiness.Delete(value.Body.Id);
+                else
+                    messageResponse.Error = error;
+            }
+            catch (Exception)
+            {
+                messageResponse.Error = "An Error has ocurred.";
+            }
+
             return messageResponse;
         }
 
-        public MessageResponse<AnimalModel> GetAnimal(int id)
+        public MessageResponse<AnimalModel> GetAnimal(string id)
         {
-            var messageResponse = new MessageResponse<AnimalModel>();
-            //AUTENTICATION
-            //AUTHORIZATION
-            //ADD VALIDATIONS
-            messageResponse.Body = new List<AnimalModel>
+            var messageResponse = new MessageResponse<AnimalModel>
             {
-                this._animalBusiness.Get(new AnimalModel{Id = id })
+                Body = _animalBusiness.Get(id)
             };
-            return messageResponse; 
+            return messageResponse;
         }
 
-        public MessageResponse<UserModel> Login(MessageRequest<UserModel> value)
+        public LoginMessageResponse Login(LoginMessageRequest value)
         {
-            var messageResponse = new MessageResponse<UserModel>();
-            //AUTENTICATION
-            //AUTHORIZATION
-            //ADD VALIDATIONS
-            //ADD LOGIN;
+            var messageResponse = new LoginMessageResponse();
+            try
+            {
+                string error;
+                if (IsEntityValid(value.Login, out error))
+                {
+                    messageResponse.UserToken = _loginBusiness.Login(value.Login);
+                    if (messageResponse.UserToken != default(Guid))
+                        messageResponse.User = _sessionBusiness.ValidSession(messageResponse.UserToken);
+                    else
+                        messageResponse.Error = "Invalid Credentials.";
+                }
+                else
+                {
+                    messageResponse.Error = error;
+                }
+            }
+            catch (Exception)
+            {
+                messageResponse.Error = "An Error has ocurred.";
+            }
+
             return messageResponse;
         }
 
         public MessageResponse<AnimalModel> UpdateAnimal(MessageRequest<AnimalModel> value)
         {
             var messageResponse = new MessageResponse<AnimalModel>();
-            //AUTENTICATION
-            //AUTHORIZATION
-            //ADD VALIDATIONS
-            messageResponse.Body = new List<AnimalModel>
+            try
             {
-                this._animalBusiness.Update(value.Body)
-            };
+                string error;
+                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                    messageResponse.Body = _animalBusiness.Update(value.Body);
+                else
+                    messageResponse.Error = error;
+            }
+            catch (Exception)
+            {
+                messageResponse.Error = "An Error has ocurred.";
+            }
+
             return messageResponse;
         }
 
         public MessageResponse<UserModel> UpdateUser(MessageRequest<UserModel> value)
         {
             var messageResponse = new MessageResponse<UserModel>();
-            //AUTENTICATION
-            //AUTHORIZATION
-            //ADD VALIDATIONS
-            messageResponse.Body = new List<UserModel>
+            try
             {
-                this._userBusiness.Update(value.Body)
-            };
+                string error;
+                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                    messageResponse.Body = _userBusiness.Update(value.Body);
+                else
+                    messageResponse.Error = error;
+            }
+            catch (Exception)
+            {
+                messageResponse.Error = "An Error has ocurred.";
+            }
+
             return messageResponse;
+        }
+
+        LoginMessageResponse ISOAPService.CreateUser(LoginMessageRequest value, string name)
+        {
+            var messageResponse = new LoginMessageResponse();
+            try
+            {
+                string error;
+                if (IsEntityValid(value.Login, out error))
+                {
+                    messageResponse.User = _userBusiness.Create(value.Login, name, null);
+                    messageResponse.UserToken = _loginBusiness.Login(value.Login);
+                }
+                else
+                {
+                    messageResponse.Error = error;
+                }
+            }
+            catch (Exception)
+            {
+                messageResponse.Error = "An Error has ocurred.";
+            }
+
+            return messageResponse;
+        }
+
+        private bool IsEntityValid<T>(T entity, out string error) where T : BaseModel
+        {
+            var validationResult = DataAnnotation.ValidateEntity(entity);
+            error = null;
+            if (validationResult.HasError) error = "Error in data validations.";
+            return validationResult.HasError;
+        }
+
+        private bool ValidateSession(Guid userToken, out string error)
+        {
+            var validationResult = _sessionBusiness.ValidSession(userToken);
+            error = null;
+            if (validationResult != null)
+            {
+                error = "Session has expired";
+                return true;
+            }
+
+            return false;
         }
     }
 }

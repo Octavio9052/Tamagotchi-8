@@ -47,7 +47,6 @@ namespace Tamagotchi.REST
             // Make sure to add a Unity.Configuration to the using statements.
             // container.LoadConfiguration();
 
-
             container.RegisterInstance<IMapper>(config.CreateMapper());
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();

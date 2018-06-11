@@ -4,6 +4,6 @@ namespace Tamagotchi.Common.Messages
 {
     public class LoginMessageRequest
     {
-        public UserModel Login { get; set; }
+        public LoginModel Login { get; set; }
     }
 }

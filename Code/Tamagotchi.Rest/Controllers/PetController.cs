@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Remoting.Messaging;
 using System.Web.Http;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
+using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.REST.Controllers
 {
@@ -21,55 +24,65 @@ namespace Tamagotchi.REST.Controllers
             _sessionBusiness = sessionBusiness;
         }
 
-
         // GET: api/Pet
-        public IEnumerable<string> Get()
+        public IHttpActionResult Get()
         {
-            return new[] { "value1", "value2" };
+            var response = new MessageResponse<List<PetModel>> {Body = _petBusiness.GetAll().ToList()};
+
+            return Ok(response);
         }
 
         // GET: api/Pet/5
-        public HttpResponseMessage Get(string id)
+        public IHttpActionResult Get(string id)
         {
-            var messageResponse = new MessageResponse<PetModel>();
-            var statusCode = HttpStatusCode.OK;
+            var messageResponse = new MessageResponse<PetModel> {Body = _petBusiness.Get(id)};
 
-            try
-            {
-                var pet = _petBusiness.Get(id);
-
-                if (pet.Owner.Id != pet.Owner.Session.UserId) throw new ForbiddenExceptions();
-
-                messageResponse.Body = new List<PetModel>
-                {
-                    pet
-                };
-            }
-            catch (Exception e)
-            {
-                messageResponse.Errors = new List<string> { e.Message };
-                if (e is ForbiddenExceptions || e is InvalidSessionExceptions) statusCode = HttpStatusCode.Forbidden;
-                else if (e is BusinessLayerExceptions) statusCode = HttpStatusCode.BadRequest;
-                else statusCode = HttpStatusCode.InternalServerError;
-            }
-
-            return Request.CreateResponse(statusCode, messageResponse, "application/json");
+            return messageResponse.Body != default(PetModel) ? (IHttpActionResult) Ok(messageResponse) : NotFound();
         }
 
         // POST: api/Pet
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody] MessageRequest<PetModel> request)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+                return Unauthorized();
+
+            var result = _petBusiness.Create(request.Body);
+
+            var response = new MessageResponse<PetModel> {Body = result};
+
+            return response.Error != string.Empty
+                ? (IHttpActionResult) Created($"api/pet/{response.Body.Id}", response)
+                : InternalServerError();
         }
 
         // PUT: api/Pet/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, [FromBody] MessageRequest<PetModel> request)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+                return Unauthorized();
+
+            var result = _petBusiness.Update(request.Body);
+
+            var response = new MessageResponse<PetModel> {Body = result};
+
+            return response.Error != string.Empty
+                ? (IHttpActionResult) Ok(response)
+                : InternalServerError();
         }
 
         // DELETE: api/Pet/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(MessageRequest<string> request)
         {
+            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+                return Unauthorized();
+
+            _petBusiness.Delete(request.Body);
+
+            return Ok();
         }
     }
 }

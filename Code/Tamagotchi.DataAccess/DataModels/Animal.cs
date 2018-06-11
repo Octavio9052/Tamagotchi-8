@@ -21,7 +21,7 @@ namespace Tamagotchi.DataAccess.DataModels
         public bool IsReady { get; set; }
         public bool IsActive { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
         public User User { get; set; }
     }
 }
