@@ -135,8 +135,10 @@ namespace Tamagotchi.Business.Services
 
         private Pet LoadData()
         {
-            var testPet = new Pet();
-            testPet.Nickname = "Test Data";
+            var testPet = new Pet
+            {
+                Nickname = "Test Data"
+            };
             testPet.CurrentGamePoints["MaxFood"] = 100;
             testPet.CurrentGamePoints["MaxFun"] = 100;
             testPet.CurrentGamePoints["MaxRest"] = 100;
@@ -157,7 +159,7 @@ namespace Tamagotchi.Business.Services
                 _loader.LoadFromByteArray(stream);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 _errorMessages.Add(AssemblyErrorMessage);
                 return false;

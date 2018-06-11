@@ -11,9 +11,9 @@ namespace Tamagotchi.SOAP
     {
 
         [OperationContract]
-        MessageResponse<UserModel> CreateUser(MessageRequest<UserModel> value);
+        LoginMessageResponse CreateUser(LoginMessageRequest value,string name);
         [OperationContract]
-        MessageResponse<UserModel> Login(MessageRequest<UserModel> value);
+        LoginMessageResponse Login(LoginMessageRequest value);
         [OperationContract]
         MessageResponse<UserModel> UpdateUser(MessageRequest<UserModel> value);
         [OperationContract]
@@ -23,7 +23,7 @@ namespace Tamagotchi.SOAP
         [OperationContract]
         MessageResponse<AnimalModel> DeleteAnimal(MessageRequest<AnimalModel> value);
         [OperationContract]
-        MessageResponse<AnimalModel> GetAnimal(int id);
+        MessageResponse<AnimalModel> GetAnimal(string id);
 
 
         // TODO: Add your service operations here

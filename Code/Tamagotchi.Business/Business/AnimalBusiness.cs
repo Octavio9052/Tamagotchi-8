@@ -48,7 +48,6 @@ namespace Tamagotchi.Business.Business
             var animalModel = base.Create(animal);
 
             SaveFiles(zipFile, animalModel);
-
             return animalModel;
         }
 

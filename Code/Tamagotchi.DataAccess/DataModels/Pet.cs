@@ -11,10 +11,10 @@ namespace Tamagotchi.DataAccess.DataModels
         public string Nickname { get; set; }
         [BsonElement("ownerId")]
         [BsonRequired]
-        public int OwnerId { get; set; }
+        public string OwnerId { get; set; }
         [BsonElement("animalId")]
         [BsonRequired]
-        public int AnimalId { get; set; }
+        public string AnimalId { get; set; }
         [BsonElement("gender")]
         public Gender Gender { get; set; }
         [BsonElement("logs")]

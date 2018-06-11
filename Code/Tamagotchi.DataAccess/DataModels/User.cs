@@ -17,6 +17,6 @@ namespace Tamagotchi.DataAccess.DataModels
         
         public virtual Login Login { get; set; }
         [Required]
-        public int LoginId { get; set; }
+        public string LoginId { get; set; }
     }
 }

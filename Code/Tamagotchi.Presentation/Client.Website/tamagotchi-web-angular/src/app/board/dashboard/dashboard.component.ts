@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // this.animalsData = animalService.getAnimalCards();
   }
 
 }
