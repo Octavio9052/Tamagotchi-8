@@ -8,24 +8,7 @@ import { ChartModel } from '../../shared/models/ChartModel';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  single: any[] = [
-    {
-      name: animals[0].name,
-      value: animals[0].numberDownloads
-    },
-    {
-      name: animals[1].name,
-      value: animals[1].numberDownloads
-    },
-    {
-      name: animals[2].name,
-      value: animals[2].numberDownloads
-    },
-    {
-      name: animals[3].name,
-      value: animals[3].numberDownloads
-    },
-  ];
+  single: any[];
   view: any[];
 
   // options
@@ -51,5 +34,17 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit() {
+    var animalsToGraph: any[] = [];
+
+    for(var i = 0; i < animals.length; i++) {
+      animalsToGraph[i] = { 
+        name: animals[i].name, 
+        value: animals[i].numberDownloads}
+    }
+    this.single = animalsToGraph;
+
+    /*
+    this.single = animalService.getAnimalDataForGraph();
+    */
   }
 }
