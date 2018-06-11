@@ -17,12 +17,12 @@ namespace Tamagotchi.Business.Business
 
         public Guid Login(LoginModel login)
         {
-            var existingLogin = ((ILoginDAL)this.BaseDal).Login(login.Email, login.Password);
+            var existingLogin = ((ILoginDAL)BaseDal).Login(login.Email, login.Password);
 
             if(existingLogin != null)
             {
                 var newSession = new SessionModel { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId };
-                newSession = this._sessionBusiness.Create(newSession);
+                newSession = _sessionBusiness.Create(newSession);
                 return newSession.Guid;
             }
 

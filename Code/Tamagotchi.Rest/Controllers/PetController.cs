@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Remoting.Messaging;
@@ -8,6 +9,7 @@ using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
+using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.REST.Controllers
 {
@@ -22,48 +24,65 @@ namespace Tamagotchi.REST.Controllers
             _sessionBusiness = sessionBusiness;
         }
 
-
         // GET: api/Pet
-        public IEnumerable<string> Get()
+        public IHttpActionResult Get()
         {
-            return new[] {"value1", "value2"};
+            var response = new MessageResponse<List<PetModel>> {Body = _petBusiness.GetAll().ToList()};
+
+            return Ok(response);
         }
 
         // GET: api/Pet/5
         public IHttpActionResult Get(string id)
         {
-            var result = NotFound();
+            var messageResponse = new MessageResponse<PetModel> {Body = _petBusiness.Get(id)};
 
-            var messageResponse = new MessageResponse<PetModel>();
-
-            try
-            {
-                var pet = _petBusiness.Get(id);
-
-                if (pet.Owner.Id != pet.Owner.Session.UserId) throw new ForbiddenExceptions();
-
-                messageResponse.Body = pet;
-            }
-            catch (Exception e)
-            {
-            }
-
-            return result;
+            return messageResponse.Body != default(PetModel) ? (IHttpActionResult) Ok(messageResponse) : NotFound();
         }
 
         // POST: api/Pet
-        public void Post([FromBody] string value)
+        public IHttpActionResult Post([FromBody] MessageRequest<PetModel> request)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+                return Unauthorized();
+
+            var result = _petBusiness.Create(request.Body);
+
+            var response = new MessageResponse<PetModel> {Body = result};
+
+            return response.Error != string.Empty
+                ? (IHttpActionResult) Created($"api/pet/{response.Body.Id}", response)
+                : InternalServerError();
         }
 
         // PUT: api/Pet/5
-        public void Put(int id, [FromBody] string value)
+        public IHttpActionResult Put(int id, [FromBody] MessageRequest<PetModel> request)
         {
+            if (!ModelState.IsValid) return BadRequest();
+
+            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+                return Unauthorized();
+
+            var result = _petBusiness.Update(request.Body);
+
+            var response = new MessageResponse<PetModel> {Body = result};
+
+            return response.Error != string.Empty
+                ? (IHttpActionResult) Ok(response)
+                : InternalServerError();
         }
 
         // DELETE: api/Pet/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(MessageRequest<string> request)
         {
+            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+                return Unauthorized();
+
+            _petBusiness.Delete(request.Body);
+
+            return Ok();
         }
     }
 }

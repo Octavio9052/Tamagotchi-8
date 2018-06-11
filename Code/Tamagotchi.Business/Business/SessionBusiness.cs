@@ -12,19 +12,18 @@ namespace Tamagotchi.Business.Business
         private readonly IUserBusiness _userBusiness;
         public SessionBusiness(ISessionDAL baseDAL, IMapper mapper,IUserBusiness userBusiness) : base(baseDAL, mapper)
         {
-            this._userBusiness = userBusiness;
+            _userBusiness = userBusiness;
         }
 
         public UserModel ValidSession(Guid userToken)
         {
-            var session = ((ISessionDAL)this.BaseDal).GetByGUID(userToken);
-            if (session != null)
-            {
-                session.ExpirationDate = DateTime.Now.AddMinutes(30);
-                this.BaseDal.Update(session);
-                return this._userBusiness.Get(session.UserId);
-            }
-            return null;
+            var session = ((ISessionDAL)BaseDal).GetByGUID(userToken);
+            
+            if (session == null) return null;
+            
+            session.ExpirationDate = DateTime.Now.AddMinutes(30);
+            BaseDal.Update(session);
+            return _userBusiness.Get(session.UserId);
         }
     }
 }
