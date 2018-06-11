@@ -55,12 +55,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests\AnimalDALTests.cs" />
-    <Compile Include="Tests\LogDALTests.cs" />
-    <Compile Include="Tests\LoginDALTests.cs" />
-    <Compile Include="Tests\PetDALTests.cs" />
-    <Compile Include="Tests\SessionDALTests.cs" />
-    <Compile Include="Tests\UserDALTests.cs" />
+    <Compile Include="Data Access Layer\AnimalDALTests.cs" />
+    <Compile Include="Data Access Layer\LogDALTests.cs" />
+    <Compile Include="Data Access Layer\LoginDALTests.cs" />
+    <Compile Include="Data Access Layer\PetDALTests.cs" />
+    <Compile Include="Data Access Layer\SessionDALTests.cs" />
+    <Compile Include="Data Access Layer\UserDALTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +76,11 @@
       <Project>{b6955fbd-af07-453b-93e6-c7ad3e293442}</Project>
       <Name>Tamagotchi.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Business Layer\" />
+    <Folder Include="REST Service\" />
+    <Folder Include="SOAP Service\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

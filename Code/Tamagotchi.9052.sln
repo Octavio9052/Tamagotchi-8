@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.Business", "Tama
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.Core", "Tamagotchi.Core\Tamagotchi.Core.csproj", "{B45DCD53-4EBF-4B82-94ED-C2FE0DA04A0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.DALTesting", "Tamagotchi.DALTesting\Tamagotchi.DALTesting.csproj", "{507DE825-E34C-401B-9E4A-FC10578E770E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.Testing", "Tamagotchi.Testing\Tamagotchi.Testing.csproj", "{507DE825-E34C-401B-9E4A-FC10578E770E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tamagotchi.SOAP", "Tamagotchi.SOAP\Tamagotchi.SOAP.csproj", "{DABC7EAD-753E-4EFA-A16C-2C06C1B99E8B}"
 EndProject
