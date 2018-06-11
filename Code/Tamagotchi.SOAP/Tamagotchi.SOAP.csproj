@@ -93,6 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Helpers\DataValidations\DataAnnotation.cs" />
+    <Compile Include="Helpers\DataValidations\EntityValidationResult.cs" />
+    <Compile Include="Helpers\DataValidations\EntityValidator.cs" />
     <Compile Include="Helpers\NinjectFileLessServiceHostFactory.cs" />
     <Compile Include="SOAPService.svc.cs">
       <DependentUpon>SOAPService.svc</DependentUpon>

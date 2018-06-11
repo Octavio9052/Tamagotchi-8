@@ -15,7 +15,7 @@ namespace Tamagotchi.Business.Business
             _sessionBusiness = sessionBusiness;
         }
 
-        public UserModel Create(LoginModel login, string name, string photoUri)
+        public UserModel Create(LoginModel login, string name, string photoUri = null)
         {
             return null;
         }

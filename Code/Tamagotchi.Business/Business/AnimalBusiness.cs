@@ -51,9 +51,11 @@ namespace Tamagotchi.Business.Business
 
 
             var animalModel = base.Create(animal);
-         
-            var backgroundWorkerThread = new Thread(() => SaveFiles(zipFile, animalModel));
-            backgroundWorkerThread.IsBackground = true;
+
+            var backgroundWorkerThread = new Thread(() => SaveFiles(zipFile, animalModel))
+            {
+                IsBackground = true
+            };
             backgroundWorkerThread.Start();
 
             return animalModel;
@@ -68,8 +70,10 @@ namespace Tamagotchi.Business.Business
 
             animalModel.IsReady = false;
 
-            var backgroundWorkerThread = new Thread(() => SaveFiles(zipFile, animalModel));
-            backgroundWorkerThread.IsBackground = true;
+            var backgroundWorkerThread = new Thread(() => SaveFiles(zipFile, animalModel))
+            {
+                IsBackground = true
+            };
             backgroundWorkerThread.Start();
 
             return base.Update(animalModel);
