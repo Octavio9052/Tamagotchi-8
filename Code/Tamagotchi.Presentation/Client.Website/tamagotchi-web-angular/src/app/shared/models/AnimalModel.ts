@@ -4,7 +4,7 @@ export interface AnimalModel {
     creator: string;
     date: string;
     time: string;
-    log: string[];
+    log: string;
     idleUri: string;
 }
 
