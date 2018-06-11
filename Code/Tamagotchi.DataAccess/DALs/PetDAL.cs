@@ -10,7 +10,7 @@ namespace Tamagotchi.DataAccess.DALs
     public class PetDAL : BaseMongoDAL<Pet>, IPetDAL
     {
         
-        public PetDAL(TamagotchiMongoClient client) : base(client, "pet")
+        public PetDAL(TamagotchiMongoClient client) : base(client, "Pet")
         {
         }
         

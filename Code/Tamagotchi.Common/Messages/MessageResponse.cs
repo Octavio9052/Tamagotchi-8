@@ -8,6 +8,5 @@ namespace Tamagotchi.Common.Messages
     {
         public T Body { get; set; }
         public string Error { get; set; }
-        public IEnumerable<Stream> Files { get; set; }
     }
 }
