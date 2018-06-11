@@ -46,7 +46,6 @@ namespace Tamagotchi.REST.Controllers
             }
             catch (Exception e)
             {
-                messageResponse.Errors = new List<string> {e.Message};
             }
 
             return result;

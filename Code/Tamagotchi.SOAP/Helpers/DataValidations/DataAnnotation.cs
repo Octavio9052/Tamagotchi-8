@@ -13,4 +13,4 @@ namespace Tamagotchi.SOAP.Helpers.DataValidations
             return new EntityValidator<T>().Validate(entity);
         }
     }
-}a
+}
