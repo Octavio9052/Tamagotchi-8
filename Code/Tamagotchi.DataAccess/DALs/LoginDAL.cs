@@ -14,7 +14,7 @@ namespace Tamagotchi.DataAccess.DALs
             return login;
         }
 
-        protected LoginDAL(TamagotchiContext context) : base(context)
+        public LoginDAL(TamagotchiContext context) : base(context)
         {
         }
     }

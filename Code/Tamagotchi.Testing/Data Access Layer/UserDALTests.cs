@@ -1,110 +1,114 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using Tamagotchi.Common.DataModels;
-//using Tamagotchi.DataAccess.DALs;
-//
-//namespace Tamagotchi.DALTesting
+﻿//using system;
+//using system.collections.generic;
+//using microsoft.visualstudio.testtools.unittesting;
+//using tamagotchi.dataaccess.datamodels;
+//using tamagotchi.dataaccess.dals;
+//using tamagotchi.dataaccess.context;
+
+//namespace tamagotchi.daltesting
 //{
-//    [TestClass]
-//    public class UserDALTests
+//    [testclass]
+//    public class userdaltests
 //    {
-//
-//        [TestMethod]
-//        public void Create()
+
+
+//        [testmethod]
+//        public void create()
 //        {
-//            var userDal = new UserDAL();
-//            var user = new User
+//            var context = new tamagotchicontext();
+//            var userdal = new userdal(context);
+//            var user = new user
 //            {
-//                Name = "Octavio Armenta",
-//                PhotoUri = "http://127.0.0.1/",
-//                Pets = new Dictionary<int, string>
+//                name = "octavio armenta",
+//                photouri = "http://google.com",
+//                animal = { },
+//                creations = { },
+//                login = new login
 //                {
-//                    { 1, "Queso" },
-//                    {2, "Nacho" }
+//                    id = 1,
+//                    email = "armenta_octavio@hotmail.com",
+//                    password = "tumama123"
 //                },
-//                Creations = new Dictionary<int, string>
-//                {
-//                    { 1, "Perro" },
-//                    {2, "Gato" }
-//                }
+//                pets = { },
+//                session = { }
 //            };
-//            var numberOfUsers = userDal.GetAll().Count;
-//            var userR = userDal.Create(user);
-//
-//            var number = userDal.GetAll().Count;
-//
-//            Assert.AreEqual(numberOfUsers + 1, userDal.GetAll().Count);
+//            var numberofusers = userdal.getall().count;
+//            var userr = userdal.create(user);
+//            userdal.save();
+
+//            var number = userdal.getall().count;
+
+//            assert.areequal(numberofusers + 1, userdal.getall().count);
 //        }
-//
-//
-//        [TestMethod]
-//        public void ReadSingle()
+
+
+//        [testmethod]
+//        public void readsingle()
 //        {
-//            var userDAL = new UserDAL();
-//
-//            var single = userDAL.Get(17);
-//
-//            Assert.IsNotNull(single);
+//            var userdal = new userdal();
+
+//            var single = userdal.get(17);
+
+//            assert.isnotnull(single);
 //        }
-//
-//        [TestMethod]
-//        public void ReadAll()
+
+//        [testmethod]
+//        public void readall()
 //        {
-//            var userDAL = new UserDAL();
-//
-//            var all = userDAL.GetAll();
-//
-//            Assert.IsNotNull(all);
+//            var userdal = new userdal();
+
+//            var all = userdal.getall();
+
+//            assert.isnotnull(all);
 //        }
-//
-//        [TestMethod]
-//        public void Update()
+
+//        [testmethod]
+//        public void update()
 //        {
-//            var userDAL = new UserDAL();
-//            var toUpdate = userDAL.Get(17);
-//            var oldUser = new User
+//            var userdal = new userdal();
+//            var toupdate = userdal.get(17);
+//            var olduser = new user
 //            {
-//                Id = toUpdate.Id,
-//                Animal = toUpdate.Animal,
-//                DateCreated = toUpdate.DateCreated,
-//                LastModified = toUpdate.LastModified,
-//                Login = toUpdate.Login,
-//                LoginId = toUpdate.LoginId,
-//                Session = toUpdate.Session,
-//                Name = toUpdate.Name,
-//                PhotoUri = toUpdate.PhotoUri,
-//                Pets = toUpdate.Pets,
-//                Creations = toUpdate.Creations
+//                id = toupdate.id,
+//                animal = toupdate.animal,
+//                datecreated = toupdate.datecreated,
+//                lastmodified = toupdate.lastmodified,
+//                login = toupdate.login,
+//                loginid = toupdate.loginid,
+//                session = toupdate.session,
+//                name = toupdate.name,
+//                photouri = toupdate.photouri,
+//                pets = toupdate.pets,
+//                creations = toupdate.creations
 //            };
-//
-//            toUpdate.LastModified = DateTime.Now;
-//
-//            Assert.AreNotEqual(oldUser, toUpdate);
+
+//            toupdate.lastmodified = datetime.now;
+
+//            assert.arenotequal(olduser, toupdate);
 //        }
-//
-//        [TestMethod]
-//        public void Delete()
+
+//        [testmethod]
+//        public void delete()
 //        {
-//            var userDAL = new UserDAL();
-//            var amount = userDAL.GetAll().Count;
-//            var allusr = userDAL.GetAll();
-//
-//            var list = new List<User>();
-//
-//            foreach(var usr in allusr)
+//            var userdal = new userdal();
+//            var amount = userdal.getall().count;
+//            var allusr = userdal.getall();
+
+//            var list = new list<user>();
+
+//            foreach (var usr in allusr)
 //            {
-//                list.Add(usr);
+//                list.add(usr);
 //            }
-//
-//            if(list.Capacity > 3)
+
+//            if (list.capacity > 3)
 //            {
-//                userDAL.Delete(list[2].Id);
-//                Assert.AreEqual(amount - 1, userDAL.GetAll().Count);
+//                userdal.delete(list[2].id);
+//                assert.areequal(amount - 1, userdal.getall().count);
 //            }
 //            else
 //            {
-//                Assert.Inconclusive();
+//                assert.inconclusive();
 //            }
 //        }
 //    }

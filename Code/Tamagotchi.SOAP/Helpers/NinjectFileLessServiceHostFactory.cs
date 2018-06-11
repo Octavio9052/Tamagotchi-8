@@ -33,6 +33,7 @@ namespace Tamagotchi.SOAP.Helpers
             kernel.Bind<IAnimalDAL>().To<AnimalDAL>();
             kernel.Bind<ISessionDAL>().To<SessionDAL>();
             kernel.Bind<ILogDAL>().To<LogDAL>();
+            kernel.Bind<ILoginDAL>().To<LoginDAL>();
 
             //Extras
             kernel.Bind<IMapper>().ToMethod(AutoMapper).InSingletonScope();
@@ -40,8 +41,10 @@ namespace Tamagotchi.SOAP.Helpers
 
             //BUSINESS INSTANCES
             kernel.Bind<ISessionBusiness>().To<SessionBusiness>();
+            kernel.Bind<ILoginBusiness>().To<LoginBusiness>();
             kernel.Bind<IUserBusiness>().To<UserBusiness>();
             kernel.Bind<IAnimalBusiness>().To<AnimalBusiness>();
+
 
             kernel.Bind<ISOAPService>().To<SOAPService>();
             SetKernel(kernel);
