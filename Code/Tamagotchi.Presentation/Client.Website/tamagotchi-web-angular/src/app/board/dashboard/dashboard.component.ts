@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { animals } from '../chart/data';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  animals = [1,2,3,4,5,6,7];
+  animalsData = animals;
 
   constructor() { }
 
   ngOnInit() {
+    // this.animalsData = animalService.getAnimalCards();
   }
 
 }

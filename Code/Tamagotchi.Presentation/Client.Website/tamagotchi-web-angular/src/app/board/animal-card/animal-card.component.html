@@ -6,7 +6,7 @@
       </div>
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="../../../assets/idle.gif" alt="Idle photo of the animal">
+  <img mat-card-image [src]="idleUri" alt="Idle photo of the animal">
   <mat-card-content>
     <div>
       <b>
@@ -24,9 +24,7 @@
       {{creatorName}}
     </div>
   </mat-card-content>
-  <mat-card-actions>
     <div class="text-center">
       <button id="details" mat-raised-button color="primary" (click)="openDialog()">Details</button>
     </div>
-  </mat-card-actions>
 </mat-card>
