@@ -1,7 +1,9 @@
-<div id="chart-container" class="row flexbox-parent" layout-align="center center">
-  <app-chart id="chart-component"></app-chart>
-</div>
-<h3 class="tamoc">Animals:</h3>
-<div class="row">
-  <app-animal-card *ngFor="let animal of animalsData" [animalCard]="animal"></app-animal-card>
+<div class="">
+  <div id="chart-container" class="row no-gutters">
+    <app-chart id="chart-component"></app-chart>
+  </div>
+  <h3 class="tamoc">Animals:</h3>
+  <div id="card-container" class="row no-gutters">
+    <app-animal-card *ngFor="let animal of animalsData" [animalCard]="animal"></app-animal-card>
+  </div>
 </div>
