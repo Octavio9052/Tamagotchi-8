@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.DataAccess.Context;
+using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
 {
-    public class BaseDAL<T> : IBaseDAL<T> where T : BaseEntity
+    public class BaseDAL<T> : IBaseRelationalDAL<T> where T : BaseRelationalEntity
     {
-        
+        private readonly DbContext _context;
         protected readonly DbSet<T> Set;
         
         protected BaseDAL(DbContext context)
         {
+            _context = context;
             Set = context.Set<T>();
         }
 
@@ -27,7 +29,7 @@ namespace Tamagotchi.DataAccess.DALs
             return entity;
         }
 
-        public virtual void Delete(int id)
+        public virtual void Delete(string id)
         {
             var entity = Set.Find(id);
             if (entity != null)
@@ -36,7 +38,7 @@ namespace Tamagotchi.DataAccess.DALs
             }
         }
 
-        public virtual T Get(int id)
+        public virtual T Get(string id)
         {
             return Set.Find(id);
         }
@@ -50,11 +52,16 @@ namespace Tamagotchi.DataAccess.DALs
         {
             var existingEntity = Set.Find(entity.Id);
             
-            existingEntity.LastModified = DateTime.Now;
+            entity.LastModified = DateTime.Now;
             
-//            Set.F(existingEntity).CurrentValues.SetValues(entity);
+            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
             
             return existingEntity;
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

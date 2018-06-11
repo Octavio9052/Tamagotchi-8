@@ -1,25 +1,28 @@
 ﻿using AutoMapper;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
+using Tamagotchi.DataAccess.DataModels;
 
-public class AutoMapperConfiguration : Profile
+namespace Tamagotchi.REST
 {
-    public void Configure()
-    {
-        CreateMap<PetModel, Pet>()
-                .ForMember(x => x.OwnerId,
-                           m => m.MapFrom(a => a.Owner.Id))
+           public class AutoMapperConfiguration : Profile
+           {
+                      public void Configure()
+                      {
+                                 CreateMap<PetModel, Pet>()
+                                            .ForMember(x => x.OwnerId,
+                                                       m => m.MapFrom(a => a.Owner.Id))
 
-                .ForMember(x => x.AnimalId,
-                           m => m.MapFrom(a => a.Animal.Id));
+                                            .ForMember(x => x.AnimalId,
+                                                       m => m.MapFrom(a => a.Animal.Id));
 
-        CreateMap<Pet, PetModel>()
-                .ForMember(x => x.Owner.Id,
-                           m => m.MapFrom(a => a.OwnerId))
+                                 CreateMap<Pet, PetModel>()
+                                            .ForMember(x => x.Owner.Id,
+                                                       m => m.MapFrom(a => a.OwnerId))
 
-                .ForMember(x => x.Animal.Id,
-                           m => m.MapFrom(a => a.AnimalId));
+                                            .ForMember(x => x.Animal.Id,
+                                                       m => m.MapFrom(a => a.AnimalId));
 
 
-    }   
+                      }   
+           }
 }

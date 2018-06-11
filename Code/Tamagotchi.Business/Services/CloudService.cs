@@ -8,12 +8,12 @@ namespace Tamagotchi.Business.Services
 {
     public class CloudService
     {
-        private CloudStorageAccount _storageAccount;
-        private CloudBlobContainer _cloudImageContainer;
-        private CloudBlobContainer _cloudFilesContainer;
+        private readonly CloudStorageAccount _storageAccount;
+        private readonly CloudBlobContainer _cloudImageContainer;
+        private readonly CloudBlobContainer _cloudFilesContainer;
         string sourceFile = null;
         string destinationFile = null;
-        private string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=tamagotchi9052;AccountKey=qRlBQq8RNJFNhP/DuNwk291Psu+LFle/xKNv7dbCYA+kA/nnOq+Z8JfZwQKFzjf0IDJCkxNijBypxG2ZEqAGnA==;EndpointSuffix=core.windows.net";
+        private readonly string storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=tamagotchi9052;AccountKey=qRlBQq8RNJFNhP/DuNwk291Psu+LFle/xKNv7dbCYA+kA/nnOq+Z8JfZwQKFzjf0IDJCkxNijBypxG2ZEqAGnA==;EndpointSuffix=core.windows.net";
 
         public CloudService()
         {

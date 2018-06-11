@@ -7,9 +7,9 @@ using System.Linq;
 using System.ServiceModel;
 using System.Web;
 using Tamagotchi.Business;
+using Tamagotchi.Business.Business;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Business.Services;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DALs;
@@ -32,7 +32,7 @@ namespace Tamagotchi.SOAP.Helpers
             kernel.Bind<IUserDAL>().To<UserDAL>();
             kernel.Bind<IAnimalDAL>().To<AnimalDAL>();
             kernel.Bind<ISessionDAL>().To<SessionDAL>();
-            kernel.Bind<ILogMongoDAL>().To<LogDAL>();
+            kernel.Bind<ILogDAL>().To<LogDAL>();
 
             //Extras
             kernel.Bind<IMapper>().ToMethod(AutoMapper).InSingletonScope();

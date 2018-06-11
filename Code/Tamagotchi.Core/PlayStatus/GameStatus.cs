@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tamagotchi.Core
+namespace Tamagotchi.Core.PlayStatus
 {
     [Serializable]
     public class GameStatus

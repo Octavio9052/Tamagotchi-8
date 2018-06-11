@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Tamagotchi.Core
+namespace Tamagotchi.Core.PlayStatus
 {
     [Serializable]
     public class PetStatus

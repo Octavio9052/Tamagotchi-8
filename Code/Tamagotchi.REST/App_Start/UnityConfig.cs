@@ -1,6 +1,7 @@
 using AutoMapper;
 using System;
 using Tamagotchi.Business;
+using Tamagotchi.Business.Business;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.DataAccess.DALs;
 using Tamagotchi.DataAccess.DALs.Interfaces;
@@ -50,7 +51,7 @@ namespace Tamagotchi.REST
             container.RegisterInstance<IMapper>(config.CreateMapper());
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IPetMongoDAL, PetDAL>();
+            container.RegisterType<IPetDAL, PetDAL>();
             container.RegisterType<ISessionDAL, SessionDAL>();
 
             container.RegisterType<IPetBusiness, PetBusiness>();

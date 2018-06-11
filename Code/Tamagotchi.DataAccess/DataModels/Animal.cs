@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tamagotchi.Common.DataModels
+namespace Tamagotchi.DataAccess.DataModels
 {
-    public class Animal : BaseEntity
+    public class Animal : BaseRelationalEntity
     {
+
+        
         public string Name { get; set; }
         public string Description { get; set; }
         public string IdleUri { get; set; }

@@ -1,51 +1,51 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using Tamagotchi.Business.Interfaces;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.Common.Models;
+using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
-namespace Tamagotchi.Business
+namespace Tamagotchi.Business.Business
 {
-    public class BaseBusiness<T, Y> : IBaseBusiness<T, Y> where T : BaseModel where Y : BaseEntity
+    public class BaseBusiness<T, TData> : IBaseBusiness<T> where T : BaseModel where TData : IBaseEntity
     {
-        protected readonly IBaseDAL<Y> _baseDAL;
-        protected readonly IMapper _mapper;
+        protected readonly IBaseDAL<TData> BaseDal;
+        protected readonly IMapper Mapper;
 
 
-        public BaseBusiness(IBaseDAL<Y> baseDAL, IMapper mapper)
+        protected BaseBusiness(IBaseDAL<TData> baseDAL, IMapper mapper)
         {
-            _baseDAL = baseDAL;
-            _mapper = mapper;
+            BaseDal = baseDAL;
+            Mapper = mapper;
         }
 
         public virtual T Create(T model)
         {
-            var entity = _mapper.Map<Y>(model);
-            return _mapper.Map<T>(_baseDAL.Create(entity));
+            var entity = Mapper.Map<TData>(model);
+            return Mapper.Map<T>(BaseDal.Create(entity));
         }
 
-        public virtual void Delete(T model)
+        public virtual void Delete(string id)
         {
-            _baseDAL.Delete(model.Id);
+            BaseDal.Delete(id);
         }
 
-        public virtual T Get(T model)
+        public virtual T Get(string id)
         {
-            var entity = _baseDAL.Get(model.Id);
-            return _mapper.Map<T>(entity);
+            var entity = BaseDal.Get(id);
+            return Mapper.Map<T>(entity);
         }
 
         public virtual ICollection<T> GetAll()
         {
-            var entities = _baseDAL.GetAll();
-            return _mapper.Map<ICollection<T>>(entities);
+            var entities = BaseDal.GetAll();
+            return Mapper.Map<ICollection<T>>(entities);
         }
 
         public virtual T Update(T model)
         {
-            var entity = _mapper.Map<Y>(model);
-            return _mapper.Map<T>(_baseDAL.Update(entity));
+            var entity = Mapper.Map<TData>(model);
+            return Mapper.Map<T>(BaseDal.Update(entity));
         }
     }
 }

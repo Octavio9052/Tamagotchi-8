@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using Tamagotchi.Common.DataModels;
 using Tamagotchi.DataAccess.Context;
+using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs
 {
-    public class BaseMongoDAL<T> : IBaseMongoDAL<T> where T : BaseDocument
+    public class BaseMongoDAL<T> : IBaseDAL<T> where T : BaseDocument
     {
         protected readonly IMongoCollection<T> Collection;
 
@@ -21,7 +21,7 @@ namespace Tamagotchi.DataAccess.DALs
 
         // Check to see if map is registered before registering class map
         // This is for the sake of the polymorphic types that we are using so Mongo knows how to deserialize
-        private void RegisterMapIfNeeded<TClass>()
+        private static void RegisterMapIfNeeded<TClass>()
         {
             if (!BsonClassMap.IsClassMapRegistered(typeof(TClass)))
                 BsonClassMap.RegisterClassMap<TClass>();
@@ -37,27 +37,27 @@ namespace Tamagotchi.DataAccess.DALs
             return document;
         }
 
-        public void Delete(string id, string collectionName)
+        public void Delete(string id)
         {
             var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
             Collection.DeleteOne(filter);
         }
 
-        public T Get(string id, string collectionName)
+        public T Get(string id)
         {
             var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
             
             return Collection.Find(filter).FirstOrDefault();
         }
 
-        public ICollection<T> GetAll(string collectionName)
+        public ICollection<T> GetAll()
         {
             return Collection.Find(new BsonDocument()).ToList();
         }
 
         public T Update(T document)
         {
-            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(document.Id));
+            var filter = Builders<T>.Filter.Eq("_id", document.Id);
             return Collection.FindOneAndReplace<T>(filter, document);
         }
     }

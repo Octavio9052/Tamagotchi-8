@@ -76,10 +76,10 @@
     <Compile Include="DALs\BaseMongoDAL.cs" />
     <Compile Include="DALs\Interfaces\IAnimalDAL.cs" />
     <Compile Include="DALs\Interfaces\IBaseDAL.cs" />
-    <Compile Include="DALs\Interfaces\ILogMongoDAL.cs" />
+    <Compile Include="DALs\Interfaces\IBaseRelationalDAL.cs" />
+    <Compile Include="DALs\Interfaces\ILogDAL.cs" />
     <Compile Include="DALs\Interfaces\ILoginDAL.cs" />
-    <Compile Include="DALs\Interfaces\IBaseMongoDAL.cs" />
-    <Compile Include="DALs\Interfaces\IPetMongoDAL.cs" />
+    <Compile Include="DALs\Interfaces\IPetDAL.cs" />
     <Compile Include="DALs\Interfaces\ISessionDAL.cs" />
     <Compile Include="DALs\Interfaces\IUserDAL.cs" />
     <Compile Include="DALs\LoginDAL.cs" />
@@ -87,6 +87,15 @@
     <Compile Include="DALs\PetDAL.cs" />
     <Compile Include="DALs\SessionDAL.cs" />
     <Compile Include="DALs\UserDAL.cs" />
+    <Compile Include="DataModels\Animal.cs" />
+    <Compile Include="DataModels\BaseDocument.cs" />
+    <Compile Include="DataModels\IBaseEntity.cs" />
+    <Compile Include="DataModels\BaseRelationalEntity.cs" />
+    <Compile Include="DataModels\Log.cs" />
+    <Compile Include="DataModels\Login.cs" />
+    <Compile Include="DataModels\Pet.cs" />
+    <Compile Include="DataModels\Session.cs" />
+    <Compile Include="DataModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

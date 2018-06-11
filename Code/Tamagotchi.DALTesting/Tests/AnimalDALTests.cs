@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tamagotchi.DALTesting
+namespace Tamagotchi.DALTesting.Tests
 {
     [TestClass]
     class AnimalDALTests

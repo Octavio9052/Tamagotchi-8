@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using Tamagotchi.Common.DataModels;
+using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.DataAccess.Context
 {

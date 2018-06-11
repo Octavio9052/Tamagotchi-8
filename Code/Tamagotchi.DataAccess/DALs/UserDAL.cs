@@ -1,5 +1,5 @@
-﻿using Tamagotchi.Common.DataModels;
-using Tamagotchi.DataAccess.Context;
+﻿using Tamagotchi.DataAccess.Context;
+using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.DataAccess.DALs

@@ -3,15 +3,13 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 
-namespace Tamagotchi.Common.DataModels
+namespace Tamagotchi.DataAccess.DataModels
 {
-    public class BaseDocument
+    public class BaseDocument : IBaseEntity
     {
-        [BsonRequired]
-        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonId(IdGenerator = typeof(CombGuidGenerator))]
         [BsonElement("id")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         [BsonRequired]
         [BsonElement("dateCreated")]
         public DateTime DateCreated { get; set; }

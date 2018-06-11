@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tamagotchi.Common.DataModels
+namespace Tamagotchi.DataAccess.DataModels
 {
-    public class Session : BaseEntity
+    public class Session : BaseRelationalEntity
     {
         [Required]
         [Index("Index_Guid", IsUnique = true)]

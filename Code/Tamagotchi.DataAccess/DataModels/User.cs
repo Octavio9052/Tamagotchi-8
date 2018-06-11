@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Tamagotchi.Common.DataModels
+namespace Tamagotchi.DataAccess.DataModels
 {
-    public class User : BaseEntity
+    public class User : BaseRelationalEntity
     {
         [Required]
         public string Name { get; set; }
