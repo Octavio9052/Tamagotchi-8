@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 
+import { animalsMock } from '../mocks/animalsMock';
+
 @Injectable()
 export class AnimalService {
 
     private animals: any[] = [];
 
-    constructor() { }
+    constructor() { 
+    }
 
     public pullAnimals(): void {
         var responseAnimals;
 
+        responseAnimals = animalsMock;
         /*
 
         CALL TO REST SERVICE
@@ -20,6 +24,9 @@ export class AnimalService {
     }
 
     public getAnimals(){
+        this.pullAnimals();
+
+
         return this.animals;
     }
 

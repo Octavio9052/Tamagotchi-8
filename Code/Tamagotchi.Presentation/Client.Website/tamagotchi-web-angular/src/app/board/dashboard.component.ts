@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { animals } from '../chart/data';
+import { AnimalService } from '../shared/services/AnimalService';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +8,12 @@ import { animals } from '../chart/data';
 })
 export class DashboardComponent implements OnInit {
 
-  animalsData = animals;
+  animalsData;
 
-  constructor() { }
+  constructor(private readonly animalService: AnimalService) { }
 
   ngOnInit() {
-    // this.animalsData = animalService.getAnimalCards();
+    this.animalsData = this.animalService.getAnimalCards();
   }
 
 }

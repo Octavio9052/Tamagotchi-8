@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { animals, single } from './data';
-import { ChartModel } from '../../shared/models/ChartModel';
+import { AnimalService } from '../../shared/services/AnimalService';
 
 @Component({
   selector: 'app-chart',
@@ -25,7 +24,7 @@ export class ChartComponent implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor() {
+  constructor(private readonly animalService: AnimalService) {
     Object.assign(this, {  })
   }
 
@@ -34,17 +33,6 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    var animalsToGraph: any[] = [];
-
-    for(var i = 0; i < animals.length; i++) {
-      animalsToGraph[i] = { 
-        name: animals[i].name, 
-        value: animals[i].numberDownloads}
-    }
-    this.single = animalsToGraph;
-
-    /*
-    this.single = animalService.getAnimalDataForGraph();
-    */
+    this.single = this.animalService.getAnimalDataForGraph();
   }
 }
