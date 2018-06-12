@@ -1,3 +1,16 @@
+<div class="header-cus">
+  <h2 class="det-hd">
+    {{animal.name}}</h2>
+  <button mat-button class="ex-spacer" tabindex="-1" mat-dialog-close>&times;</button>
+</div>
+
+<mat-divider></mat-divider>
+<div class="chip-container">
+  <mat-chip-list>
+    <mat-chip color="primary">Developer: {{creator.name}}</mat-chip>
+    <mat-chip color="accent">{{animal.amountDownloads}} downloads</mat-chip>
+  </mat-chip-list>
+</div>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!-- Position Column -->

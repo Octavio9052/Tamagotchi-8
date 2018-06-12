@@ -29,7 +29,7 @@ export class AnimalCardComponent implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DetailsComponent, {
-      width: '50%'
+      width: '60%'
     });
   }
 }

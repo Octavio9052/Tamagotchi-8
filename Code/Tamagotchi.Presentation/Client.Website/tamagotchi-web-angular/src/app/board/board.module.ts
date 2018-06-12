@@ -8,6 +8,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatDividerModule } from '@angular/material/divider';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { DashboardComponent } from "./dashboard.component";
 import { AnimalCardComponent } from "./animal-card/animal-card.component";
@@ -30,7 +32,9 @@ import { DocdevComponent } from './documentation/docdev/docdev.component';
     BrowserModule,
     NgxChartsModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDividerModule,
+    MatChipsModule
   ],
   declarations: [
     DashboardComponent,
