@@ -1,9 +1,9 @@
-package com.outlook.octavio.armenta.tamagotchi9052.activities
+package com.outlook.octavio.armenta.tamagotchi9052.views.activities
 
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.outlook.octavio.armenta.tamagotchi9052.fragments.AccessMethodFragment
+import com.outlook.octavio.armenta.tamagotchi9052.views.fragments.AccessMethodFragment
 import com.outlook.octavio.armenta.tamagotchi9052.R
 
 class EntryActivity : AppCompatActivity() {

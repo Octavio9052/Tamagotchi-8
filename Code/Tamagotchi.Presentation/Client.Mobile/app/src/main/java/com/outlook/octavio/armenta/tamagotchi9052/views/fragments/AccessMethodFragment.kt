@@ -1,4 +1,4 @@
-package com.outlook.octavio.armenta.tamagotchi9052.fragments
+package com.outlook.octavio.armenta.tamagotchi9052.views.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
