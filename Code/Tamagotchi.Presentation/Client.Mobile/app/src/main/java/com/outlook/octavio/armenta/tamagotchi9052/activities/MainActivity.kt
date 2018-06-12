@@ -1,4 +1,4 @@
-package com.outlook.octavio.armenta.tamagotchi9052
+package com.outlook.octavio.armenta.tamagotchi9052.activities
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.Toast
+import com.outlook.octavio.armenta.tamagotchi9052.fragments.PetFragment
+import com.outlook.octavio.armenta.tamagotchi9052.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 

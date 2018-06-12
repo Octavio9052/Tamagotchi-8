@@ -1,4 +1,4 @@
-package com.outlook.octavio.armenta.tamagotchi9052
+package com.outlook.octavio.armenta.tamagotchi9052.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.outlook.octavio.armenta.tamagotchi9052.R
+import com.outlook.octavio.armenta.tamagotchi9052.activities.MainActivity
 
-
-class LoginFragment : Fragment() {
-
+class RegisterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class LoginFragment : Fragment() {
     // either dynamically or via XML layout inflation.
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Defines the xml file for the fragment
-        return inflater.inflate(R.layout.fragment_login, parent, false)
+        return inflater.inflate(R.layout.fragment_register, parent, false)
     }
 
     // This event is triggered soon after onCreateView().
@@ -31,7 +31,11 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // petImageState = view.findViewById(R.id.state_image_pet)
 
-        view.findViewById<Button>(R.id.login_button_sign_in).setOnClickListener { attempLogin() }
+        view.findViewById<Button>(R.id.register_create_account).setOnClickListener { doRegister() }
+    }
+
+    fun doRegister() {
+        attempLogin()
     }
 
     fun attempLogin() {

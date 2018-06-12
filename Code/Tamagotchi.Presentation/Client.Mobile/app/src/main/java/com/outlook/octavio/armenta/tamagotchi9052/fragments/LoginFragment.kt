@@ -1,15 +1,17 @@
-package com.outlook.octavio.armenta.tamagotchi9052
+package com.outlook.octavio.armenta.tamagotchi9052.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
+import com.outlook.octavio.armenta.tamagotchi9052.R
+import com.outlook.octavio.armenta.tamagotchi9052.activities.MainActivity
 
 
-class AccessMethodFragment : Fragment() {
+class LoginFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +22,7 @@ class AccessMethodFragment : Fragment() {
     // either dynamically or via XML layout inflation.
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Defines the xml file for the fragment
-        return inflater.inflate(R.layout.fragment_access_method, parent, false)
+        return inflater.inflate(R.layout.fragment_login, parent, false)
     }
 
     // This event is triggered soon after onCreateView().
@@ -31,11 +33,32 @@ class AccessMethodFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // petImageState = view.findViewById(R.id.state_image_pet)
 
-        view.findViewById<Button>(R.id.access_sign_in).setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction().replace(R.id.login_or_register_fragment, LoginFragment()).addToBackStack(null).commit()
+        view.findViewById<Button>(R.id.login_button_sign_in).setOnClickListener { attempLogin() }
+    }
+
+    fun attempLogin() {
+        if(checkCredential()){
+            doLogin()
         }
-        view.findViewById<Button>(R.id.access_sign_up).setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction().replace(R.id.login_or_register_fragment, RegisterFragment()).addToBackStack(null).commit()
+        else {
+
         }
+    }
+
+    fun checkCredential(): Boolean {
+        return true
+    }
+
+    fun doLogin() {
+        val intent = Intent(activity, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun getToken() {
+
+    }
+
+    fun getUser() {
+
     }
 }
