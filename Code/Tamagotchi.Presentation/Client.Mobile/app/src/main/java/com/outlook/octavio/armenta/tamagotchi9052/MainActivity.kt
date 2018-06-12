@@ -22,6 +22,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
        drawer_layout.addDrawerListener(toggle)
        toggle.syncState()
+
+        // Begin the transaction
+        val ft = supportFragmentManager.beginTransaction()
+        // Replace the contents of the container with the new fragment
+        ft.replace(R.id.placeholder_frame_fragment, PetFragment())
+        // or ft.add(R.id.your_placeholder, new FooFragment());
+        // Complete the changes added above
+        ft.commit()
     }
 
 

@@ -15,4 +15,8 @@
     <string name="nav_header_user_name">Octavio Armenta</string>
     <string name="nav_header_user_email">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
+    <string name="action_button_sleep">Sleep</string>
+    <string name="action_button_eat">Eat</string>
+    <string name="action_button_play">Play</string>
 </resources>
