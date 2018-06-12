@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 Toast.makeText(this, "PET FOURTH", Toast.LENGTH_LONG).show()
             }
             R.id.nav_send -> {
-                Toast.makeText(this, "OPEN STORE", Toast.LENGTH_LONG).show()
+                startActivity(intent.setClass(this, StoreActivity::class.java))
             }
         }
 

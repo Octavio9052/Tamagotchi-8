@@ -4,9 +4,9 @@
         <a routerLink="/dashboard">
         <span class="app-name-text">Tamagotchi 2018</span>
         </a>
+        <button mat-button [routerLink]="['/dashboard']" class="features">Dashboard</button>
+        <button mat-button [routerLink]="['/screenshots']" class="features" style="visibility: hidden">Screenshots</button>
         <span class="example-spacer"></span>
-        <a routerLink="/documentation">
-            <button mat-raised-button>Download</button>
-        </a>
+            <button mat-raised-button  [routerLink]="['/documentation']">Download</button>
     </mat-toolbar-row>
 </mat-toolbar>
