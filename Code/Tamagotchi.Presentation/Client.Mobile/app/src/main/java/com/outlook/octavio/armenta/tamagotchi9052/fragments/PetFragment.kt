@@ -10,19 +10,19 @@ import android.widget.ImageView
 
 import com.bumptech.glide.Glide
 import com.outlook.octavio.armenta.tamagotchi9052.R
+import android.support.v7.app.AppCompatActivity
+
+
 
 class PetFragment : Fragment() {
 
     private var petImageState: ImageView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
     override fun onCreateView(inflater: LayoutInflater, parent: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Defines the xml file for the fragment
+
         return inflater.inflate(R.layout.fragment_pet, parent, false)
     }
 
@@ -31,6 +31,10 @@ class PetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+        // TODO: Dynamically changes Toolbar title to Pet Name
+        (activity as AppCompatActivity).supportActionBar!!.setTitle("Morris")
+
+
         super.onViewCreated(view, savedInstanceState)
         petImageState = view.findViewById(R.id.state_image_pet)
         view.findViewById<Button>(R.id.pet_action_play).setOnClickListener { setPetPlayAnimation() }

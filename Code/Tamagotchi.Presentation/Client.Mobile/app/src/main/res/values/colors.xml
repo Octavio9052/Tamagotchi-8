@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#2296f3</color>
+    <color name="colorPrimaryDark">#1866c0</color>
+    <color name="colorAccent">#673ab7</color>
     <color name="colorBackground">#F4F4F4</color>
     <color name="colorHint">#d8d8d8</color>
     <color name="colorWhite">#f3f3f3</color>
     <color name="colorBlack">#000000</color>
+
+    <!-- Game bar colors and background icons colors -->
+    <color name="colorDarkRed">#c80000</color>
+    <color name="colorRed">#fe4445</color>
+
+    <color name="colorDarkYellow">#ff8803</color>
+    <color name="colorYellow">#ffbb34</color>
+
+    <color name="colorDarkBlue">#0096cb</color>
+    <color name="colorBlue">#33b5e6</color>
+
+    <color name="colorSoftDark">#3c3a3b</color>
 </resources>

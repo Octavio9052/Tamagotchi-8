@@ -5,185 +5,183 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
-        android:layout_alignParentStart="true"
-        android:id="@+id/pet_health_bar"
+    <LinearLayout
+        android:id="@+id/vertical_game_bars"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        app:rcProgress="50"
-        app:rcMax="100"
-        app:rcRadius="5dp"
-        app:rcBackgroundPadding="2dp"
-        app:rcReverse="false"
-        app:rcProgressColor="@color/colorPrimaryDark"
-        app:rcSecondaryProgressColor="@color/colorAccent"
-        app:rcBackgroundColor="@color/colorBlack"
-        app:rcIconSrc="@drawable/ic_pets_black_24dp"
-        app:rcIconSize="23dp"
-        app:rcIconWidth="25dp"
-        app:rcIconHeight="25dp"
-        app:rcIconPadding="1dp"
-        app:rcIconPaddingLeft="1dp"
-        app:rcIconPaddingRight="1dp"
-        app:rcIconPaddingTop="1dp"
-        app:rcIconPaddingBottom="1dp"
-        app:rcIconBackgroundColor="@color/colorWhite" />
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
-        android:id="@+id/pet_rest_bar"
-        android:layout_below="@id/pet_health_bar"
+        <!-- https://github.com/akexorcist/Android-RoundCornerProgressBar?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1375#usage -->
+        <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+            android:id="@+id/pet_health_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            app:rcProgress="50"
+            app:rcMax="100"
+            app:rcRadius="14dp"
+            app:rcBackgroundPadding="2dp"
+            app:rcReverse="false"
+            app:rcProgressColor="@color/colorRed"
+            app:rcSecondaryProgressColor="@color/colorPrimary"
+            app:rcBackgroundColor="@color/colorSoftDark"
+            app:rcIconSrc="@drawable/ic_food_icon"
+            app:rcIconSize="20dp"
+            app:rcIconPadding="3dp"
+            app:rcIconBackgroundColor="@color/colorDarkRed" />
+
+        <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+            android:id="@+id/pet_rest_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            app:rcProgress="50"
+            app:rcMax="100"
+            app:rcRadius="14dp"
+            app:rcBackgroundPadding="2dp"
+            app:rcReverse="false"
+            app:rcProgressColor="@color/colorYellow"
+            app:rcSecondaryProgressColor="@color/colorPrimary"
+            app:rcBackgroundColor="@color/colorSoftDark"
+            app:rcIconSrc="@drawable/ic_timer_black_24dp"
+            app:rcIconSize="20dp"
+            app:rcIconPadding="3dp"
+            app:rcIconBackgroundColor="@color/colorDarkYellow" />
+
+        <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+            android:id="@+id/pet_fun_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            app:rcProgress="50"
+            app:rcMax="100"
+            app:rcRadius="14dp"
+            app:rcBackgroundPadding="2dp"
+            app:rcReverse="false"
+            app:rcProgressColor="@color/colorBlue"
+            app:rcSecondaryProgressColor="@color/colorPrimary"
+            app:rcBackgroundColor="@color/colorSoftDark"
+            app:rcIconSrc="@drawable/ic_fun_icon"
+            app:rcIconSize="20dp"
+            app:rcIconPadding="3dp"
+            app:rcIconBackgroundColor="@color/colorDarkBlue" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        app:rcProgress="50"
-        app:rcMax="100"
-        app:rcRadius="5dp"
-        app:rcBackgroundPadding="2dp"
-        app:rcReverse="false"
-        app:rcProgressColor="@color/colorPrimaryDark"
-        app:rcSecondaryProgressColor="@color/colorAccent"
-        app:rcBackgroundColor="@color/colorBlack"
-        app:rcIconSrc="@drawable/ic_pets_black_24dp"
-        app:rcIconSize="23dp"
-        app:rcIconWidth="25dp"
-        app:rcIconHeight="25dp"
-        app:rcIconPadding="1dp"
-        app:rcIconPaddingLeft="1dp"
-        app:rcIconPaddingRight="1dp"
-        app:rcIconPaddingTop="1dp"
-        app:rcIconPaddingBottom="1dp"
-        app:rcIconBackgroundColor="@color/colorWhite" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/vertical_game_bars"
+        android:layout_above="@id/action_buttons_pet"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/img_descriptor"
+            android:src="@drawable/app_logo"
+            android:layout_weight="2"
+            android:id="@+id/state_image_pet"/>
 
-    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
-        android:id="@+id/pet_fun_bar"
-        android:layout_below="@id/pet_rest_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        app:rcProgress="50"
-        app:rcMax="100"
-        app:rcRadius="5dp"
-        app:rcBackgroundPadding="2dp"
-        app:rcReverse="false"
-        app:rcProgressColor="@color/colorPrimaryDark"
-        app:rcSecondaryProgressColor="@color/colorAccent"
-        app:rcBackgroundColor="@color/colorBlack"
-        app:rcIconSrc="@drawable/ic_pets_black_24dp"
-        app:rcIconSize="23dp"
-        app:rcIconWidth="25dp"
-        app:rcIconHeight="25dp"
-        app:rcIconPadding="1dp"
-        app:rcIconPaddingLeft="1dp"
-        app:rcIconPaddingRight="1dp"
-        app:rcIconPaddingTop="1dp"
-        app:rcIconPaddingBottom="1dp"
-        app:rcIconBackgroundColor="@color/colorWhite" />
+        <ScrollView
+            android:id="@+id/scroll_vertical_logs"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorWhite">
 
-    <ImageView
-        android:layout_margin="10dp"
-        android:layout_below="@id/pet_fun_bar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/img_descriptor"
-        android:src="@drawable/app_logo"
-        android:id="@+id/state_image_pet"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:layout_below="@id/state_image_pet"
-        android:layout_above="@id/action_buttons_pet">
-
-       <android.support.v7.widget.LinearLayoutCompat
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical">
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has slept" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has slept" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has slept" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has slept" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten"/>
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has eaten" />
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Morris has slept" />
-       </android.support.v7.widget.LinearLayoutCompat>
-    </ScrollView>
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has slept" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has slept" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has slept" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has slept" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has eaten" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Morris has slept" />
+            </android.support.v7.widget.LinearLayoutCompat>
+        </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/action_buttons_pet"
         android:layout_gravity="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_alignParentBottom="true" >
         <Button
             android:id="@+id/pet_action_eat"
