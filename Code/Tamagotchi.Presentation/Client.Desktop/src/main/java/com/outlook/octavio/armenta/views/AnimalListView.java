@@ -16,6 +16,9 @@ public class AnimalListView implements FxmlView<AnimalListViewModel>, Initializa
     @FXML
     public ListView petsList;
 
+    @FXML
+    public AnimalListViewModel viewModel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

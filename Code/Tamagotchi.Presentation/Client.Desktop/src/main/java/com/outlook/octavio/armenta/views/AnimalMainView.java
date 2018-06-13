@@ -1,6 +1,5 @@
 package com.outlook.octavio.armenta.views;
 
-import com.outlook.octavio.armenta.services.contracts.IAuthService;
 import com.outlook.octavio.armenta.viewmodels.AnimalMainViewModel;
 import de.saxsys.mvvmfx.FxmlView;
 import de.saxsys.mvvmfx.InjectViewModel;
@@ -27,5 +26,6 @@ public class AnimalMainView implements FxmlView<AnimalMainViewModel>, Initializa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logOutButton.setOnAction(e -> viewModel.getLogoutCommand().execute());
+        usernameLabel.textProperty().bind(viewModel.userNameProperty());
     }
 }
