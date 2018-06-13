@@ -9,7 +9,7 @@ using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.Business.Helpers
 {
-    public class AutomapperProfile:Profile
+    public class AutomapperProfile : Profile
     {
         public AutomapperProfile()
         {
