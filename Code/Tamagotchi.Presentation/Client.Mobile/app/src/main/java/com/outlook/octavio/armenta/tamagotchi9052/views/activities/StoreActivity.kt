@@ -1,6 +1,5 @@
 package com.outlook.octavio.armenta.tamagotchi9052.views.activities
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -11,6 +10,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import android.widget.Toast
 import com.outlook.octavio.armenta.tamagotchi9052.R
+import com.outlook.octavio.armenta.tamagotchi9052.models.Animal
+import com.outlook.octavio.armenta.tamagotchi9052.views.adapters.StoreAdapter
 import kotlinx.android.synthetic.main.activity_store.*
 import kotlinx.android.synthetic.main.app_bar_store.*
 
@@ -24,10 +25,19 @@ class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store)
 
-        val myDataSet = arrayOf("a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c", "a", "b", "c")
+        val myDataSet = arrayListOf<Animal>()
+        val animal = Animal("Fox", "Likes to read and sleep", "http://i.imgur.com/NNfje00.gif")
+        val anima2 = Animal("Dog", "Likes to play and eat", "http://i.imgur.com/sumGNLN.gif")
+        val anima3 = Animal("Turtle", "Likes to rest and play", "http://i.imgur.com/chU36ua.gif")
+        val anima4 = Animal("Cat",  "Likes to eat and sleep", "http://i.imgur.com/vRQWS9E.gif")
+        myDataSet.add(animal)
+        myDataSet.add(anima2)
+        myDataSet.add(anima3)
+        myDataSet.add(anima4)
+        // getAnimalsAvailable
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = MyAdapter(myDataSet)
+        viewAdapter = StoreAdapter(myDataSet)
 
         recyclerView = findViewById<RecyclerView>(R.id.my_recycler_view).apply {
             // use this setting to improve performance if you know that changes
@@ -74,4 +84,5 @@ class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         drawer_layout_store.closeDrawer(GravityCompat.START)
         return true
     }
+
 }

@@ -23,4 +23,9 @@
     <string name="action_button_sleep">Sleep</string>
     <string name="action_button_eat">Eat</string>
     <string name="action_button_play">Play</string>
+    <string name="loremitsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nulla sem, imperdiet nec faucibus vel, elementum blandit augue.</string>
+    <string name="img_decriptor_store_animal">Idle image of animal</string>
+
+    <string name="store_title">Welcome to the store</string>
+    <string name="store_subtitle">Animals available</string>
 </resources>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Messages;
@@ -36,7 +37,7 @@ namespace Tamagotchi.REST.Controllers
         }
 
         // POST: api/Pet
-        public IHttpActionResult Post([FromBody] MessageRequest<PetModel> request)
+        public async Task<IHttpActionResult> Post([FromBody] MessageRequest<PetModel> request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -45,7 +46,7 @@ namespace Tamagotchi.REST.Controllers
 
             var result = _petBusiness.Create(request.Body);
 
-            var response = new MessageResponse<PetModel> {Body = result};
+            var response = new MessageResponse<PetModel> {Body = await result};
 
             return response.Error != string.Empty
                 ? (IHttpActionResult) Created($"api/pet/{response.Body.Id}", response)
@@ -53,7 +54,7 @@ namespace Tamagotchi.REST.Controllers
         }
 
         // PUT: api/Pet/5
-        public IHttpActionResult Put(int id, [FromBody] MessageRequest<PetModel> request)
+        public  async Task<IHttpActionResult> Put(int id, [FromBody] MessageRequest<PetModel> request)
         {
             if (!ModelState.IsValid) return BadRequest();
 
@@ -62,7 +63,7 @@ namespace Tamagotchi.REST.Controllers
 
             var result = _petBusiness.Update(request.Body);
 
-            var response = new MessageResponse<PetModel> {Body = result};
+            var response = new MessageResponse<PetModel> {Body = await result};
 
             return response.Error != string.Empty
                 ? (IHttpActionResult) Ok(response)
