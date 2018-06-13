@@ -15,13 +15,5 @@ namespace Tamagotchi.DataAccess.Context
         public DbSet<Login> Logins { get; set; }
         public DbSet<Session> Sessions { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-                .HasRequired(x => x.Login)
-                .WithRequiredPrincipal(x => x.User);
-            
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }

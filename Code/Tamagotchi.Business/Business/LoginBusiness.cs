@@ -21,7 +21,7 @@ namespace Tamagotchi.Business.Business
 
             if(existingLogin != null)
             {
-                var newSession = new SessionModel { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId };
+                var newSession = new SessionModel { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId.ToString() };
                 newSession = _sessionBusiness.Create(newSession);
                 return newSession.Guid;
             }

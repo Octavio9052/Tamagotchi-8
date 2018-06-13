@@ -10,7 +10,7 @@ namespace Tamagotchi.Common.Models
         public string PlayUri { get; set; }
         public string EatUri { get; set; }
         public string SleepUri { get; set; }
-        public UserModel Creator { get; set; }
+        public UserModel User { get; set; }
         public int TimesDownloaded { get; set; }
         public Dictionary<string, double> MaxGamePoints { get; set; }
         public string PacketUri { get; set; }
