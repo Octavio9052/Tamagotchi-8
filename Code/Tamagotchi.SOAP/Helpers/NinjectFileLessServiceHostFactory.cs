@@ -8,6 +8,7 @@ using System.ServiceModel;
 using System.Web;
 using Tamagotchi.Business;
 using Tamagotchi.Business.Business;
+using Tamagotchi.Business.Helpers;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Business.Services;
 using Tamagotchi.Common.Models;
@@ -54,7 +55,7 @@ namespace Tamagotchi.SOAP.Helpers
             Mapper.Initialize(config =>
             {
                 config.ConstructServicesUsing(type => context.Kernel.Get(type));
-
+                config.AddProfile(new AutomapperProfile());
             });
             return Mapper.Instance;
         }

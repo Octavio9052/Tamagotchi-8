@@ -11,7 +11,7 @@ namespace Tamagotchi.SOAP
     {
 
         [OperationContract]
-        LoginMessageResponse CreateUser(LoginMessageRequest value,string name);
+        LoginMessageResponse CreateUser(LoginMessageRequest value);
         [OperationContract]
         LoginMessageResponse Login(LoginMessageRequest value);
         [OperationContract]

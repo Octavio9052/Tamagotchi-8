@@ -136,7 +136,7 @@ namespace Tamagotchi.SOAP
             return messageResponse;
         }
 
-        LoginMessageResponse ISOAPService.CreateUser(LoginMessageRequest value, string name)
+        LoginMessageResponse ISOAPService.CreateUser(LoginMessageRequest value)
         {
             var messageResponse = new LoginMessageResponse();
             try
@@ -144,7 +144,7 @@ namespace Tamagotchi.SOAP
                 string error;
                 if (IsEntityValid(value.Login, out error))
                 {
-                    messageResponse.User = _userBusiness.Create(value.Login, name, null);
+                    messageResponse.User = _userBusiness.Create(value.Login, value.Name, null);
                     messageResponse.UserToken = _loginBusiness.Login(value.Login);
                 }
                 else
@@ -165,7 +165,7 @@ namespace Tamagotchi.SOAP
             var validationResult = DataAnnotation.ValidateEntity(entity);
             error = null;
             if (validationResult.HasError) error = "Error in data validations.";
-            return validationResult.HasError;
+            return !validationResult.HasError;
         }
 
         private bool ValidateSession(Guid userToken, out string error)

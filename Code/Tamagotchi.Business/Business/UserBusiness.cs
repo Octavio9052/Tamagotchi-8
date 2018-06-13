@@ -16,7 +16,9 @@ namespace Tamagotchi.Business.Business
 
         public UserModel Create(LoginModel login, string name, string photoUri = null)
         {
-            return null;
+            var user =this.BaseDal.Create(new User {Name = name});
+//            this.BaseDal.Save()
+            return this.Mapper.Map<UserModel>(user);
         }
     }
 }

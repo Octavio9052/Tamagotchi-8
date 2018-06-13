@@ -70,6 +70,7 @@
     <Compile Include="Business\LogBusiness.cs" />
     <Compile Include="Business\LoginBusiness.cs" />
     <Compile Include="Business\PetBusiness.cs" />
+    <Compile Include="Helpers\AutomapperProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AssemblyExecuterService.cs" />
     <Compile Include="Services\AssemblyLoaderService.cs" />
