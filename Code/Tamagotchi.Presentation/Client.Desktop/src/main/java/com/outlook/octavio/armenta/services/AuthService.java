@@ -7,7 +7,6 @@ import com.outlook.octavio.armenta.services.contracts.IAuthService;
 import com.outlook.octavio.armenta.ws.SOAPServiceStub;
 import com.outlook.octavio.armenta.ws.SOAPServiceStub.LoginMessageRequest;
 import com.outlook.octavio.armenta.ws.SOAPServiceStub.LoginModel;
-import com.outlook.octavio.armenta.ws.SOAPServiceStub.LoginMessageResponse;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -29,60 +28,65 @@ public class AuthService implements IAuthService {
             SOAPServiceStub soapServiceStub = new SOAPServiceStub();
 
             LoginMessageRequest loginMessageRequest = new LoginMessageRequest();
-
             LoginModel loginModel = new LoginModel();
             loginModel.setEmail(user.email);
             loginModel.setPassword(user.password);
-
             loginMessageRequest.setLogin(loginModel);
-
-
             SOAPServiceStub.Login login2 = new SOAPServiceStub.Login();
             login2.setValue(loginMessageRequest);
 
 
             SOAPServiceStub.LoginResponse loginResponse = soapServiceStub.login(login2);
 
-            LoginMessageResponse loginMessageResponse = new LoginMessageResponse();
-
-            SOAPServiceStub.UserModel userModel = loginMessageResponse.getUser();
-
 
             currentUser.GUID = loginResponse.getLoginResult().getUserToken().getGuid();
             currentUser.userId = loginResponse.getLoginResult().getUser().getId();
             currentUser.name = loginResponse.getLoginResult().getUser().getName();
             // currentUser.creations = loginResponse.getLoginResult().getUser().getCreations().getKeyValueOfintstring(x )
+
+            System.out.println("GUID: " + currentUser.GUID);
+            System.out.println("UserId: " + currentUser.userId);
+            System.out.println("Name: " + currentUser.name);
+
             this.user.set(currentUser);
         } catch (Exception e) {
             System.out.println();
             System.out.println(e.toString());
-            System.out.println();
         }
     }
 
     @Override
     public void signUp(String username, String email, String password){
-        Login newUser = new Login();
+        User newUser = new User();
         try {
             SOAPServiceStub soapServiceStub = new SOAPServiceStub();
 
-            LoginMessageRequest lmr = new LoginMessageRequest();
+            LoginMessageRequest lmRequest = new LoginMessageRequest();
             LoginModel loginModel = new LoginModel();
             loginModel.setEmail(email);
             loginModel.setPassword(password);
-            lmr.setName(username);
-            lmr.setLogin(loginModel);
-
+            lmRequest.setName(username);
+            lmRequest.setLogin(loginModel);
             SOAPServiceStub.CreateUser createUser = new SOAPServiceStub.CreateUser();
-            createUser.setValue(lmr);
-
-            //SOAPServiceStub.CreateUserResponse cuResponse = new
+            createUser.setValue(lmRequest);
 
 
+            SOAPServiceStub.CreateUserResponse cuResponse = soapServiceStub.createUser(createUser);
+
+
+
+            System.out.println("Name: " + cuResponse.getCreateUserResult().getUser().getName());
+            System.out.println("ID: " + cuResponse.getCreateUserResult().getUser().getId());
+            System.out.println("Token: " + cuResponse.getCreateUserResult().getUserToken().getGuid());
+
+            newUser.GUID = cuResponse.getCreateUserResult().getUserToken().getGuid();
+            newUser.name = cuResponse.getCreateUserResult().getUser().getName();
+            newUser.userId = cuResponse.getCreateUserResult().getUser().getId();
+
+            this.user.set(newUser);
         } catch (Exception e){
             System.out.println();
             System.out.println(e.toString());
-            System.out.println();
         }
     }
 
