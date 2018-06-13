@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
+using Tamagotchi.Business.Business.Interfaces;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
+using System;
 
 namespace Tamagotchi.Business.Business
 {
@@ -20,7 +22,7 @@ namespace Tamagotchi.Business.Business
             Mapper = mapper;
         }
 
-        public virtual T Create(T model)
+        public virtual async Task<T> Create(T model)
         {
             var entity = Mapper.Map<TData>(model);
             return Mapper.Map<T>(BaseDal.Create(entity));
@@ -43,7 +45,7 @@ namespace Tamagotchi.Business.Business
             return Mapper.Map<ICollection<T>>(entities);
         }
 
-        public virtual T Update(T model)
+        public virtual async Task<T> Update(T model)
         {
             var entity = Mapper.Map<TData>(model);
             return Mapper.Map<T>(BaseDal.Update(entity));

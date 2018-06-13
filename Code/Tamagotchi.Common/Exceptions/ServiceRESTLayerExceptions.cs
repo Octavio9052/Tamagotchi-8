@@ -2,24 +2,24 @@
 
 namespace Tamagotchi.Common.Exceptions
 {
-    public class ServiceRESTLayerExceptions : Exception
+    public class ServiceRestLayerExceptions : Exception
     {
-        public ServiceRESTLayerExceptions()
+        public ServiceRestLayerExceptions()
         {
 
         }
 
-        public ServiceRESTLayerExceptions(Exception e) : base("Invalid value: " + e)
+        public ServiceRestLayerExceptions(Exception e) : base("Invalid value: " + e)
         {
 
         }
 
-        public ServiceRESTLayerExceptions(string name, Exception e) : base(name, e)
+        public ServiceRestLayerExceptions(string name, Exception e) : base(name, e)
         {
 
         }
 
-        public ServiceRESTLayerExceptions(string name) : base(name)
+        public ServiceRestLayerExceptions(string name) : base(name)
         {
 
         }
