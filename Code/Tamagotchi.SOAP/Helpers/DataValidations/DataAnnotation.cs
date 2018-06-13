@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Tamagotchi.Common.Models;
+﻿using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.SOAP.Helpers.DataValidations
 {

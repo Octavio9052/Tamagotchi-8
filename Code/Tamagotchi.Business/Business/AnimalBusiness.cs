@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Mime;
-using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using ICSharpCode.SharpZipLib.Zip;
@@ -16,10 +12,8 @@ using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.Business.Business
 {
-    public class AnimalBusiness : BaseBusiness<AnimalModel, Animal>, IAnimalBusiness
+    public class AnimalBusiness : BaseBusiness<AnimalModel, Animal, IAnimalDAL>, IAnimalBusiness
     {
-        private static readonly List<string> ImageExtensions = new List<string> {".JPG", ".GIF", ".PNG"};
-
         private readonly CloudService _cloudService;
         private readonly ILogDAL _logDal;
 
@@ -33,7 +27,7 @@ namespace Tamagotchi.Business.Business
 
         public ICollection<AnimalModel> GetByUser(string Id)
         {
-            var animals = ((IAnimalDAL) BaseDal).GetByUser(Id);
+            var animals = BaseDal.GetByUser(Id);
             return Mapper.Map<ICollection<AnimalModel>>(animals);
         }
 

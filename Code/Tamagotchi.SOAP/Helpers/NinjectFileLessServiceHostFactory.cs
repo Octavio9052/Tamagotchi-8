@@ -1,20 +1,14 @@
-﻿using AutoMapper;
+﻿using System.ServiceModel;
+using AutoMapper;
 using Ninject;
+using Ninject.Activation;
 using Ninject.Extensions.Wcf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Web;
-using Tamagotchi.Business;
 using Tamagotchi.Business.Business;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Business.Services;
-using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DALs;
 using Tamagotchi.DataAccess.DALs.Interfaces;
-using Tamagotchi.SOAP.App_Start;
 
 namespace Tamagotchi.SOAP.Helpers
 {
@@ -49,7 +43,7 @@ namespace Tamagotchi.SOAP.Helpers
             kernel.Bind<ISOAPService>().To<SOAPService>();
             SetKernel(kernel);
         }
-        private static IMapper AutoMapper(Ninject.Activation.IContext context)
+        private static IMapper AutoMapper(IContext context)
         {
             Mapper.Initialize(config =>
             {

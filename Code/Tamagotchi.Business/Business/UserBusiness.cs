@@ -6,7 +6,7 @@ using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.Business.Business
 {
-    public class UserBusiness : BaseBusiness<UserModel, User>, IUserBusiness
+    public class UserBusiness : BaseBusiness<UserModel, User, IUserDAL>, IUserBusiness
     {
         private readonly ISessionBusiness _sessionBusiness;
 

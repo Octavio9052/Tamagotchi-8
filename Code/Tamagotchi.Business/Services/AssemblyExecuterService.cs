@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Security.Policy;
 using Tamagotchi.Common.Enums;
 using Tamagotchi.Common.Exceptions;
-using Tamagotchi.Core;
 using Tamagotchi.Core.GameRules;
 using Tamagotchi.Core.PlayStatus;
 using Tamagotchi.DataAccess.DataModels;

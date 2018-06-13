@@ -7,15 +7,15 @@ using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.Business.Business
 {
-    public class BaseBusiness<T, TData> : IBaseBusiness<T> where T : BaseModel where TData : IBaseEntity
+    public class BaseBusiness<T, TData, TDal> : IBaseBusiness<T> where T : BaseModel where TData : IBaseEntity where TDal : IBaseDAL<TData>
     {
-        protected readonly IBaseDAL<TData> BaseDal;
+        protected readonly TDal BaseDal;
         protected readonly IMapper Mapper;
 
 
-        protected BaseBusiness(IBaseDAL<TData> baseDAL, IMapper mapper)
+        protected BaseBusiness(TDal baseDal, IMapper mapper)
         {
-            BaseDal = baseDAL;
+            BaseDal = baseDal;
             Mapper = mapper;
         }
 
