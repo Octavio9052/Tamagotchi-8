@@ -1,2 +1,5 @@
 <app-toolbar></app-toolbar>
+<div id="grade-alert" class="alert" [ngClass]="{'alert-success': isSuccessful, 'alert-danger': !isSuccessful, 'hidden': hideGrade}" role="alert">
+    This project is a {{tba}}! Rated: {{grade}}/50
+</div>
 <router-outlet></router-outlet>

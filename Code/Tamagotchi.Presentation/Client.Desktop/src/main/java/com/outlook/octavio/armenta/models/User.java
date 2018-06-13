@@ -4,8 +4,10 @@ import java.util.List;
 
 public class User {
     public String name;
-    public String photoUri;
     public String GUID;
-    public int userId;
+    public String userId;
     public List<Animal> creations;
+
+    @Deprecated
+    public String photoUri;
 }

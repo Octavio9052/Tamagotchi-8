@@ -126,6 +126,8 @@ public class AnimalDetailsViewModel implements ViewModel {
     }
 
     public void doCreate() {
+        // TODO: UPLOAD ANIMAL TO SOAP
+
     }
 
 

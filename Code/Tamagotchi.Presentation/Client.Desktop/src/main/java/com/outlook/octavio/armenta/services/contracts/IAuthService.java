@@ -1,6 +1,7 @@
 package com.outlook.octavio.armenta.services.contracts;
 
 import com.outlook.octavio.armenta.models.Login;
+import com.outlook.octavio.armenta.models.User;
 import javafx.beans.property.ObjectProperty;
 
 public interface IAuthService {
@@ -8,9 +9,11 @@ public interface IAuthService {
 
     void logout();
 
-    Login getUser();
+    User getUser();
 
-    void setUser(Login user);
+    void setUser(User user);
 
-    ObjectProperty<Login> userProperty();
+    ObjectProperty<User> userProperty();
+
+    void signUp(String username, String email, String password);
 }
