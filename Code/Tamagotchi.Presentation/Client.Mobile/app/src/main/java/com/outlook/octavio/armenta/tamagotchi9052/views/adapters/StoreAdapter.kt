@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.outlook.octavio.armenta.tamagotchi9052.R
 import com.outlook.octavio.armenta.tamagotchi9052.models.Animal
@@ -38,9 +39,12 @@ class StoreAdapter(private val myDataset: ArrayList<Animal>) :
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_store_single_animal, parent, false) // as LinearLayout
         // set the view's size, margins, paddings and layout parameters
+
         val vh = ViewHolder(v as LinearLayout)
         return ViewHolder(v)
     }
+
+
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -50,6 +54,13 @@ class StoreAdapter(private val myDataset: ArrayList<Animal>) :
         holder.mTitle.text = myDataset[position].name
         holder.mDescription.text = myDataset[position].description
         Glide.with(holder.itemView.context).load(myDataset[position].idleUri).into(holder.mImgIdle)
+
+
+        holder.itemView.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                Toast.makeText(v!!.context, "" + holder.mTitle.text + " : " + holder.mDescription.text, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     // Return the size of your dataset (invoked by the layout manager)
