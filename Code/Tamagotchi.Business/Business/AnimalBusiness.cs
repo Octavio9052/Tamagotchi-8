@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.WindowsAzure.Storage.Shared.Protocol;
+using Tamagotchi.Business.Helpers;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Business.Services.interfaces;
 using Tamagotchi.Common.Exceptions;
@@ -44,7 +44,7 @@ namespace Tamagotchi.Business.Business
 
             animal = await base.Create(animal);
 
-            _storageService.
+//            _storageService.ProcessFileFromStream();
             
             await Task.WhenAll(
                 SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile)
