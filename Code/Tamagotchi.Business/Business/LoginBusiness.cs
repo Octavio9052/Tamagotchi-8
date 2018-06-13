@@ -19,14 +19,13 @@ namespace Tamagotchi.Business.Business
         {
             var existingLogin = ((ILoginDAL)BaseDal).Login(login.Email, login.Password);
 
-            if(existingLogin != null)
-            {
-                var newSession = new SessionModel { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId.ToString() };
-                newSession = _sessionBusiness.Create(newSession);
-                return newSession.Guid;
-            }
-
-            return default(Guid);
+            if (existingLogin == null) return default(Guid);
+            
+            var newSession = new SessionModel { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId.ToString() };
+            
+            newSession = _sessionBusiness.Create(newSession);
+            
+            return newSession.Guid;
         }
     }
 }

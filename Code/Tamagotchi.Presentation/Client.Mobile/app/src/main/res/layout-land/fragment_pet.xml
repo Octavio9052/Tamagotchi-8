@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <ScrollView
+        android:id="@+id/pet_logs_scroll"
+        android:layout_width="200dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/pet_logs_container_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_container_game_bars"
+            android:layout_alignParentTop="true"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- https://github.com/akexorcist/Android-RoundCornerProgressBar?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1375#usage -->
+            <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+                android:id="@+id/pet_health_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                app:rcProgress="50"
+                app:rcMax="100"
+                app:rcRadius="14dp"
+                app:rcBackgroundPadding="2dp"
+                app:rcReverse="false"
+                app:rcProgressColor="@color/colorRed"
+                app:rcSecondaryProgressColor="@color/colorPrimary"
+                app:rcBackgroundColor="@color/colorSoftDark"
+                app:rcIconSrc="@drawable/ic_food_icon"
+                app:rcIconSize="20dp"
+                app:rcIconPadding="3dp"
+                app:rcIconBackgroundColor="@color/colorDarkRed" />
+
+            <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+                android:id="@+id/pet_rest_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                app:rcProgress="50"
+                app:rcMax="100"
+                app:rcRadius="14dp"
+                app:rcBackgroundPadding="2dp"
+                app:rcReverse="false"
+                app:rcProgressColor="@color/colorYellow"
+                app:rcSecondaryProgressColor="@color/colorPrimary"
+                app:rcBackgroundColor="@color/colorSoftDark"
+                app:rcIconSrc="@drawable/ic_timer_black_24dp"
+                app:rcIconSize="20dp"
+                app:rcIconPadding="3dp"
+                app:rcIconBackgroundColor="@color/colorDarkYellow" />
+
+            <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+                android:id="@+id/pet_fun_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                app:rcProgress="50"
+                app:rcMax="100"
+                app:rcRadius="14dp"
+                app:rcBackgroundPadding="2dp"
+                app:rcReverse="false"
+                app:rcProgressColor="@color/colorBlue"
+                app:rcSecondaryProgressColor="@color/colorPrimary"
+                app:rcBackgroundColor="@color/colorSoftDark"
+                app:rcIconSrc="@drawable/ic_fun_icon"
+                app:rcIconSize="20dp"
+                app:rcIconPadding="3dp"
+                app:rcIconBackgroundColor="@color/colorDarkBlue" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/img_descriptor"
+            android:layout_below="@id/layout_container_game_bars"
+            android:layout_toStartOf="@id/action_buttons_pet"
+            android:src="@drawable/app_logo"
+            android:id="@+id/state_image_pet"/>
+
+        <LinearLayout
+            android:layout_below="@id/layout_container_game_bars"
+            android:id="@+id/action_buttons_pet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/pet_action_eat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Eat" />
+            <Button
+                android:id="@+id/pet_action_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Play" />
+            <Button
+                android:id="@+id/pet_action_sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sleep" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

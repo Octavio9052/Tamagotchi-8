@@ -76,6 +76,8 @@
     <Compile Include="Services\CloudService.cs" />
     <Compile Include="Business\SessionBusiness.cs" />
     <Compile Include="Business\UserBusiness.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\interfaces\IFileService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tamagotchi.Common\Tamagotchi.Common.csproj">

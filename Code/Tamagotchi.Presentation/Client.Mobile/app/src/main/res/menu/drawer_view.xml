@@ -1,5 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="Store">
+        <menu>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_store_black_24dp"
+                android:title="@string/menu_item_go_to_store" />
+        </menu>
+    </item>
+
     <group android:checkableBehavior="single"
         android:id="@+id/user_owned_pets">
         <item
@@ -19,16 +28,6 @@
             android:icon="@drawable/ic_pets_black_24dp"
             android:title="Turtle" />
     </group>
-
-    <item android:title="Store">
-        <menu>
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_store_black_24dp"
-                android:title="Adopt a new pet" />
-        </menu>
-    </item>
-
 </menu>
 
 <!--

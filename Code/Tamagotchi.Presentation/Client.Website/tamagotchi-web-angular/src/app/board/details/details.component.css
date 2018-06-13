@@ -1,10 +1,21 @@
 /* Structure */
 table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.chip-container{
+  margin: 1em;
+}
+.det-hd{
+  display: inline;
+}
+.ex-spacer {
+  float: right;
+  font-size: 2em
+}
+.header-cus {
+  margin-bottom: 1em;
+}

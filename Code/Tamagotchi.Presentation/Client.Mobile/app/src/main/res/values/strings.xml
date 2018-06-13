@@ -4,8 +4,12 @@
     <string name="welcome">Welcome Back</string>
     <string name="request_email">Email address</string>
     <string name="request_password">Password</string>
+    <string name="request_user_name">Name</string>
     <string name="button_login">Sign In</string>
+    <string name="button_register">Register</string>
     <string name="request_register">Doesn\'t have an account? Register here</string>
+    <string name="button_create_account">Create account</string>
+    <string name="menu_item_go_to_store">Adopt a new pet</string>
 
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -15,4 +19,8 @@
     <string name="nav_header_user_name">Octavio Armenta</string>
     <string name="nav_header_user_email">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
+    <string name="action_button_sleep">Sleep</string>
+    <string name="action_button_eat">Eat</string>
+    <string name="action_button_play">Play</string>
 </resources>

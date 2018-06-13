@@ -12,6 +12,13 @@ import { AnimalDetailsService } from '../../shared/services/AnimalDetailsService
 export class DetailsComponent implements OnInit {
 
   lastTenAnimalDetails: AnimalDetails[] = [];
+  animal = {
+    name: 'Fox (Test)',
+    amountDownloads: 43
+  }
+  creator = {
+    name: 'Octavio Armenta'
+  }
 
   displayedColumns = ['username', 'nickname', 'date', 'time', 'message'];
   dataSource = new MatTableDataSource(this.animalDetailsService.getElementData());
