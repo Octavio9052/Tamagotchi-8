@@ -1,15 +1,21 @@
-﻿using System.ServiceModel;
-using AutoMapper;
+﻿using AutoMapper;
 using Ninject;
-using Ninject.Activation;
 using Ninject.Extensions.Wcf;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.ServiceModel;
+using System.Web;
+using Tamagotchi.Business;
 using Tamagotchi.Business.Business;
-using Tamagotchi.Business.Helpers;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Business.Services;
+using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DALs;
 using Tamagotchi.DataAccess.DALs.Interfaces;
+using Tamagotchi.SOAP.App_Start;
 
 namespace Tamagotchi.SOAP.Helpers
 {
@@ -20,7 +26,7 @@ namespace Tamagotchi.SOAP.Helpers
             var kernel = new StandardKernel();
             kernel.Bind<ServiceHost>().To<NinjectServiceHost>();
             //EXTRAS DAL
-            kernel.Bind<TamagotchiMongoClient>().To<TamagotchiMongoClient>();
+            kernel.Bind<TamagotchiMongoClient>().To<TamagotchiMongoClient>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["Tamagotchi9052MongoDBConnString"].ConnectionString);
             kernel.Bind<TamagotchiContext>().To<TamagotchiContext>();
 
             //DAL INSTANCES
@@ -44,12 +50,12 @@ namespace Tamagotchi.SOAP.Helpers
             kernel.Bind<ISOAPService>().To<SOAPService>();
             SetKernel(kernel);
         }
-        private static IMapper AutoMapper(IContext context)
+        private static IMapper AutoMapper(Ninject.Activation.IContext context)
         {
             Mapper.Initialize(config =>
             {
                 config.ConstructServicesUsing(type => context.Kernel.Get(type));
-                config.AddProfile(new AutomapperProfile());
+
             });
             return Mapper.Instance;
         }

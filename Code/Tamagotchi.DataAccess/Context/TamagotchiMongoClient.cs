@@ -13,5 +13,6 @@ namespace Tamagotchi.DataAccess.Context
             Database = new MongoClient(connectionString).GetDatabase(MongoDb);
         }
 
+
     }
 }

@@ -136,7 +136,7 @@ namespace Tamagotchi.SOAP
             return messageResponse;
         }
 
-        LoginMessageResponse ISOAPService.CreateUser(LoginMessageRequest value)
+        public LoginMessageResponse CreateUser(LoginMessageRequest value)
         {
             var messageResponse = new LoginMessageResponse();
             try

@@ -9,10 +9,11 @@ namespace Tamagotchi.Business.Business
 {
     public class LoginBusiness : BaseBusiness<LoginModel, Login, ILoginDAL>, ILoginBusiness
     {
-        private readonly ISessionBusiness _sessionBusiness;
+        private readonly ISessionDAL _sessionDal;
 
-        public LoginBusiness(ILoginDAL baseDal, IMapper mapper,ISessionBusiness sessionBusiness) : base(baseDal, mapper)
+        public LoginBusiness(ILoginDAL baseDal, IMapper mapper,ISessionDAL sessionDal) : base(baseDal, mapper)
         {
+            this._sessionDal = sessionDal;
         }
 
         public Guid Login(LoginModel login)
@@ -21,9 +22,10 @@ namespace Tamagotchi.Business.Business
 
             if (existingLogin == null) return default(Guid);
             
-            var newSession = new SessionModel { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId.ToString() };
+            var newSession = new Session { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId };
             
-            newSession = _sessionBusiness.Create(newSession);
+            newSession = _sessionDal.Create(newSession);
+            this._sessionDal.Save();
             
             return newSession.Guid;
         }

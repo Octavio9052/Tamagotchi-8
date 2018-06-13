@@ -2,7 +2,7 @@
 
 namespace Tamagotchi.DataAccess.DALs.Interfaces
 {
-    public interface IUserDAL : IBaseDAL<User>
+    public interface IUserDAL : IBaseRelationalDAL<User>
     {
 
     }
