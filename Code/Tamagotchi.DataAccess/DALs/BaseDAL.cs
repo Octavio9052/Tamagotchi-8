@@ -36,7 +36,7 @@ namespace Tamagotchi.DataAccess.DALs
             }
         }
 
-        public virtual T Get(string id)
+        public virtual T Get(Guid id)
         {
             return Set.Find(id);
         }

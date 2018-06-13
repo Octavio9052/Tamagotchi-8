@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Business.Interfaces

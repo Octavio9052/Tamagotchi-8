@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
@@ -32,7 +33,7 @@ namespace Tamagotchi.Business.Business
 
         public virtual T Get(string id)
         {
-            var entity = BaseDal.Get(id);
+            var entity = BaseDal.Get(new Guid(id));
             return Mapper.Map<T>(entity);
         }
 
