@@ -2,8 +2,8 @@
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.WindowsAzure.Storage.Shared.Protocol;
 using Tamagotchi.Business.Interfaces;
-using Tamagotchi.Business.Services;
 using Tamagotchi.Business.Services.interfaces;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Models;
@@ -15,7 +15,7 @@ namespace Tamagotchi.Business.Business
     public class AnimalBusiness : BaseBusiness<AnimalModel, Animal, IAnimalDAL>, IAnimalBusiness
     {
         private readonly IFileService _fileService;
-        private readonly CloudService _cloudService;
+        private readonly StorageService _storageService;
         private readonly ILogDAL _logDal;
 
         public AnimalBusiness(
@@ -23,11 +23,11 @@ namespace Tamagotchi.Business.Business
             ILogDAL logDal,
             IFileService fileService,
             IMapper mapper,
-            CloudService cloudService
+            StorageService storageService
         ) : base(baseDal, mapper)
         {
             _fileService = fileService;
-            _cloudService = cloudService;
+            _storageService = storageService;
             _logDal = logDal;
         }
 
@@ -40,11 +40,12 @@ namespace Tamagotchi.Business.Business
 
         public override async Task<AnimalModel> Create(AnimalModel animal)
         {
-            
             animal.IsActive = true;
 
             animal = await base.Create(animal);
 
+            _storageService.
+            
             await Task.WhenAll(
                 SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile)
                     .ContinueWith(async packetTask => animal.PacketUri = await packetTask),
@@ -59,9 +60,9 @@ namespace Tamagotchi.Business.Business
             );
 
             animal.IsReady = true;
-            
+
             var animalModel = await base.Update(animal);
-            
+
             BaseDal.Save();
 
             return animalModel;
@@ -85,9 +86,9 @@ namespace Tamagotchi.Business.Business
             );
 
             animal.IsReady = true;
-            
+
             var animalModel = await base.Update(animal);
-            
+
             BaseDal.Save();
 
             return animalModel;
