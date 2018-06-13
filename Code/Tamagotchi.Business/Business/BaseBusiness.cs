@@ -6,6 +6,7 @@ using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
+using System;
 
 namespace Tamagotchi.Business.Business
 {
@@ -34,7 +35,7 @@ namespace Tamagotchi.Business.Business
 
         public virtual T Get(string id)
         {
-            var entity = BaseDal.Get(id);
+            var entity = BaseDal.Get(new Guid(id));
             return Mapper.Map<T>(entity);
         }
 

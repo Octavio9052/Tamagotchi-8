@@ -23,6 +23,7 @@ namespace Tamagotchi.Business.Business
             
             session.ExpirationDate = DateTime.Now.AddMinutes(30);
             BaseDal.Update(session);
+            BaseDal.Save();
             return _userBusiness.Get(session.UserId.ToString());
         }
     }

@@ -43,9 +43,9 @@ namespace Tamagotchi.DataAccess.DALs
             Collection.DeleteOne(filter);
         }
 
-        public T Get(string id)
+        public T Get(Guid id)
         {
-            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id));
+            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(id.ToString()));
             
             return Collection.Find(filter).FirstOrDefault();
         }
