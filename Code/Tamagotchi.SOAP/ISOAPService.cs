@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using System.Threading.Tasks;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
 
@@ -14,11 +15,11 @@ namespace Tamagotchi.SOAP
         [OperationContract]
         LoginMessageResponse Login(LoginMessageRequest value);
         [OperationContract]
-        MessageResponse<UserModel> UpdateUser(MessageRequest<UserModel> value);
+        Task<MessageResponse<UserModel>> UpdateUser(MessageRequest<UserModel> value);
         [OperationContract]
-        MessageResponse<AnimalModel> CreateAnimal(MessageRequest<AnimalModel> value);
+        Task<MessageResponse<AnimalModel>> CreateAnimal(MessageRequest<AnimalModel> value);
         [OperationContract]
-        MessageResponse<AnimalModel> UpdateAnimal(MessageRequest<AnimalModel> value);
+        Task<MessageResponse<AnimalModel>> UpdateAnimal(MessageRequest<AnimalModel> value);
         [OperationContract]
         MessageResponse<AnimalModel> DeleteAnimal(MessageRequest<AnimalModel> value);
         [OperationContract]

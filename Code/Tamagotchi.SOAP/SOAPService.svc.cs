@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
@@ -24,14 +25,14 @@ namespace Tamagotchi.SOAP
             _loginBusiness = loginBusiness;
         }
 
-        public MessageResponse<AnimalModel> CreateAnimal(MessageRequest<AnimalModel> value)
+        public async Task<MessageResponse<AnimalModel>> CreateAnimal(MessageRequest<AnimalModel> value)
         {
             var messageResponse = new MessageResponse<AnimalModel>();
             try
             {
                 string error;
                 if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
-                    messageResponse.Body = _animalBusiness.Create(value.Body);
+                    messageResponse.Body = await _animalBusiness.Create(value.Body);
                 else
                     messageResponse.Error = error;
             }
@@ -98,14 +99,14 @@ namespace Tamagotchi.SOAP
             return messageResponse;
         }
 
-        public MessageResponse<AnimalModel> UpdateAnimal(MessageRequest<AnimalModel> value)
+        public async Task<MessageResponse<AnimalModel>> UpdateAnimal(MessageRequest<AnimalModel> value)
         {
             var messageResponse = new MessageResponse<AnimalModel>();
             try
             {
                 string error;
                 if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
-                    messageResponse.Body = _animalBusiness.Update(value.Body);
+                    messageResponse.Body = await _animalBusiness.Update(value.Body);
                 else
                     messageResponse.Error = error;
             }
@@ -117,14 +118,14 @@ namespace Tamagotchi.SOAP
             return messageResponse;
         }
 
-        public MessageResponse<UserModel> UpdateUser(MessageRequest<UserModel> value)
+        public async Task<MessageResponse<UserModel>> UpdateUser(MessageRequest<UserModel> value)
         {
             var messageResponse = new MessageResponse<UserModel>();
             try
             {
                 string error;
                 if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
-                    messageResponse.Body = _userBusiness.Update(value.Body);
+                    messageResponse.Body = await _userBusiness.Update(value.Body);
                 else
                     messageResponse.Error = error;
             }

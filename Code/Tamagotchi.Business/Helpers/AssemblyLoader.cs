@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Tamagotchi.Business.Helpers
 {
-    class SimplyAssemblyLoader : MarshalByRefObject
+    class AssemblyLoader : MarshalByRefObject
     {
         private Assembly _assembly;
 
