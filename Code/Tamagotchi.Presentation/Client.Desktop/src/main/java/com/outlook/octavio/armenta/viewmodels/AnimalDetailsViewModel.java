@@ -1,5 +1,7 @@
 package com.outlook.octavio.armenta.viewmodels;
 
+import com.outlook.octavio.armenta.ws.SOAPServiceStub;
+import com.outlook.octavio.armenta.ws.SOAPServiceStub.MessageResponseOfAnimalModelNuLtuh91;
 import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.commands.Action;
 import de.saxsys.mvvmfx.utils.commands.Command;
@@ -81,13 +83,6 @@ public class AnimalDetailsViewModel implements ViewModel {
             }
         });
 
-        addPropCommand = new DelegateCommand(() -> new Action() {
-            @Override
-            protected void action() throws Exception {
-                doAddProp();
-            }
-        });
-
         createCommand = new DelegateCommand(() -> new Action() {
             @Override
             protected void action() throws Exception {
@@ -118,17 +113,49 @@ public class AnimalDetailsViewModel implements ViewModel {
         publish(PACKAGE_BROWSE);
     }
 
-    public void doAddProp() {
-        final String key = this.propNameProperty().get();
-        this.propNameProperty().set("");
-
-        this.dynamicProps.put(new SimpleStringProperty(key), new SimpleStringProperty());
-    }
-
     public void doCreate() {
         // TODO: UPLOAD ANIMAL TO SOAP
+        try {
+            SOAPServiceStub soapServiceStub = new SOAPServiceStub();
 
+            SOAPServiceStub.MessageRequestOfAnimalModelNuLtuh91 mRequestAnimal = new SOAPServiceStub.MessageRequestOfAnimalModelNuLtuh91();
+            SOAPServiceStub.AnimalModel animalModel = new SOAPServiceStub.AnimalModel();
+
+            animalModel.setName(getNameField());
+            animalModel.setDescription(getDescriptionField());
+            // TODO: Conver to base64 string
+            ///////
+            animalModel.setPacketFile("a");
+            animalModel.setIdleImage("a");
+            animalModel.setEatImage("a");
+            animalModel.setSleepImage("a");
+            animalModel.setPlayImage("a");
+            //////
+            animalModel.setPacketUri("a");
+            animalModel.setIdleUri("a");
+            animalModel.setEatUri("a");
+            animalModel.setSleepUri("a");
+            animalModel.setPlayUri("a");
+            ////////
+
+            mRequestAnimal.setBody(animalModel);
+            // TODO: Access service to get current User and GUID.
+            mRequestAnimal.setUserToken(null);
+
+            SOAPServiceStub.CreateAnimal createAnimal = new SOAPServiceStub.CreateAnimal();
+            createAnimal.setValue(mRequestAnimal);
+
+            SOAPServiceStub.CreateAnimalResponse caResponse = soapServiceStub.createAnimal(createAnimal);
+
+            System.out.println("Error: " + caResponse.getCreateAnimalResult().getError());
+
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
+
+
 
 
     public Image getIdleImage() {

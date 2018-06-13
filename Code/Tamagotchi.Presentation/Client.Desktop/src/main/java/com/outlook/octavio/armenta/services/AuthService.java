@@ -23,7 +23,6 @@ public class AuthService implements IAuthService {
         user.email = username;
         user.password = password;
 
-        // TODO: HERE DOES THE LOGIN
         try {
             SOAPServiceStub soapServiceStub = new SOAPServiceStub();
 
