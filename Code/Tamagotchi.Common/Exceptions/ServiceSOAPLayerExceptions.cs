@@ -2,24 +2,24 @@
 
 namespace Tamagotchi.Common.Exceptions
 {
-    public class ServiceSOAPLayerExceptions : Exception
+    public class ServiceSoapLayerExceptions : Exception
     {
-        public ServiceSOAPLayerExceptions()
+        public ServiceSoapLayerExceptions()
         {
 
         }
 
-        public ServiceSOAPLayerExceptions(Exception e) : base("Invalid value: " + e)
+        public ServiceSoapLayerExceptions(Exception e) : base("Invalid value: " + e)
         {
 
         }
 
-        public ServiceSOAPLayerExceptions(string name, Exception e) : base(name, e)
+        public ServiceSoapLayerExceptions(string name, Exception e) : base(name, e)
         {
 
         }
 
-        public ServiceSOAPLayerExceptions(string name) : base(name)
+        public ServiceSoapLayerExceptions(string name) : base(name)
         {
 
         }
