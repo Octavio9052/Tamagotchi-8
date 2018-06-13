@@ -44,7 +44,7 @@ namespace Tamagotchi.REST
         {
 
             var config = new MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperConfiguration()); });
-            container.LoadConfiguration();
+//            container.LoadConfiguration();
 
             container.RegisterInstance<IMapper>(config.CreateMapper());
 
@@ -53,14 +53,14 @@ namespace Tamagotchi.REST
             container.RegisterType<IAnimalDAL, AnimalDAL>();
             container.RegisterType<ILogDAL, LogDAL>();
             container.RegisterType<IUserDAL, UserDAL>();
-            container.RegisterType<ILoginDAL, LogDAL>();
+            container.RegisterType<ILoginDAL, LoginDAL>();
 
             container.RegisterType<IPetBusiness, PetBusiness>();
             container.RegisterType<ISessionBusiness, SessionBusiness>();
             container.RegisterType<IAnimalBusiness, AnimalBusiness>();
             container.RegisterType<ILogBusiness, LogBusiness>();
             container.RegisterType<IUserBusiness, UserBusiness>();
-            container.RegisterType<ILoginBusiness, LogBusiness>();
+            container.RegisterType<ILoginBusiness, LoginBusiness>();
 
         }
     }
