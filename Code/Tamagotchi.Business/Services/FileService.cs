@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Tamagotchi.Business.Services
 {
@@ -6,12 +7,12 @@ namespace Tamagotchi.Business.Services
     {
         public Task SaveFile(string fileName, string content)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task GetFile(string fileName)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

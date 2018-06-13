@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs;
-using Tamagotchi.DataAccess.Context;
 
 namespace Tamagotchi.DALTesting.Tests
 {
@@ -36,7 +35,7 @@ namespace Tamagotchi.DALTesting.Tests
             var userr = userdal.Create(user);
             userdal.Save();
             var loginDal = new LoginDAL(context);
-            var login = new Login()
+            var login = new Login
             {
                 Email = "armenta_octavio@hotmail.com",
                 Password = "tamalesatun123",

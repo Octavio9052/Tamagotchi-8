@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.Common.Messages
 {

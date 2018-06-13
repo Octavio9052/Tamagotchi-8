@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Runtime.Remoting.Messaging;
 using System.Web.Http;
 using Tamagotchi.Business.Interfaces;
-using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
-using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.REST.Controllers
 {

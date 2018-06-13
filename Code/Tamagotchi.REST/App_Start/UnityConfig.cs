@@ -1,8 +1,11 @@
 using AutoMapper;
 using System;
+using System.Configuration;
+using Microsoft.Practices.Unity.Configuration;
 using Tamagotchi.Business;
 using Tamagotchi.Business.Business;
 using Tamagotchi.Business.Interfaces;
+using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DALs;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 using Unity;
@@ -44,8 +47,12 @@ namespace Tamagotchi.REST
         {
 
             var config = new MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperConfiguration()); });
-            container.LoadConfiguration();
+//            container.LoadConfiguration();
 
+            container.LoadConfiguration()
+                
+                container.RegisterType<TamagotchiMongoClient>(ConfigurationManager.ConnectionStrings["Tamagotchi9052MongoDB"].ConnectionString)
+                
             container.RegisterInstance<IMapper>(config.CreateMapper());
 
             container.RegisterType<IPetDAL, PetDAL>();
@@ -53,14 +60,14 @@ namespace Tamagotchi.REST
             container.RegisterType<IAnimalDAL, AnimalDAL>();
             container.RegisterType<ILogDAL, LogDAL>();
             container.RegisterType<IUserDAL, UserDAL>();
-            container.RegisterType<ILoginDAL, LogDAL>();
+            container.RegisterType<ILoginDAL, LoginDAL>();
 
             container.RegisterType<IPetBusiness, PetBusiness>();
             container.RegisterType<ISessionBusiness, SessionBusiness>();
             container.RegisterType<IAnimalBusiness, AnimalBusiness>();
             container.RegisterType<ILogBusiness, LogBusiness>();
             container.RegisterType<IUserBusiness, UserBusiness>();
-            container.RegisterType<ILoginBusiness, LogBusiness>();
+            container.RegisterType<ILoginBusiness, LoginBusiness>();
 
         }
     }

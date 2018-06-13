@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
 
