@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.Web;
 using Tamagotchi.Business;
 using Tamagotchi.Business.Business;
+using Tamagotchi.Business.Helpers;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Business.Services;
 using Tamagotchi.Common.Models;
@@ -39,6 +40,7 @@ namespace Tamagotchi.SOAP.Helpers
             //Extras
             kernel.Bind<IMapper>().ToMethod(AutoMapper).InSingletonScope();
             kernel.Bind<CloudService>().To<CloudService>();
+            kernel.Bind<StorageService>().To<StorageService>().WithConstructorArgument("storageConnectionString", ConfigurationManager.ConnectionStrings["TamagotchiStorage"].ConnectionString); ;
 
             //BUSINESS INSTANCES
             kernel.Bind<ISessionBusiness>().To<SessionBusiness>();

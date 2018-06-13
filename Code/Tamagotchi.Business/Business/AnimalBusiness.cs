@@ -14,19 +14,16 @@ namespace Tamagotchi.Business.Business
 {
     public class AnimalBusiness : BaseBusiness<AnimalModel, Animal, IAnimalDAL>, IAnimalBusiness
     {
-        private readonly IFileService _fileService;
         private readonly StorageService _storageService;
         private readonly ILogDAL _logDal;
 
         public AnimalBusiness(
             IAnimalDAL baseDal,
             ILogDAL logDal,
-            IFileService fileService,
             IMapper mapper,
             StorageService storageService
         ) : base(baseDal, mapper)
         {
-            _fileService = fileService;
             _storageService = storageService;
             _logDal = logDal;
         }
@@ -123,8 +120,9 @@ namespace Tamagotchi.Business.Business
             var extension = Path.GetExtension(originalFileName);
 
             var fileName = $"{newFileName}.{extension}";
-
-            await _fileService.SaveFile(fileName, base64Content);
+            byte[] data = System.Convert.FromBase64String(base64Content);
+            MemoryStream ms = new MemoryStream(data);
+            await _storageService.ProcessFileFromStream(ms, fileName);
 
             return fileName;
         }
