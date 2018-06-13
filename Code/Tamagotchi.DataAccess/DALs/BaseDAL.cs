@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
-using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 
@@ -38,7 +36,7 @@ namespace Tamagotchi.DataAccess.DALs
             }
         }
 
-        public virtual T Get(string id)
+        public virtual T Get(Guid id)
         {
             return Set.Find(id);
         }

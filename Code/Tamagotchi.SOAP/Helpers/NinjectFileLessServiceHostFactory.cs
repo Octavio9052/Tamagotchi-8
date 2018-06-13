@@ -3,6 +3,7 @@ using Ninject;
 using Ninject.Extensions.Wcf;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
 using System.Web;
@@ -25,7 +26,7 @@ namespace Tamagotchi.SOAP.Helpers
             var kernel = new StandardKernel();
             kernel.Bind<ServiceHost>().To<NinjectServiceHost>();
             //EXTRAS DAL
-            kernel.Bind<TamagotchiMongoClient>().To<TamagotchiMongoClient>();
+            kernel.Bind<TamagotchiMongoClient>().To<TamagotchiMongoClient>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["Tamagotchi9052MongoDBConnString"].ConnectionString);
             kernel.Bind<TamagotchiContext>().To<TamagotchiContext>();
 
             //DAL INSTANCES

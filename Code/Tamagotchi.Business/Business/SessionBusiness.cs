@@ -1,16 +1,16 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
-using System;
 
 namespace Tamagotchi.Business.Business
 {
-    public class SessionBusiness : BaseBusiness<SessionModel, Session>, ISessionBusiness
+    public class SessionBusiness : BaseBusiness<SessionModel, Session, ISessionDAL>, ISessionBusiness
     {
         private readonly IUserBusiness _userBusiness;
-        public SessionBusiness(ISessionDAL baseDAL, IMapper mapper,IUserBusiness userBusiness) : base(baseDAL, mapper)
+        public SessionBusiness(ISessionDAL baseDal, IMapper mapper,IUserBusiness userBusiness) : base(baseDal, mapper)
         {
             _userBusiness = userBusiness;
         }
@@ -23,7 +23,8 @@ namespace Tamagotchi.Business.Business
             
             session.ExpirationDate = DateTime.Now.AddMinutes(30);
             BaseDal.Update(session);
-            return _userBusiness.Get(session.UserId);
+            BaseDal.Save();
+            return _userBusiness.Get(session.UserId.ToString());
         }
     }
 }

@@ -14,9 +14,5 @@ namespace Tamagotchi.DataAccess.DataModels
         public ICollection<Animal> Animal { get; set; }
         public ICollection<Session> Session { get; set; }
 
-        
-        public virtual Login Login { get; set; }
-        [Required]
-        public string LoginId { get; set; }
     }
 }

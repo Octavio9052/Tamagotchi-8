@@ -1,11 +1,15 @@
 using AutoMapper;
 using System;
+using System.Configuration;
+using Microsoft.Practices.Unity.Configuration;
 using Tamagotchi.Business;
 using Tamagotchi.Business.Business;
 using Tamagotchi.Business.Interfaces;
+using Tamagotchi.DataAccess.Context;
 using Tamagotchi.DataAccess.DALs;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 using Unity;
+using Unity.Configuration;
 
 namespace Tamagotchi.REST
 {
@@ -43,18 +47,28 @@ namespace Tamagotchi.REST
         {
 
             var config = new MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperConfiguration()); });
-            // NOTE: To load from web.config uncomment the line below.
-            // Make sure to add a Unity.Configuration to the using statements.
-            // container.LoadConfiguration();
+//            container.LoadConfiguration();
 
+            container.LoadConfiguration();
+
+            container.RegisterType<TamagotchiMongoClient>(ConfigurationManager
+                .ConnectionStrings["Tamagotchi9052MongoDB"].ConnectionString);
+                
             container.RegisterInstance<IMapper>(config.CreateMapper());
-            // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
+
             container.RegisterType<IPetDAL, PetDAL>();
             container.RegisterType<ISessionDAL, SessionDAL>();
+            container.RegisterType<IAnimalDAL, AnimalDAL>();
+            container.RegisterType<ILogDAL, LogDAL>();
+            container.RegisterType<IUserDAL, UserDAL>();
+            container.RegisterType<ILoginDAL, LoginDAL>();
 
             container.RegisterType<IPetBusiness, PetBusiness>();
             container.RegisterType<ISessionBusiness, SessionBusiness>();
+            container.RegisterType<IAnimalBusiness, AnimalBusiness>();
+            container.RegisterType<ILogBusiness, LogBusiness>();
+            container.RegisterType<IUserBusiness, UserBusiness>();
+            container.RegisterType<ILoginBusiness, LoginBusiness>();
 
         }
     }

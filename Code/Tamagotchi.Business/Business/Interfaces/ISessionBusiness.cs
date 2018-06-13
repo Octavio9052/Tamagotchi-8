@@ -1,6 +1,6 @@
 ﻿using System;
+using Tamagotchi.Business.Business.Interfaces;
 using Tamagotchi.Common.Models;
-using Tamagotchi.DataAccess.DataModels;
 
 namespace Tamagotchi.Business.Interfaces
 {

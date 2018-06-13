@@ -1,32 +1,33 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
+using AutoMapper;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
-using Tamagotchi.DataAccess.DALs.Interfaces;
 using Tamagotchi.DataAccess.DataModels;
+using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.Business.Business
 {
-    public class LoginBusiness : BaseBusiness<LoginModel, Login>, ILoginBusiness
+    public class LoginBusiness : BaseBusiness<LoginModel, Login, ILoginDAL>, ILoginBusiness
     {
-        private readonly ISessionBusiness _sessionBusiness;
+        private readonly ISessionDAL _sessionDal;
 
-        public LoginBusiness(ILoginDAL baseDAL, IMapper mapper,ISessionBusiness sessionBusiness) : base(baseDAL, mapper)
+        public LoginBusiness(ILoginDAL baseDal, IMapper mapper,ISessionDAL sessionDal) : base(baseDal, mapper)
         {
+            this._sessionDal = sessionDal;
         }
 
         public Guid Login(LoginModel login)
         {
             var existingLogin = ((ILoginDAL)BaseDal).Login(login.Email, login.Password);
 
-            if(existingLogin != null)
-            {
-                var newSession = new SessionModel { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId };
-                newSession = _sessionBusiness.Create(newSession);
-                return newSession.Guid;
-            }
-
-            return default(Guid);
+            if (existingLogin == null) return default(Guid);
+            
+            var newSession = new Session { Guid = Guid.NewGuid(), ExpirationDate = DateTime.Now.AddMinutes(15), UserId = existingLogin.UserId };
+            
+            newSession = _sessionDal.Create(newSession);
+            this._sessionDal.Save();
+            
+            return newSession.Guid;
         }
     }
 }

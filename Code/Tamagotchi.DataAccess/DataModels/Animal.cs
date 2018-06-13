@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tamagotchi.DataAccess.DataModels
 {
@@ -21,7 +19,7 @@ namespace Tamagotchi.DataAccess.DataModels
         public bool IsReady { get; set; }
         public bool IsActive { get; set; }
 
-        public string CreatorId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
     }
 }

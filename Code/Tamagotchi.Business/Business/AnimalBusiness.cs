@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Mime;
-using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using ICSharpCode.SharpZipLib.Zip;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Business.Services;
+using Tamagotchi.Business.Services.interfaces;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
@@ -16,52 +12,88 @@ using Tamagotchi.DataAccess.DALs.Interfaces;
 
 namespace Tamagotchi.Business.Business
 {
-    public class AnimalBusiness : BaseBusiness<AnimalModel, Animal>, IAnimalBusiness
+    public class AnimalBusiness : BaseBusiness<AnimalModel, Animal, IAnimalDAL>, IAnimalBusiness
     {
-        private static readonly List<string> ImageExtensions = new List<string> {".JPG", ".GIF", ".PNG"};
-
+        private readonly IFileService _fileService;
         private readonly CloudService _cloudService;
         private readonly ILogDAL _logDal;
 
-        public AnimalBusiness(IAnimalDAL baseDal, IMapper mapper, CloudService cloudService, ILogDAL logDal) : base(
-            baseDal, mapper)
+        public AnimalBusiness(
+            IAnimalDAL baseDal,
+            ILogDAL logDal,
+            IFileService fileService,
+            IMapper mapper,
+            CloudService cloudService
+        ) : base(baseDal, mapper)
         {
+            _fileService = fileService;
             _cloudService = cloudService;
             _logDal = logDal;
         }
 
 
-        public ICollection<AnimalModel> GetByUser(string Id)
+        public ICollection<AnimalModel> GetByUser(string id)
         {
-            var animals = ((IAnimalDAL) BaseDal).GetByUser(Id);
+            var animals = BaseDal.GetByUser(id);
             return Mapper.Map<ICollection<AnimalModel>>(animals);
         }
 
-        public AnimalModel Create(AnimalModel animal, byte[] zipFile)
+        public override async Task<AnimalModel> Create(AnimalModel animal)
         {
-            // Fill blanks
-            animal.TimesDownloaded = 0;
-            animal.IdleUri = "https://i.imgur.com/wHs2rOm.gif";
-            animal.IsReady = false;
+            
             animal.IsActive = true;
 
-            var animalModel = base.Create(animal);
+            animal = await base.Create(animal);
 
-            SaveFiles(zipFile, animalModel);
+            await Task.WhenAll(
+                SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile)
+                    .ContinueWith(async packetTask => animal.PacketUri = await packetTask),
+                SaveFile(animal.IdleUri, $"{animal.Id}_idle", animal.IdleImage)
+                    .ContinueWith(async idleTask => animal.IdleUri = await idleTask),
+                SaveFile(animal.PlayUri, $"{animal.Id}_play", animal.PlayImage)
+                    .ContinueWith(async playTask => animal.PlayUri = await playTask),
+                SaveFile(animal.EatUri, $"{animal.Id}_eat", animal.EatImage)
+                    .ContinueWith(async eatTask => animal.EatUri = await eatTask),
+                SaveFile(animal.SleepUri, $"{animal.Id}_sleep", animal.SleepImage)
+                    .ContinueWith(async sleepTask => animal.SleepUri = await sleepTask)
+            );
+
+            animal.IsReady = true;
+            
+            var animalModel = await base.Update(animal);
+            
+            BaseDal.Save();
+
             return animalModel;
         }
 
-        public AnimalModel Update(AnimalModel animalModel, byte[] zipFile)
+        public override async Task<AnimalModel> Update(AnimalModel animal)
         {
-            animalModel.IsReady = false;
+            animal.IsReady = false;
 
-            SaveFiles(zipFile, animalModel);
+            await Task.WhenAll(
+                SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile)
+                    .ContinueWith(async task => animal.PacketUri = await task),
+                SaveFile(animal.IdleUri, $"{animal.Id}_idle", animal.IdleImage)
+                    .ContinueWith(async task => animal.IdleUri = await task),
+                SaveFile(animal.PlayUri, $"{animal.Id}_play", animal.PlayImage)
+                    .ContinueWith(async task => animal.PlayUri = await task),
+                SaveFile(animal.EatUri, $"{animal.Id}_eat", animal.EatImage)
+                    .ContinueWith(async task => animal.EatUri = await task),
+                SaveFile(animal.SleepUri, $"{animal.Id}_sleep", animal.SleepImage)
+                    .ContinueWith(async task => animal.SleepUri = await task)
+            );
 
-            return base.Update(animalModel);
+            animal.IsReady = true;
+            
+            var animalModel = await base.Update(animal);
+            
+            BaseDal.Save();
+
+            return animalModel;
         }
 
-
-        public override void Delete(string id)
+        public override async void Delete(string id)
         {
             var animal = base.Get(id);
 
@@ -69,7 +101,7 @@ namespace Tamagotchi.Business.Business
 
             animal.IsActive = false;
 
-            base.Update(animal);
+            await base.Update(animal);
         }
 
         public override AnimalModel Get(string id)
@@ -85,74 +117,22 @@ namespace Tamagotchi.Business.Business
             return animal;
         }
 
-        //PRIVATE
+        private async Task<string> SaveFile(string originalFileName, string newFileName, string base64Content)
+        {
+            var extension = Path.GetExtension(originalFileName);
 
-        private ICollection<LogModel> LoadLogs(string animalId)
+            var fileName = $"{newFileName}.{extension}";
+
+            await _fileService.SaveFile(fileName, base64Content);
+
+            return fileName;
+        }
+
+        private IEnumerable<LogModel> LoadLogs(string animalId)
         {
             var entity = _logDal.LoadLogs(animalId);
+
             return Mapper.Map<ICollection<LogModel>>(entity);
         }
-
-        private async Task<string> FindSaveFile(ZipEntry entryFile, ZipFile file, string fileName)
-        {
-            try
-            {
-                using (var stream = file.GetInputStream(entryFile))
-                {
-                    return await _cloudService.ProcessImageFromStream(stream, fileName);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLayerExceptions(ex);
-            }
-        }
-
-        private async void SaveFiles(byte[] zipFile, AnimalModel animalModel)
-        {
-            var fileSuffixes = new[] {"eat", "sleep", "play", "main", "dll"};
-            var allowedExtensions = new[] {"jpg", "gif", "png", "dll"};
-
-//            using (var stream = new MemoryStream(zipFile))
-//            {
-//                await _cloudService.ProcessFileFromStream(stream, animalModel.Id + "_zip.zip");
-//                stream.Position = 0;
-//
-//                using (var zipArchive = new ZipFile(stream))
-//                {
-//                    Task<string> taskMain;
-//
-//                    foreach (ZipEntry zipEntry in zipArchive)
-//                    {
-//                        if (!zipEntry.IsFile)
-//                            continue;
-//
-//                        var entryFileName = Path.GetFileName(zipEntry.Name);
-//
-//                        var fileExtension = allowedExtensions.First(extension => extension.Equals(Path.GetExtension(entryFileName),StringComparison.InvariantCultureIgnoreCase));
-//                        
-//                        var fileSuffix = fileSuffixes.First(fileType =>
-//                            entryFileName != null &&
-//                            entryFileName.IndexOf(fileType, StringComparison.InvariantCultureIgnoreCase) > -1
-//                        );
-//                        
-//                        var fileName = $"{animalModel.Id}_{fileSuffix}.{fileExtension}";
-//
-//                        taskMain = FindSaveFile(zipEntry, zipArchive, fileName);
-//                    }
-//
-//                    animalModel.PacketUri = taskDll.Result;
-//                    animalModel.IdleUri = await taskMain;
-//                    animalModel.EatUri = taskEat.Result;
-//                    animalModel.SleepUri = taskSleep.Result;
-//                    animalModel.PlayUri = taskPlay.Result;
-//
-//                    animalModel.IsActive = true;
-//                    animalModel.IsReady = true;
-//                }
-
-                base.Update(animalModel);
-            }
-        }
-
+    }
 }

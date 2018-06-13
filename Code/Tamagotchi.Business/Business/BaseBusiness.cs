@@ -1,25 +1,28 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
+using Tamagotchi.Business.Business.Interfaces;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
+using System;
 
 namespace Tamagotchi.Business.Business
 {
-    public class BaseBusiness<T, TData> : IBaseBusiness<T> where T : BaseModel where TData : IBaseEntity
+    public class BaseBusiness<T, TData, TDal> : IBaseBusiness<T> where T : BaseModel where TData : IBaseEntity where TDal : IBaseDAL<TData>
     {
-        protected readonly IBaseDAL<TData> BaseDal;
+        protected readonly TDal BaseDal;
         protected readonly IMapper Mapper;
 
 
-        protected BaseBusiness(IBaseDAL<TData> baseDAL, IMapper mapper)
+        protected BaseBusiness(TDal baseDal, IMapper mapper)
         {
-            BaseDal = baseDAL;
+            BaseDal = baseDal;
             Mapper = mapper;
         }
 
-        public virtual T Create(T model)
+        public virtual async Task<T> Create(T model)
         {
             var entity = Mapper.Map<TData>(model);
             return Mapper.Map<T>(BaseDal.Create(entity));
@@ -32,7 +35,7 @@ namespace Tamagotchi.Business.Business
 
         public virtual T Get(string id)
         {
-            var entity = BaseDal.Get(id);
+            var entity = BaseDal.Get(new Guid(id));
             return Mapper.Map<T>(entity);
         }
 
@@ -42,7 +45,7 @@ namespace Tamagotchi.Business.Business
             return Mapper.Map<ICollection<T>>(entities);
         }
 
-        public virtual T Update(T model)
+        public virtual async Task<T> Update(T model)
         {
             var entity = Mapper.Map<TData>(model);
             return Mapper.Map<T>(BaseDal.Update(entity));

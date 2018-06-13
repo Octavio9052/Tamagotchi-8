@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using Tamagotchi.Common.Messages;
 using Tamagotchi.Common.Models;
 
@@ -11,7 +10,7 @@ namespace Tamagotchi.SOAP
     {
 
         [OperationContract]
-        LoginMessageResponse CreateUser(LoginMessageRequest value,string name);
+        LoginMessageResponse CreateUser(LoginMessageRequest value);
         [OperationContract]
         LoginMessageResponse Login(LoginMessageRequest value);
         [OperationContract]
