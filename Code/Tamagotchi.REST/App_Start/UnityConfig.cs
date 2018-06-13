@@ -49,7 +49,7 @@ namespace Tamagotchi.REST
             var config = new MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperConfiguration()); });
 //            container.LoadConfiguration();
 
-            container.LoadConfiguration();
+            // container.LoadConfiguration();
 
             container.RegisterType<TamagotchiMongoClient>(ConfigurationManager
                 .ConnectionStrings["Tamagotchi9052MongoDB"].ConnectionString);
