@@ -45,7 +45,6 @@ class StoreAdapter(private val myDataset: ArrayList<Animal>) :
     }
 
 
-
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // - get element from your dataset at this position
@@ -56,7 +55,7 @@ class StoreAdapter(private val myDataset: ArrayList<Animal>) :
         Glide.with(holder.itemView.context).load(myDataset[position].idleUri).into(holder.mImgIdle)
 
 
-        holder.itemView.setOnClickListener(object : View.OnClickListener{
+        holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 Toast.makeText(v!!.context, "" + holder.mTitle.text + " : " + holder.mDescription.text, Toast.LENGTH_SHORT).show()
             }

@@ -1,10 +1,10 @@
 package com.outlook.octavio.armenta.tamagotchi9052.views.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
@@ -29,7 +29,7 @@ class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         val animal = Animal("Fox", "Likes to read and sleep", "http://i.imgur.com/NNfje00.gif")
         val anima2 = Animal("Dog", "Likes to play and eat", "http://i.imgur.com/sumGNLN.gif")
         val anima3 = Animal("Turtle", "Likes to rest and play", "http://i.imgur.com/chU36ua.gif")
-        val anima4 = Animal("Cat",  "Likes to eat and sleep", "http://i.imgur.com/vRQWS9E.gif")
+        val anima4 = Animal("Cat", "Likes to eat and sleep", "http://i.imgur.com/vRQWS9E.gif")
         myDataSet.add(animal)
         myDataSet.add(anima2)
         myDataSet.add(anima3)

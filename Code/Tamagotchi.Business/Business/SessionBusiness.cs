@@ -17,7 +17,7 @@ namespace Tamagotchi.Business.Business
 
         public UserModel ValidSession(Guid userToken)
         {
-            var session = ((ISessionDAL)BaseDal).GetByGUID(userToken);
+            var session = BaseDal.GetByGUID(userToken);
             
             if (session == null) return null;
             

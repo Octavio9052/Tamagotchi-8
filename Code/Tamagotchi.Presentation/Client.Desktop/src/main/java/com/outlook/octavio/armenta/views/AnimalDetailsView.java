@@ -158,6 +158,7 @@ public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Init
         fileChooser.getExtensionFilters().add(filter);
         File file = fileChooser.showOpenDialog(stage);
         callback.accept(file);
+
     }
 
 }

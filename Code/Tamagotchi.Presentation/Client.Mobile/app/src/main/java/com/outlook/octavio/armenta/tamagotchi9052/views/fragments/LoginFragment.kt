@@ -32,10 +32,9 @@ class LoginFragment : Fragment() {
     }
 
     fun attempLogin() {
-        if(checkCredential()){
+        if (checkCredential()) {
             doLogin()
-        }
-        else {
+        } else {
 
         }
     }
