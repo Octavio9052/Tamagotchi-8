@@ -37,7 +37,7 @@ namespace Tamagotchi.Business.Helpers
             CreateMap<User, UserModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
-            CreateMap<Animal, AnimalModel>(MemberList.Source)
+            CreateMap<Animal, AnimalModel>(MemberList.None)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()))
                 .ForSourceMember(source => source.UserId, opt => opt.Ignore())
                 .ForMember(dest => dest.User,
