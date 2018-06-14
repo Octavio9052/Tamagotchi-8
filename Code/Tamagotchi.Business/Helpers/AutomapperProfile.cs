@@ -13,31 +13,41 @@ namespace Tamagotchi.Business.Helpers
 
             CreateMap<LogModel, Log>().ReverseMap();
 
-            CreateMap<UserModel, User>()
+            #region Model To Entity
+
+            CreateMap<UserModel, User>(MemberList.Destination)
                 .ForMember(dest => dest.Id,
                     opt => opt.MapFrom(source => Guid.Parse(source.Id)));
 
-            CreateMap<AnimalModel, Animal>()
+            CreateMap<AnimalModel, Animal>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(source => Guid.Parse(source.User.Id)));
 
-            CreateMap<LoginModel, Login>()
+            CreateMap<LoginModel, Login>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
 
-            CreateMap<SessionModel, Session>()
+            CreateMap<SessionModel, Session>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
 
-            CreateMap<User, UserModel>()
+            #endregion
+
+            #region Entity To Model
+
+            CreateMap<User, UserModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
             CreateMap<Animal, AnimalModel>(MemberList.Source)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()))
+                .ForSourceMember(source => source.UserId, opt => opt.Ignore());
+
+            CreateMap<Login, LoginModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
-            CreateMap<Login, LoginModel>()
+            CreateMap<Session, SessionModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
-            CreateMap<Session, SessionModel>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
+            #endregion
+
             
         }
     }

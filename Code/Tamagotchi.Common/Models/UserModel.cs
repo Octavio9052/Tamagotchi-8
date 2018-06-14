@@ -8,8 +8,8 @@ namespace Tamagotchi.Common.Models
         [Required]
         public string Name { get; set; }
         public string PhotoUri { get; set; }
-        public Dictionary<string, string> Pets { get; set; }
-        public Dictionary<int, string> Creations { get; set; }
-        public SessionModel Session { get; set; }
+        
+        public List<PetModel> Pets { get; set; }
+        public List<AnimalModel> Animals { get; set; }
     }
 }
