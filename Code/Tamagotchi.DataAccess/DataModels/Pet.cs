@@ -22,10 +22,5 @@ namespace Tamagotchi.DataAccess.DataModels
         [BsonElement("currentGamePoints")]
         [BsonRequired]
         public Dictionary<string, double> CurrentGamePoints { get; set; }
-
-        public override string ToString()
-        {
-            return "Pet";
-        }
     }
 }

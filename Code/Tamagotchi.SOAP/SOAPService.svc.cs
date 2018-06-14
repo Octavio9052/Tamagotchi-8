@@ -30,8 +30,7 @@ namespace Tamagotchi.SOAP
             var messageResponse = new MessageResponse<AnimalModel>();
             try
             {
-                string error;
-                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                if (IsEntityValid(value.Body, out var error) && ValidateSession(value.UserToken, out error))
                     messageResponse.Body = await _animalBusiness.Create(value.Body);
                 else
                     messageResponse.Error = error;
@@ -49,8 +48,7 @@ namespace Tamagotchi.SOAP
             var messageResponse = new MessageResponse<AnimalModel>();
             try
             {
-                string error;
-                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                if (IsEntityValid(value.Body, out var error) && ValidateSession(value.UserToken, out error))
                     _animalBusiness.Delete(value.Body.Id);
                 else
                     messageResponse.Error = error;
@@ -77,8 +75,7 @@ namespace Tamagotchi.SOAP
             var messageResponse = new LoginMessageResponse();
             try
             {
-                string error;
-                if (IsEntityValid(value.Login, out error))
+                if (IsEntityValid(value.Login, out var error))
                 {
                     messageResponse.UserToken = _loginBusiness.Login(value.Login);
                     if (messageResponse.UserToken != default(Guid))
@@ -91,7 +88,7 @@ namespace Tamagotchi.SOAP
                     messageResponse.Error = error;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 messageResponse.Error = "An Error has ocurred.";
             }
@@ -104,8 +101,7 @@ namespace Tamagotchi.SOAP
             var messageResponse = new MessageResponse<AnimalModel>();
             try
             {
-                string error;
-                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                if (IsEntityValid(value.Body, out var error) && ValidateSession(value.UserToken, out error))
                     messageResponse.Body = await _animalBusiness.Update(value.Body);
                 else
                     messageResponse.Error = error;
@@ -123,8 +119,7 @@ namespace Tamagotchi.SOAP
             var messageResponse = new MessageResponse<UserModel>();
             try
             {
-                string error;
-                if (IsEntityValid(value.Body, out error) && ValidateSession(value.UserToken, out error))
+                if (IsEntityValid(value.Body, out var error) && ValidateSession(value.UserToken, out error))
                     messageResponse.Body = await _userBusiness.Update(value.Body);
                 else
                     messageResponse.Error = error;
@@ -142,8 +137,7 @@ namespace Tamagotchi.SOAP
             var messageResponse = new LoginMessageResponse();
             try
             {
-                string error;
-                if (IsEntityValid(value.Login, out error))
+                if (IsEntityValid(value.Login, out var error))
                 {
                     messageResponse.User = _userBusiness.Create(value.Login, value.Name, null);
                     messageResponse.UserToken = _loginBusiness.Login(value.Login);
@@ -173,13 +167,11 @@ namespace Tamagotchi.SOAP
         {
             var validationResult = _sessionBusiness.ValidSession(userToken);
             error = null;
-            if (validationResult != null)
-            {
-                error = "Session has expired";
-                return true;
-            }
 
-            return false;
+            if (validationResult == null) return false;
+
+            error = "Session has expired";
+            return true;
         }
     }
 }
