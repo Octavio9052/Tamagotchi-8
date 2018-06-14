@@ -9,6 +9,7 @@ using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Core.GameRules;
 using Tamagotchi.Core.PlayStatus;
 using Tamagotchi.DataAccess.DataModels;
+using Action = Tamagotchi.Common.Enums.Action;
 
 namespace Tamagotchi.Business.Services
 {
@@ -24,7 +25,7 @@ namespace Tamagotchi.Business.Services
         private AssemblyLoaderService _loader;
 
 
-        public GameStatus ExecuteAssembly(string url, Actio action, Pet pet)
+        public GameStatus ExecuteAssembly(string url, Action action, Pet pet)
         {
             var dllFile = Load(url);
             if (dllFile == null) throw new BusinessLayerExceptions("Error when trying to load the file");
@@ -41,25 +42,25 @@ namespace Tamagotchi.Business.Services
             return response;
         }
 
-        private string GetMethod(Actio action)
+        private string GetMethod(Action action)
         {
             var methods = typeof(IBaseGameRules).GetMethods();
-            if (action == Actio.Init)
+            if (action == Action.Init)
             {
                 return "Init";
             }
 
-            if (action == Actio.Eat)
+            if (action == Action.Eat)
             {
                 return "Eat";
             }
 
-            if (action == Actio.Sleep)
+            if (action == Action.Sleep)
             {
                 return "Sleep";
             }
 
-            if (action == Actio.Play)
+            if (action == Action.Play)
             {
                 return "Play";
             }

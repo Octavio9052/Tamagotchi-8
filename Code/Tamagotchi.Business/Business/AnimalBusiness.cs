@@ -40,37 +40,9 @@ namespace Tamagotchi.Business.Business
         {
             animal.IsActive = true;
 
-
             animal = await base.Create(animal);
-            //var entity = new Animal
-            //{
-            //    DateCreated = DateTime.Now,
-            //    LastModified = DateTime.Now,
-            //    Description = animal.Description,
-            //    Name = animal.Name,
-            //    TimesDownloaded = 0,
-            //    UserId = Guid.Parse(animal.User.Id),
-            //    User = new User
-            //    {
-                    
-            //    }
-                
-            //};
 
-            //            _storageService.ProcessFileFromStream();
-
-            await Task.WhenAll(
-                SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile)
-                    .ContinueWith(async packetTask => animal.PacketUri = await packetTask),
-                SaveFile(animal.IdleUri, $"{animal.Id}_idle", animal.IdleImage)
-                    .ContinueWith(async idleTask => animal.IdleUri = await idleTask),
-                SaveFile(animal.PlayUri, $"{animal.Id}_play", animal.PlayImage)
-                    .ContinueWith(async playTask => animal.PlayUri = await playTask),
-                SaveFile(animal.EatUri, $"{animal.Id}_eat", animal.EatImage)
-                    .ContinueWith(async eatTask => animal.EatUri = await eatTask),
-                SaveFile(animal.SleepUri, $"{animal.Id}_sleep", animal.SleepImage)
-                    .ContinueWith(async sleepTask => animal.SleepUri = await sleepTask)
-            );
+            animal.PacketUri = await SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile);
 
             animal.IsReady = true;
 

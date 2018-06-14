@@ -60,8 +60,10 @@
   <ItemGroup>
     <Compile Include="Business\AnimalBusiness.cs" />
     <Compile Include="Business\BaseBusiness.cs" />
+    <Compile Include="Business\GameBusiness.cs" />
     <Compile Include="Business\Interfaces\IAnimalBusiness.cs" />
     <Compile Include="Business\Interfaces\IBaseBusiness.cs" />
+    <Compile Include="Business\Interfaces\IGameBusiness.cs" />
     <Compile Include="Business\Interfaces\ILogBusiness.cs" />
     <Compile Include="Business\Interfaces\ILoginBusiness.cs" />
     <Compile Include="Business\Interfaces\IPetBusiness.cs" />
