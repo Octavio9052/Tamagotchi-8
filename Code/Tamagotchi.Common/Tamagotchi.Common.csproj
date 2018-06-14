@@ -67,7 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums\Actio.cs" />
+    <Compile Include="Enums\Action.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Exceptions\BusinessLayerExceptions.cs" />
     <Compile Include="Exceptions\DataAccessLayerExceptions.cs" />
@@ -81,6 +81,8 @@
     <Compile Include="Messages\MessageResponse.cs" />
     <Compile Include="Models\AnimalModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\GameMove.cs" />
+    <Compile Include="Models\GameResult.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PetModel.cs" />

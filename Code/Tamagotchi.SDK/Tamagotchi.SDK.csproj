@@ -38,7 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animal.cs" />
+    <Compile Include="AnimalImpl.cs" />
     <Compile Include="AnimalAttribute.cs" />
     <Compile Include="IGameResult.cs" />
     <Compile Include="IPetStatus.cs" />

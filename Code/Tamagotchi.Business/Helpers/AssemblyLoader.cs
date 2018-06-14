@@ -26,7 +26,7 @@ namespace Tamagotchi.Business.Helpers
 
         public void LoadFromStream(Stream stream)
         {
-            byte[] data = new byte[stream.Length];
+            var data = new byte[stream.Length];
             stream.Read(data, 0, data.Length);
 
             _assembly = Assembly.Load(data);
@@ -41,7 +41,7 @@ namespace Tamagotchi.Business.Helpers
         {
             ValidatePath(path);
             var assembly = Assembly.LoadFrom(path);
-            foreach (Type item in assembly.GetTypes())
+            foreach (var item in assembly.GetTypes())
             {
                 if (!item.IsClass) continue;
                 if (item.GetInterfaces().Contains(type))
@@ -59,7 +59,7 @@ namespace Tamagotchi.Business.Helpers
         public object Execute(Type type, string methodName, object[] parameters)
         {
 
-            foreach (Type item in _assembly.GetTypes())
+            foreach (var item in _assembly.GetTypes())
             {
                 if (!item.IsClass) continue;
                 if (item.GetInterfaces().Contains(type))
@@ -79,7 +79,7 @@ namespace Tamagotchi.Business.Helpers
             object[] parameters)
         {
 
-            foreach (Type item in _assembly.GetTypes())
+            foreach (var item in _assembly.GetTypes())
             {
                 if (!item.IsClass) continue;
                 if (item.GetInterfaces().Contains(type))

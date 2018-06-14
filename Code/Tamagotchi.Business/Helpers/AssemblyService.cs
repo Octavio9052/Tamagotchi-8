@@ -34,7 +34,7 @@ namespace Tamagotchi.Business.Helpers
             if (dllFile == null) throw new Exception("Error when trying to load the file");
             var appDomain = CreateAppDomain();
             LoadAssembly(dllFile);
-            string methodName = GetMethod(action);
+            var methodName = GetMethod(action);
 //            var response = WorkClass(pet, methodName);
             UnloadAssembly(appDomain);
 //            return null;
@@ -77,9 +77,9 @@ namespace Tamagotchi.Business.Helpers
 
         private AppDomain CreateAppDomain()
         {
-            Evidence evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
+            var evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
 
-            AppDomain newDomainName = AppDomain.CreateDomain("New Domain", evidence,
+            var newDomainName = AppDomain.CreateDomain("New Domain", evidence,
                 new AppDomainSetup()
                 {
                     ApplicationName = "Loader",
