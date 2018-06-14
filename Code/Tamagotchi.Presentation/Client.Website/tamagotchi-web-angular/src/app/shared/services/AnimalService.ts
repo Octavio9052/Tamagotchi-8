@@ -10,7 +10,7 @@ export class AnimalService {
   private animals: any[] = [];
   private allAnimals: AnimalModel[] = [];
 
-  private apiAnimals = "http://localhost:65200/api/animal";
+  private apiAnimals = "http://rest9052.azurewebsites.net/api/animal";
 
   public test: Observable<AnimalModel[]>;
 
