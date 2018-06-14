@@ -4,15 +4,15 @@ namespace Tamagotchi.SDK
 {
     public abstract class AnimalImpl
     {
-        protected IPetStatus PetStatus;
+        protected PetStatus PetStatus;
 
-        protected AnimalImpl(IPetStatus petStatus)
+        protected AnimalImpl(PetStatus petStatus)
         {
             PetStatus = petStatus;
         }
 
-        public abstract IPetStatus Play();
-        public abstract IPetStatus Sleep();
-        public abstract IPetStatus Eat();
+        public abstract PetStatus Play();
+        public abstract PetStatus Sleep();
+        public abstract PetStatus Eat();
     }
 }
