@@ -1,10 +1,10 @@
 ﻿namespace Tamagotchi.SDK
 {
-    public interface IPetStatus
+    public class PetStatus
     {
-        int PlayPoints { get; set; }
-        int EatPoints { get; set; }
-        int SleepPoints { get; set; }
-        int IdlePoints { get; set; }
+        public int PlayPoints { get; set; }
+        public int EatPoints { get; set; }
+        public int SleepPoints { get; set; }
+        public int IdlePoints { get; set; }
     }
 }

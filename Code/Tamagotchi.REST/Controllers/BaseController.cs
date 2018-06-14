@@ -12,19 +12,19 @@ namespace Tamagotchi.REST.Controllers
 {
     public class BaseController<TModel, TBusiness> : ApiController where TBusiness : IBaseBusiness<TModel> where TModel : BaseModel
     {
-        private readonly TBusiness _business;
-        private readonly ISessionBusiness _sessionBusiness;
+        protected readonly TBusiness Business;
+        protected readonly ISessionBusiness SessionBusiness;
 
         public BaseController(TBusiness business, ISessionBusiness sessionBusiness)
         {
-            _business = business;
-            _sessionBusiness = sessionBusiness;
+            Business = business;
+            SessionBusiness = sessionBusiness;
         }
 
         // GET: api/Pet
         public IHttpActionResult Get()
         {
-            var response = new MessageResponse<List<TModel>> {Body = _business.GetAll().ToList()};
+            var response = new MessageResponse<List<TModel>> {Body = Business.GetAll().ToList()};
 
             return Ok(response);
         }
@@ -32,7 +32,7 @@ namespace Tamagotchi.REST.Controllers
         // GET: api/Pet/5
         public IHttpActionResult Get(string id)
         {
-            var messageResponse = new MessageResponse<TModel> {Body = _business.Get(id)};
+            var messageResponse = new MessageResponse<TModel> {Body = Business.Get(id)};
 
             return messageResponse.Body != default(TModel) ? (IHttpActionResult) Ok(messageResponse) : NotFound();
         }
@@ -44,12 +44,12 @@ namespace Tamagotchi.REST.Controllers
             
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+            if (SessionBusiness.ValidSession(request.UserToken) == null)
                 return Unauthorized();
 
             try
             {
-                var result = _business.Create(request.Body);
+                var result = Business.Create(request.Body);
 
                 response = new MessageResponse<TModel> {Body = await result};
             }
@@ -70,12 +70,12 @@ namespace Tamagotchi.REST.Controllers
 
             if (!ModelState.IsValid) return BadRequest();
 
-            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+            if (SessionBusiness.ValidSession(request.UserToken) == null)
                 return Unauthorized();
 
             try
             {
-                var result = _business.Update(request.Body);
+                var result = Business.Update(request.Body);
 
                 response = new MessageResponse<TModel> {Body = await result};
             }
@@ -92,10 +92,10 @@ namespace Tamagotchi.REST.Controllers
         // DELETE: api/Pet/5
         public IHttpActionResult Delete(MessageRequest<string> request)
         {
-            if (_sessionBusiness.ValidSession(request.UserToken) == null)
+            if (SessionBusiness.ValidSession(request.UserToken) == null)
                 return Unauthorized();
 
-            _business.Delete(request.Body);
+            Business.Delete(request.Body);
 
             return Ok();
         }

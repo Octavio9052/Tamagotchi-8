@@ -4,9 +4,7 @@ import com.google.gson.Gson
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/**
- * @author J. Pichardo
- */
+
 class WebServiceFactory {
 
     val retrofit: Retrofit = Retrofit.Builder()

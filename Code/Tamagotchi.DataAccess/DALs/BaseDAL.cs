@@ -23,7 +23,7 @@ namespace Tamagotchi.DataAccess.DALs
             entity.DateCreated = DateTime.Now;
             entity.LastModified = DateTime.Now;
             
-            Set.Add(entity);
+            var entity1 = Set.Add(entity);
             return entity;
         }
 

@@ -50,7 +50,7 @@ public abstract class SOAPServiceCallbackHandler {
      * auto generated Axis2 Error handler
      * override this method for handling error response from updateAnimal operation
      */
-    public void receiveErrorupdateAnimal(Exception e) {
+    public void receiveErrorupdateAnimal(java.lang.Exception e) {
     }
 
     /**
@@ -65,7 +65,7 @@ public abstract class SOAPServiceCallbackHandler {
      * auto generated Axis2 Error handler
      * override this method for handling error response from login operation
      */
-    public void receiveErrorlogin(Exception e) {
+    public void receiveErrorlogin(java.lang.Exception e) {
     }
 
     /**
@@ -80,7 +80,7 @@ public abstract class SOAPServiceCallbackHandler {
      * auto generated Axis2 Error handler
      * override this method for handling error response from updateUser operation
      */
-    public void receiveErrorupdateUser(Exception e) {
+    public void receiveErrorupdateUser(java.lang.Exception e) {
     }
 
     /**
@@ -95,7 +95,7 @@ public abstract class SOAPServiceCallbackHandler {
      * auto generated Axis2 Error handler
      * override this method for handling error response from createUser operation
      */
-    public void receiveErrorcreateUser(Exception e) {
+    public void receiveErrorcreateUser(java.lang.Exception e) {
     }
 
     /**
@@ -110,7 +110,7 @@ public abstract class SOAPServiceCallbackHandler {
      * auto generated Axis2 Error handler
      * override this method for handling error response from deleteAnimal operation
      */
-    public void receiveErrordeleteAnimal(Exception e) {
+    public void receiveErrordeleteAnimal(java.lang.Exception e) {
     }
 
     /**
@@ -125,7 +125,7 @@ public abstract class SOAPServiceCallbackHandler {
      * auto generated Axis2 Error handler
      * override this method for handling error response from createAnimal operation
      */
-    public void receiveErrorcreateAnimal(Exception e) {
+    public void receiveErrorcreateAnimal(java.lang.Exception e) {
     }
 
     /**
@@ -140,6 +140,6 @@ public abstract class SOAPServiceCallbackHandler {
      * auto generated Axis2 Error handler
      * override this method for handling error response from getAnimal operation
      */
-    public void receiveErrorgetAnimal(Exception e) {
+    public void receiveErrorgetAnimal(java.lang.Exception e) {
     }
 }

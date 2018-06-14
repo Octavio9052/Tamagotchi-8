@@ -21,7 +21,8 @@ namespace Tamagotchi.Business.Helpers
 
             CreateMap<AnimalModel, Animal>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(source => Guid.Parse(source.User.Id)));
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(source => Guid.Parse(source.User.Id)))
+                .ForMember(dest => dest.User, opt => opt.Ignore());
 
             CreateMap<LoginModel, Login>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
@@ -36,9 +37,11 @@ namespace Tamagotchi.Business.Helpers
             CreateMap<User, UserModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
-            CreateMap<Animal, AnimalModel>(MemberList.Source)
+            CreateMap<Animal, AnimalModel>(MemberList.None)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()))
-                .ForSourceMember(source => source.UserId, opt => opt.Ignore());
+                .ForSourceMember(source => source.UserId, opt => opt.Ignore())
+                .ForMember(dest => dest.User,
+                    opts => opts.MapFrom(source => source.User ?? new User {Id = source.UserId}));
 
             CreateMap<Login, LoginModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
@@ -47,8 +50,6 @@ namespace Tamagotchi.Business.Helpers
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
             #endregion
-
-            
         }
     }
 }

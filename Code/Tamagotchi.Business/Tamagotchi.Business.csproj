@@ -60,8 +60,10 @@
   <ItemGroup>
     <Compile Include="Business\AnimalBusiness.cs" />
     <Compile Include="Business\BaseBusiness.cs" />
+    <Compile Include="Business\GameBusiness.cs" />
     <Compile Include="Business\Interfaces\IAnimalBusiness.cs" />
     <Compile Include="Business\Interfaces\IBaseBusiness.cs" />
+    <Compile Include="Business\Interfaces\IGameBusiness.cs" />
     <Compile Include="Business\Interfaces\ILogBusiness.cs" />
     <Compile Include="Business\Interfaces\ILoginBusiness.cs" />
     <Compile Include="Business\Interfaces\IPetBusiness.cs" />
@@ -96,9 +98,16 @@
       <Project>{b6955fbd-af07-453b-93e6-c7ad3e293442}</Project>
       <Name>Tamagotchi.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tamagotchi.SDK\Tamagotchi.SDK.csproj">
+      <Project>{5438066c-31bd-4684-8371-4f6df0c0599b}</Project>
+      <Name>Tamagotchi.SDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Helpers\x.http" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
