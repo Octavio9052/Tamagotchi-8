@@ -41,7 +41,13 @@ namespace Tamagotchi.Business.Business
             animal.IsActive = true;
 
 
-            animal = await base.Create(animal);
+            var entity = Mapper.Map<Animal>(animal);
+
+            entity = BaseDal.Create(entity);
+
+            BaseDal.Save();
+
+            animal = Mapper.Map<AnimalModel>(entity);
             //var entity = new Animal
             //{
             //    DateCreated = DateTime.Now,

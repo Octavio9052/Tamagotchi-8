@@ -1,5 +1,6 @@
 package com.outlook.octavio.armenta.viewmodels;
 
+import com.cloudinary.utils.ObjectUtils;
 import com.google.inject.Inject;
 import com.outlook.octavio.armenta.services.AuthService;
 import com.outlook.octavio.armenta.ws.SOAPServiceStub;
@@ -18,6 +19,8 @@ import org.apache.axis2.Constants;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.transport.http.HTTPConstants;
+
+import com.cloudinary.*;
 
 import java.io.*;
 import java.util.HashMap;
@@ -139,14 +142,6 @@ public class AnimalDetailsViewModel implements ViewModel {
         // TODO: UPLOAD ANIMAL TO SOAP
         try {
             SOAPServiceStub soapServiceStub = new SOAPServiceStub();
-            ServiceClient client = soapServiceStub._getServiceClient();
-            Options opt = client.getOptions();
-            opt.setProperty(Constants.Configuration.MESSAGE_TYPE,HTTPConstants.MEDIA_TYPE_APPLICATION_ECHO_XML);
-            opt.setProperty(Constants.Configuration.DISABLE_SOAP_ACTION,Boolean.TRUE);
-            opt.setProperty(HTTPConstants.CHUNKED, Constants.VALUE_FALSE);
-            client.setOptions(opt);
-
-            soapServiceStub._setServiceClient(client);
 
             SOAPServiceStub.MessageRequestOfAnimalModelNuLtuh91 mRequestAnimal = new SOAPServiceStub.MessageRequestOfAnimalModelNuLtuh91();
 
@@ -156,18 +151,24 @@ public class AnimalDetailsViewModel implements ViewModel {
             animalModel.setDescription(getDescriptionField());
             // TODO: Conver to base64 string
 
+            String idleUrl = getHostUrl(getIdleImageUri());
+            String eatUrl = getHostUrl(getEatImageUri());
+            String sleepUrl = getHostUrl(getSleepImageUri());
+            String playUrl = getHostUrl(gePlayImageUri());
+
+
             ///////
             animalModel.setPacketFile(encodeFileToBase64Binary(getPackageUri()));
-            animalModel.setIdleImage(encodeFileToBase64Binary(getIdleImageUri()));
-            animalModel.setEatImage(encodeFileToBase64Binary(getEatImageUri()));
-            animalModel.setSleepImage(encodeFileToBase64Binary(getSleepImageUri()));
-            animalModel.setPlayImage(encodeFileToBase64Binary(gePlayImageUri()));
+            animalModel.setIdleImage(encodeFileToBase64Binary(idleUrl));
+            animalModel.setEatImage(encodeFileToBase64Binary(eatUrl));
+            animalModel.setSleepImage(encodeFileToBase64Binary(sleepUrl));
+            animalModel.setPlayImage(encodeFileToBase64Binary(playUrl));
             //////
             animalModel.setPacketUri(getPackageUri());
-            animalModel.setIdleUri(getIdleImageUri());
-            animalModel.setEatUri(getEatImageUri());
-            animalModel.setSleepUri(getSleepImageUri());
-            animalModel.setPlayUri(gePlayImageUri());
+            animalModel.setIdleUri(idleUrl);
+            animalModel.setEatUri(eatUrl);
+            animalModel.setSleepUri(sleepUrl);
+            animalModel.setPlayUri(playUrl);
             ////////
 
             mRequestAnimal.setBody(animalModel);
@@ -191,26 +192,31 @@ public class AnimalDetailsViewModel implements ViewModel {
         }
     }
 
+    private String getHostUrl(String uri) {
+        String imageURL;
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "octavio9052",
+                "api_key", "847159943216128",
+                "api_secret", "927_isRXWaPthg3PBD8Zak5xr6I"));
+        File toUpload = new File(getIdleImageUri());
+        try {
+            Map uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
+            imageURL = uploadResult.get("url").toString();
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+            return null;
+        }
+        return imageURL;
+    }
+
     /**
      * Method used for encode the file to base64 binary format
      */
     private static String encodeFileToBase64Binary(String path){
-        String encodedFile = null;
-        StringBuilder strBuilder = new StringBuilder(path);
-        strBuilder.insert(strBuilder.lastIndexOf("."), 2);
-        File file = new File(strBuilder.toString());
-        try {
-            FileInputStream fileInputStreamReader = new FileInputStream(file);
-            byte[] bytes = new byte[(int)file.length()];
-            fileInputStreamReader.read(bytes);
-            encodedFile = new String(Base64.encodeBase64(bytes), "UTF-8");
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        String encodedFile;
+
+        byte[] bytesEncoded = Base64.encodeBase64(path.getBytes());
+        encodedFile = new String(bytesEncoded);
 
         return encodedFile;
     }
