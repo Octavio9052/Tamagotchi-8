@@ -144,11 +144,11 @@ public class AnimalDetailsViewModel implements ViewModel {
             // TODO: Conver to base64 string
 
             ///////
-            animalModel.setPacketFile(encodeFileToBase64Binary(new File(getPackageUri())));
-            animalModel.setIdleImage(encodeFileToBase64Binary(new File(getIdleImageUri())));
-            animalModel.setEatImage(encodeFileToBase64Binary(new File(getEatImageUri())));
-            animalModel.setSleepImage(encodeFileToBase64Binary(new File(getSleepImageUri())));
-            animalModel.setPlayImage(encodeFileToBase64Binary(new File(gePlayImageUri())));
+            animalModel.setPacketFile(encodeFileToBase64Binary(getPackageUri()));
+            animalModel.setIdleImage(encodeFileToBase64Binary(getIdleImageUri()));
+            animalModel.setEatImage(encodeFileToBase64Binary(getEatImageUri()));
+            animalModel.setSleepImage(encodeFileToBase64Binary(getSleepImageUri()));
+            animalModel.setPlayImage(encodeFileToBase64Binary(gePlayImageUri()));
             //////
             animalModel.setPacketUri(getPackageUri());
             animalModel.setIdleUri(getIdleImageUri());
@@ -180,11 +180,11 @@ public class AnimalDetailsViewModel implements ViewModel {
     /**
      * Method used for encode the file to base64 binary format
      */
-    private static String encodeFileToBase64Binary(File file){
+    private static String encodeFileToBase64Binary(String path){
         String encodedFile = null;
         try {
-            FileInputStream fileInputStreamReader = new FileInputStream(file);
-            byte[] bytes = new byte[(int)file.length()];
+            FileInputStream fileInputStreamReader = new FileInputStream(path);
+            byte[] bytes = new byte[(int)path.length()];
             fileInputStreamReader.read(bytes);
             encodedFile = new String(Base64.encodeBase64(bytes), "UTF-8");
         } catch (FileNotFoundException e) {
