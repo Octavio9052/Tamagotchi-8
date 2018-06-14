@@ -13,26 +13,38 @@ namespace Tamagotchi.Business.Helpers
     {
         public AutomapperProfile()
         {
+
+            CreateMap<PetModel, Pet>().ReverseMap();
+
+            CreateMap<LogModel, Log>().ReverseMap();
+
             CreateMap<UserModel, User>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+                .ForMember(x => x.Id,
+                           opt => opt.MapFrom(y => Guid.Parse(y.Id)));
+
             CreateMap<AnimalModel, Animal>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => Guid.Parse(y.Id)));
+
+
             CreateMap<LoginModel, Login>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => Guid.Parse(y.Id)));
+
             CreateMap<SessionModel, Session>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => Guid.Parse(y.Id)));
 
             CreateMap<User, UserModel>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-            CreateMap<Animal, AnimalModel>()
+
+            CreateMap<Animal, AnimalModel>(MemberList.Source)
                 .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+
             CreateMap<Login, LoginModel>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+
             CreateMap<Session, SessionModel>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
 
-            CreateMap<PetModel, Pet>().ReverseMap();
-            CreateMap<LogModel, Log>().ReverseMap();
+       
         }
     }
 }

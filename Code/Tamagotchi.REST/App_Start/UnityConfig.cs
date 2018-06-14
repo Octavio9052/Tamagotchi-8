@@ -10,6 +10,7 @@ using Tamagotchi.DataAccess.DALs;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 using Unity;
 using Unity.Configuration;
+using Tamagotchi.Business.Helpers;
 
 namespace Tamagotchi.REST
 {
@@ -46,10 +47,9 @@ namespace Tamagotchi.REST
         public static void RegisterTypes(IUnityContainer container)
         {
 
-            var config = new MapperConfiguration(cfg => { cfg.AddProfile(new AutoMapperConfiguration()); });
-//            container.LoadConfiguration();
+            var config = new MapperConfiguration(cfg => { cfg.AddProfile(new AutomapperProfile()); });
 
-            // container.LoadConfiguration();
+            config.AssertConfigurationIsValid();
 
             container.RegisterType<TamagotchiMongoClient>(ConfigurationManager
                 .ConnectionStrings["Tamagotchi9052ConnString"].ConnectionString);
