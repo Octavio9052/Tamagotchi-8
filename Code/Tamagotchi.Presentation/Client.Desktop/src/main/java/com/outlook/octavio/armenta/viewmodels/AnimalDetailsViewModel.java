@@ -1,11 +1,10 @@
 package com.outlook.octavio.armenta.viewmodels;
 
+import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.google.inject.Inject;
 import com.outlook.octavio.armenta.services.AuthService;
 import com.outlook.octavio.armenta.ws.SOAPServiceStub;
-import com.outlook.octavio.armenta.ws.SOAPServiceStub.MessageResponseOfAnimalModelNuLtuh91;
-import de.saxsys.mvvmfx.InjectViewModel;
 import de.saxsys.mvvmfx.ViewModel;
 import de.saxsys.mvvmfx.utils.commands.Action;
 import de.saxsys.mvvmfx.utils.commands.Command;
@@ -15,15 +14,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import javafx.scene.image.Image;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.axis2.Constants;
-import org.apache.axis2.client.Options;
-import org.apache.axis2.client.ServiceClient;
-import org.apache.axis2.transport.http.HTTPConstants;
 
-import com.cloudinary.*;
-
-import java.io.*;
-import java.util.HashMap;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Map;
 
 
@@ -158,11 +151,11 @@ public class AnimalDetailsViewModel implements ViewModel {
 
 
             ///////
-            animalModel.setPacketFile(encodeFileToBase64Binary(getPackageUri()));
-            animalModel.setIdleImage(encodeFileToBase64Binary(idleUrl));
-            animalModel.setEatImage(encodeFileToBase64Binary(eatUrl));
-            animalModel.setSleepImage(encodeFileToBase64Binary(sleepUrl));
-            animalModel.setPlayImage(encodeFileToBase64Binary(playUrl));
+            animalModel.setPacketFile(encodeFileToBase64Binary(getPackageUri(), false));
+            animalModel.setIdleImage(encodeFileToBase64Binary(idleUrl, true));
+            animalModel.setEatImage(encodeFileToBase64Binary(eatUrl, true));
+            animalModel.setSleepImage(encodeFileToBase64Binary(sleepUrl, true));
+            animalModel.setPlayImage(encodeFileToBase64Binary(playUrl, true));
             //////
             animalModel.setPacketUri(getPackageUri());
             animalModel.setIdleUri(idleUrl);
@@ -212,13 +205,30 @@ public class AnimalDetailsViewModel implements ViewModel {
     /**
      * Method used for encode the file to base64 binary format
      */
-    private static String encodeFileToBase64Binary(String path){
-        String encodedFile;
+    private static String encodeFileToBase64Binary(String path, boolean image){
+        try {
+        String encodedFile = "";
 
-        byte[] bytesEncoded = Base64.encodeBase64(path.getBytes());
-        encodedFile = new String(bytesEncoded);
+            if (image) {
+                byte[] bytesEncoded = Base64.encodeBase64(path.getBytes());
+                encodedFile = new String(bytesEncoded);
+            } else {
+                StringBuilder strBuilder = new StringBuilder(path);
+                strBuilder.insert(strBuilder.lastIndexOf("."), "2");
+                File dllFile = new File(strBuilder.toString());
+                FileInputStream fileInputStreamReader = new FileInputStream(dllFile);
+                byte[] bytes = new byte[(int) dllFile.length()];
+                fileInputStreamReader.read(bytes);
+                encodedFile = new String(Base64.encodeBase64(bytes), "UTF-8");
+            }
 
-        return encodedFile;
+            return encodedFile;
+
+        } catch (Exception e) {
+            System.out.println("Error");
+
+            return null;
+        }
     }
 
 

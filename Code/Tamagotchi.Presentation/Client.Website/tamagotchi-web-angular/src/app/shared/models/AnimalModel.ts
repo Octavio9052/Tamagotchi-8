@@ -1,18 +1,18 @@
 export interface AnimalModel {
-    name: string;
-    description: string;
-    numberDownloads: number;
-    isReady: Boolean;
-    isActive: Boolean;
-    idleUri: string;
-    playUri: string;
-    eatUri: string;
-    sleepUri: string;
+    Name: string;
+    Description: string;
+    TimesDownloaded: number;
+    IsReady: Boolean;
+    IsActive: Boolean;
+    IdleUri: string;
+    PlayUri: string;
+    EatUri: string;
+    SleepUri: string;
     PacketUri: string;
     UserId: string;
-    animalId: string;
-    dateCreated: string;
-    lastModified: string;
+    AnimalId: string;
+    DateCreated: string;
+    LastModified: string;
 }
 
 //TODO: Datatypes?

@@ -1,6 +1,6 @@
-package com.outlook.octavio.armenta.tamagotchi9052;
+package com.outlook.octavio.armenta.tamagotchi9052.views.activities;
 
-class Token {
+public class Token {
     private static final Token ourInstance = new Token();
 
     private String guid;

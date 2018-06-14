@@ -4,7 +4,7 @@
   </div>
   <h3 class="tamoc">Animals:</h3>
   <div id="card-container" class="row no-gutters">
-    <app-animal-card *ngFor="let animal of animalsData" [animalCard]="animal"></app-animal-card>
+    <app-animal-card *ngFor="let animal of animalsData | async" [animalCard]="animal"></app-animal-card>
   </div>
 </div>
 {{data}}

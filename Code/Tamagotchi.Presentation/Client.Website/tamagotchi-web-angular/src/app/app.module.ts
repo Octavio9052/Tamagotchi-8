@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { MatToolbarModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { NgxSoapModule } from 'ngx-soap';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    NgxSoapModule
   ],
   providers: [],
   bootstrap: [AppComponent]

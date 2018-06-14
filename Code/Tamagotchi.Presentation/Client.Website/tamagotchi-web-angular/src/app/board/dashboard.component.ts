@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnimalService } from '../shared/services/AnimalService';
 import { AnimalModel } from '../shared/models/AnimalModel';
 import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +11,14 @@ import { Observable } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
 
-  animalsData;
-  animalsData2: Observable<AnimalModel[]>;
+  animalsData: Observable<AnimalModel[]>;
   data;
 
   constructor(private readonly animalService: AnimalService) { }
 
   ngOnInit() {
-    this.animalsData = this.animalService.getAnimalCards();
-    this.animalsData2 = this.animalService.getTest();
-
-    this.animalsData2.forEach(element => {
-      console.log(element)
-    });
+    this.animalsData = this.animalService.getAnimalCards().pipe(map(res => res.Body));
+    this.animalsData.subscribe(data => console.log(data));
   }
 
 }

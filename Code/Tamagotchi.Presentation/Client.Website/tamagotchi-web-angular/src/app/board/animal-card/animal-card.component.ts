@@ -21,10 +21,10 @@ export class AnimalCardComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.animalName = this.animalCard.name;
-    this.numberDownloads = this.animalCard.numberDownloads;
+    this.animalName = this.animalCard.Name;
+    this.numberDownloads = this.animalCard.TimesDownloaded;
     this.creatorName = this.animalCard.UserId;
-    this.idleUri = this.animalCard.idleUri;
+    this.idleUri = this.animalCard.IdleUri;
   }
 
   openDialog() {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Tamagotchi.Business.Business.Interfaces;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Messages;
@@ -10,6 +11,7 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.REST.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BaseController<TModel, TBusiness> : ApiController where TBusiness : IBaseBusiness<TModel> where TModel : BaseModel
     {
         protected readonly TBusiness Business;

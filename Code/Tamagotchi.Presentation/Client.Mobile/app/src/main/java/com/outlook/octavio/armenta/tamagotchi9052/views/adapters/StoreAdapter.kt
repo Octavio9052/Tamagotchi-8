@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.outlook.octavio.armenta.tamagotchi9052.R
 import com.outlook.octavio.armenta.tamagotchi9052.models.Animal
 
-class StoreAdapter(private val myDataset: ArrayList<Animal>) :
+class StoreAdapter(private val myDataset: List<Animal>?) :
         RecyclerView.Adapter<StoreAdapter.ViewHolder>() {
 
     // Provide a reference to the views for each data item
@@ -50,7 +50,7 @@ class StoreAdapter(private val myDataset: ArrayList<Animal>) :
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         // holder.textView.text = myDataset[position]
-        holder.mTitle.text = myDataset[position].name
+        holder.mTitle.text = myDataset!![position].name
         holder.mDescription.text = myDataset[position].description
         Glide.with(holder.itemView.context).load(myDataset[position].idleUri).into(holder.mImgIdle)
 
@@ -63,5 +63,5 @@ class StoreAdapter(private val myDataset: ArrayList<Animal>) :
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = myDataset.size
+    override fun getItemCount() =   myDataset?.size ?: 0
 }

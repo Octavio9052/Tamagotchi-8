@@ -18,6 +18,8 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
     private java.util.HashMap faultExceptionNameMap = new java.util.HashMap();
     private java.util.HashMap faultExceptionClassNameMap = new java.util.HashMap();
     private java.util.HashMap faultMessageMap = new java.util.HashMap();
+
+    /////////////////////////////////////////////////////////////////////////
     private javax.xml.namespace.QName[] opNameArray = null;
 
     /**
@@ -43,6 +45,8 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         _serviceClient = new org.apache.axis2.client.ServiceClient(configurationContext,
                 _service);
 
+        _service.applyPolicy();
+
         _serviceClient.getOptions()
                       .setTo(new org.apache.axis2.addressing.EndpointReference(
                 targetEndpoint));
@@ -55,14 +59,15 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
     public SOAPServiceStub(
         org.apache.axis2.context.ConfigurationContext configurationContext)
         throws org.apache.axis2.AxisFault {
-        this(configurationContext, "http://localhost:59445/SOAPService.svc");
+        this(configurationContext,
+            "https://soap9052.azurewebsites.net/SOAPService.svc");
     }
 
     /**
      * Default Constructor
      */
     public SOAPServiceStub() throws org.apache.axis2.AxisFault {
-        this("http://localhost:59445/SOAPService.svc");
+        this("https://soap9052.azurewebsites.net/SOAPService.svc");
     }
 
     /**
@@ -102,6 +107,16 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                 "http://tempuri.org/", "updateAnimal"));
         _service.addOperation(__operation);
 
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_OUT_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
         _operations[0] = __operation;
 
         __operation = new org.apache.axis2.description.OutInAxisOperation();
@@ -109,6 +124,16 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         __operation.setName(new javax.xml.namespace.QName(
                 "http://tempuri.org/", "login"));
         _service.addOperation(__operation);
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_OUT_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
 
         _operations[1] = __operation;
 
@@ -118,6 +143,16 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                 "http://tempuri.org/", "updateUser"));
         _service.addOperation(__operation);
 
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_OUT_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
         _operations[2] = __operation;
 
         __operation = new org.apache.axis2.description.OutInAxisOperation();
@@ -125,6 +160,16 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         __operation.setName(new javax.xml.namespace.QName(
                 "http://tempuri.org/", "createUser"));
         _service.addOperation(__operation);
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_OUT_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
 
         _operations[3] = __operation;
 
@@ -134,6 +179,16 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                 "http://tempuri.org/", "deleteAnimal"));
         _service.addOperation(__operation);
 
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_OUT_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
         _operations[4] = __operation;
 
         __operation = new org.apache.axis2.description.OutInAxisOperation();
@@ -142,6 +197,16 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                 "http://tempuri.org/", "createAnimal"));
         _service.addOperation(__operation);
 
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_OUT_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
         _operations[5] = __operation;
 
         __operation = new org.apache.axis2.description.OutInAxisOperation();
@@ -149,6 +214,16 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         __operation.setName(new javax.xml.namespace.QName(
                 "http://tempuri.org/", "getAnimal"));
         _service.addOperation(__operation);
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_OUT_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
+
+        (__operation).getMessage(org.apache.axis2.wsdl.WSDLConstants.MESSAGE_LABEL_IN_VALUE)
+         .getPolicySubject()
+         .attachPolicy(getPolicy(
+                "<wsp:Policy wsu:Id=\"BasicHttpsBinding_ISOAPService_policy\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\"><wsp:ExactlyOne><wsp:All><sp:TransportBinding xmlns:sp=\"http://schemas.xmlsoap.org/ws/2005/07/securitypolicy\"><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:TransportToken><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:HttpsToken RequireClientCertificate=\"false\"></sp:HttpsToken></wsp:Policy></sp:TransportToken><sp:AlgorithmSuite><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Basic256/></wsp:Policy></sp:AlgorithmSuite><sp:Layout><wsp:Policy xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\"><sp:Strict/></wsp:Policy></sp:Layout></wsp:Policy></sp:TransportBinding></wsp:All></wsp:ExactlyOne></wsp:Policy>"));
 
         _operations[6] = __operation;
     }
@@ -1969,6 +2044,14 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         _operationClient.execute(false);
     }
 
+    ////////////////////////////////////////////////////////////////////////
+    private static org.apache.neethi.Policy getPolicy(
+        java.lang.String policyString) {
+        return org.apache.neethi.PolicyEngine.getPolicy(org.apache.axiom.om.OMXMLBuilderFactory.createOMBuilder(
+                new java.io.StringReader(policyString)).getDocument()
+                                                                                               .getXMLStreamReader(false));
+    }
+
     private boolean optimizeContent(javax.xml.namespace.QName opName) {
         if (opNameArray == null) {
             return false;
@@ -2358,12 +2441,12 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         return null;
     }
 
-    //http://localhost:59445/SOAPService.svc
+    //https://soap9052.azurewebsites.net/SOAPService.svc
     public static class LoginMessageRequest implements org.apache.axis2.databinding.ADBBean {
         /* This type was generated from the piece of schema that had
            name = LoginMessageRequest
            Namespace URI = http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages
-           Namespace Prefix = ns5
+           Namespace Prefix = ns4
          */
 
         /**
@@ -2522,7 +2605,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -3641,7 +3724,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class UnsignedShort implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "unsignedShort", "ns4");
+                "unsignedShort", "ns3");
 
         /**
          * field for UnsignedShort
@@ -3730,7 +3813,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -4021,7 +4104,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _char implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "char", "ns4");
+                "char", "ns3");
 
         /**
          * field for _char
@@ -4111,7 +4194,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -4412,7 +4495,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _short implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "short", "ns4");
+                "short", "ns3");
 
         /**
          * field for _short
@@ -4499,7 +4582,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -5148,7 +5231,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class AnyType implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "anyType", "ns4");
+                "anyType", "ns3");
 
         /**
          * field for AnyType
@@ -5241,7 +5324,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -5520,7 +5603,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class MessageResponseOfUserModelNuLtuh91E implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages",
-                "MessageResponseOfUserModelNuLtuh91", "ns5");
+                "MessageResponseOfUserModelNuLtuh91", "ns4");
 
         /**
          * field for MessageResponseOfUserModelNuLtuh91
@@ -5590,7 +5673,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -5880,7 +5963,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class CreateUserResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "CreateUserResponse", "ns6");
+                "CreateUserResponse", "ns5");
 
         /**
          * field for CreateUserResult
@@ -5987,7 +6070,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -6302,7 +6385,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class GetAnimal implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "GetAnimal", "ns6");
+                "GetAnimal", "ns5");
 
         /**
          * field for Id
@@ -6408,7 +6491,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -7504,7 +7587,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class GetAnimalResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "GetAnimalResponse", "ns6");
+                "GetAnimalResponse", "ns5");
 
         /**
          * field for GetAnimalResult
@@ -7611,7 +7694,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -7926,7 +8009,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class DeleteAnimalResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "DeleteAnimalResponse", "ns6");
+                "DeleteAnimalResponse", "ns5");
 
         /**
          * field for DeleteAnimalResult
@@ -8034,7 +8117,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -8707,7 +8790,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         /* This type was generated from the piece of schema that had
            name = MessageResponseOfAnimalModelNuLtuh91
            Namespace URI = http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages
-           Namespace Prefix = ns5
+           Namespace Prefix = ns4
          */
 
         /**
@@ -8867,7 +8950,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -9714,492 +9797,6 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         } //end of factory class
     }
 
-    public static class ArrayOfKeyValueOfstringdouble implements org.apache.axis2.databinding.ADBBean {
-        /* This type was generated from the piece of schema that had
-           name = ArrayOfKeyValueOfstringdouble
-           Namespace URI = http://schemas.microsoft.com/2003/10/Serialization/Arrays
-           Namespace Prefix = ns2
-         */
-
-        /**
-         * field for KeyValueOfstringdouble
-         * This was an Array!
-         */
-        protected KeyValueOfstringdouble_type0[] localKeyValueOfstringdouble;
-
-        /*  This tracker boolean wil be used to detect whether the user called the set method
-         *   for this attribute. It will be used to determine whether to include this field
-         *   in the serialized XML
-         */
-        protected boolean localKeyValueOfstringdoubleTracker = false;
-
-        public boolean isKeyValueOfstringdoubleSpecified() {
-            return localKeyValueOfstringdoubleTracker;
-        }
-
-        /**
-         * Auto generated getter method
-         * @return KeyValueOfstringdouble_type0[]
-         */
-        public KeyValueOfstringdouble_type0[] getKeyValueOfstringdouble() {
-            return localKeyValueOfstringdouble;
-        }
-
-        /**
-         * validate the array for KeyValueOfstringdouble
-         */
-        protected void validateKeyValueOfstringdouble(
-            KeyValueOfstringdouble_type0[] param) {
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param KeyValueOfstringdouble
-         */
-        public void setKeyValueOfstringdouble(
-            KeyValueOfstringdouble_type0[] param) {
-            validateKeyValueOfstringdouble(param);
-
-            localKeyValueOfstringdoubleTracker = param != null;
-
-            this.localKeyValueOfstringdouble = param;
-        }
-
-        /**
-         * Auto generated add method for the array for convenience
-         * @param param KeyValueOfstringdouble_type0
-         */
-        public void addKeyValueOfstringdouble(
-            KeyValueOfstringdouble_type0 param) {
-            if (localKeyValueOfstringdouble == null) {
-                localKeyValueOfstringdouble = new KeyValueOfstringdouble_type0[] {
-                        
-                    };
-            }
-
-            //update the setting tracker
-            localKeyValueOfstringdoubleTracker = true;
-
-            java.util.List list = org.apache.axis2.databinding.utils.ConverterUtil.toList(localKeyValueOfstringdouble);
-            list.add(param);
-            this.localKeyValueOfstringdouble = (KeyValueOfstringdouble_type0[]) list.toArray(new KeyValueOfstringdouble_type0[list.size()]);
-        }
-
-        /**
-         *
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
-        public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
-            return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
-                    this, parentQName));
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
-            serialize(parentQName, xmlWriter, false);
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
-
-            prefix = parentQName.getPrefix();
-            namespace = parentQName.getNamespaceURI();
-            writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
-
-            if (serializeType) {
-                java.lang.String namespacePrefix = registerPrefix(xmlWriter,
-                        "http://schemas.microsoft.com/2003/10/Serialization/Arrays");
-
-                if ((namespacePrefix != null) &&
-                        (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":ArrayOfKeyValueOfstringdouble",
-                        xmlWriter);
-                } else {
-                    writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "ArrayOfKeyValueOfstringdouble", xmlWriter);
-                }
-            }
-
-            if (localKeyValueOfstringdoubleTracker) {
-                if (localKeyValueOfstringdouble != null) {
-                    for (int i = 0; i < localKeyValueOfstringdouble.length;
-                            i++) {
-                        if (localKeyValueOfstringdouble[i] != null) {
-                            localKeyValueOfstringdouble[i].serialize(new javax.xml.namespace.QName(
-                                    "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
-                                    "KeyValueOfstringdouble"), xmlWriter);
-                        } else {
-                            // we don't have to do any thing since minOccures is zero
-                        }
-                    }
-                } else {
-                    throw new org.apache.axis2.databinding.ADBException(
-                        "KeyValueOfstringdouble cannot be null!!");
-                }
-            }
-
-            xmlWriter.writeEndElement();
-        }
-
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://schemas.microsoft.com/2003/10/Serialization/Arrays")) {
-                return "ns2";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
-        /**
-         * Utility method to write an element start tag.
-         */
-        private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-
-            if (writerPrefix != null) {
-                xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
-            } else {
-                if (namespace.length() == 0) {
-                    prefix = "";
-                } else if (prefix == null) {
-                    prefix = generatePrefix(namespace);
-                }
-
-                xmlWriter.writeStartElement(prefix, localPart, namespace);
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-        }
-
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
-        private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-
-            if (writerPrefix != null) {
-                xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
-            } else {
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-                xmlWriter.writeAttribute(prefix, namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-
-            if (attributePrefix == null) {
-                attributePrefix = registerPrefix(xmlWriter, attributeNamespace);
-            }
-
-            java.lang.String attributeValue;
-
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
-            }
-        }
-
-        /**
-         *  method to handle Qnames
-         */
-        private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String namespaceURI = qname.getNamespaceURI();
-
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-
-                if (prefix == null) {
-                    prefix = generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                }
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                        qname));
-            }
-        }
-
-        private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-
-                    namespaceURI = qnames[i].getNamespaceURI();
-
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                qnames[i]));
-                    }
-                }
-
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-        }
-
-        /**
-         * Register a namespace prefix
-         */
-        private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = xmlWriter.getPrefix(namespace);
-
-            if (prefix == null) {
-                prefix = generatePrefix(namespace);
-
-                javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
-
-                while (true) {
-                    java.lang.String uri = nsContext.getNamespaceURI(prefix);
-
-                    if ((uri == null) || (uri.length() == 0)) {
-                        break;
-                    }
-
-                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-                }
-
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-
-            return prefix;
-        }
-
-        /**
-         *  Factory class that keeps the parse method
-         */
-        public static class Factory {
-            private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
-
-            /**
-             * static method to create the object
-             * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
-             * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
-            public static ArrayOfKeyValueOfstringdouble parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
-                ArrayOfKeyValueOfstringdouble object = new ArrayOfKeyValueOfstringdouble();
-
-                int event;
-                javax.xml.namespace.QName currentQName = null;
-                java.lang.String nillableValue = null;
-                java.lang.String prefix = "";
-                java.lang.String namespaceuri = "";
-
-                try {
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    currentQName = reader.getName();
-
-                    if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                "type");
-
-                        if (fullTypeName != null) {
-                            java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
-                                nsPrefix = fullTypeName.substring(0,
-                                        fullTypeName.indexOf(":"));
-                            }
-
-                            nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
-
-                            java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
-
-                            if (!"ArrayOfKeyValueOfstringdouble".equals(type)) {
-                                //find namespace for the prefix
-                                java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
-
-                                return (ArrayOfKeyValueOfstringdouble) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
-                            }
-                        }
-                    }
-
-                    // Note all attributes that were handled. Used to differ normal attributes
-                    // from anyAttributes.
-                    java.util.Vector handledAttributes = new java.util.Vector();
-
-                    reader.next();
-
-                    java.util.ArrayList list1 = new java.util.ArrayList();
-
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    if (reader.isStartElement() &&
-                            new javax.xml.namespace.QName(
-                                "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
-                                "KeyValueOfstringdouble").equals(
-                                reader.getName())) {
-                        // Process the array and step past its final element's end.
-                        list1.add(KeyValueOfstringdouble_type0.Factory.parse(
-                                reader));
-
-                        //loop until we find a start element that is not part of this array
-                        boolean loopDone1 = false;
-
-                        while (!loopDone1) {
-                            // We should be at the end element, but make sure
-                            while (!reader.isEndElement())
-                                reader.next();
-
-                            // Step out of this element
-                            reader.next();
-
-                            // Step to next element event.
-                            while (!reader.isStartElement() &&
-                                    !reader.isEndElement())
-                                reader.next();
-
-                            if (reader.isEndElement()) {
-                                //two continuous end elements means we are exiting the xml structure
-                                loopDone1 = true;
-                            } else {
-                                if (new javax.xml.namespace.QName(
-                                            "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
-                                            "KeyValueOfstringdouble").equals(
-                                            reader.getName())) {
-                                    list1.add(KeyValueOfstringdouble_type0.Factory.parse(
-                                            reader));
-                                } else {
-                                    loopDone1 = true;
-                                }
-                            }
-                        }
-
-                        // call the converter utility  to convert and set the array
-                        object.setKeyValueOfstringdouble((KeyValueOfstringdouble_type0[]) org.apache.axis2.databinding.utils.ConverterUtil.convertToArray(
-                                KeyValueOfstringdouble_type0.class, list1));
-                    } // End of if for expected property start element
-
-                    else {
-                    }
-
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    if (reader.isStartElement()) {
-                        // 2 - A start element we are not expecting indicates a trailing invalid property
-                        throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
-                    }
-                } catch (javax.xml.stream.XMLStreamException e) {
-                    throw new java.lang.Exception(e);
-                }
-
-                return object;
-            }
-        } //end of factory class
-    }
-
     public static class ExtensionMapper {
         public static java.lang.Object getTypeObject(
             java.lang.String namespaceURI, java.lang.String typeName,
@@ -10262,12 +9859,6 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                 return MessageRequestOfUserModelNuLtuh91.Factory.parse(reader);
             }
 
-            if ("http://schemas.microsoft.com/2003/10/Serialization/Arrays".equals(
-                        namespaceURI) &&
-                    "KeyValueOfstringdouble_type0".equals(typeName)) {
-                return KeyValueOfstringdouble_type0.Factory.parse(reader);
-            }
-
             if ("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models".equals(
                         namespaceURI) && "UserModel".equals(typeName)) {
                 return UserModel.Factory.parse(reader);
@@ -10309,12 +9900,6 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             if ("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models".equals(
                         namespaceURI) && "PetModel".equals(typeName)) {
                 return PetModel.Factory.parse(reader);
-            }
-
-            if ("http://schemas.microsoft.com/2003/10/Serialization/Arrays".equals(
-                        namespaceURI) &&
-                    "ArrayOfKeyValueOfstringdouble".equals(typeName)) {
-                return ArrayOfKeyValueOfstringdouble.Factory.parse(reader);
             }
 
             throw new org.apache.axis2.databinding.ADBException(
@@ -12089,7 +11674,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         /* This type was generated from the piece of schema that had
            name = MessageRequestOfAnimalModelNuLtuh91
            Namespace URI = http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages
-           Namespace Prefix = ns5
+           Namespace Prefix = ns4
          */
 
         /**
@@ -12244,7 +11829,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -12574,7 +12159,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class MessageRequestOfAnimalModelNuLtuh91E implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages",
-                "MessageRequestOfAnimalModelNuLtuh91", "ns5");
+                "MessageRequestOfAnimalModelNuLtuh91", "ns4");
 
         /**
          * field for MessageRequestOfAnimalModelNuLtuh91
@@ -12644,7 +12229,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -13442,7 +13027,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class MessageResponseOfAnimalModelNuLtuh91E implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages",
-                "MessageResponseOfAnimalModelNuLtuh91", "ns5");
+                "MessageResponseOfAnimalModelNuLtuh91", "ns4");
 
         /**
          * field for MessageResponseOfAnimalModelNuLtuh91
@@ -13512,7 +13097,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -13802,7 +13387,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _charE implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "char", "ns4");
+                "char", "ns3");
 
         /**
          * field for _char
@@ -13869,7 +13454,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -14156,7 +13741,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class LoginResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "LoginResponse", "ns6");
+                "LoginResponse", "ns5");
 
         /**
          * field for LoginResult
@@ -14262,7 +13847,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -14575,487 +14160,9 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         } //end of factory class
     }
 
-    public static class KeyValueOfstringdouble_type0 implements org.apache.axis2.databinding.ADBBean {
-        /* This type was generated from the piece of schema that had
-           name = KeyValueOfstringdouble_type0
-           Namespace URI = http://schemas.microsoft.com/2003/10/Serialization/Arrays
-           Namespace Prefix = ns2
-         */
-
-        /**
-         * field for Key
-         */
-        protected java.lang.String localKey;
-
-        /**
-         * field for Value
-         */
-        protected double localValue;
-
-        /**
-         * Auto generated getter method
-         * @return java.lang.String
-         */
-        public java.lang.String getKey() {
-            return localKey;
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param Key
-         */
-        public void setKey(java.lang.String param) {
-            this.localKey = param;
-        }
-
-        /**
-         * Auto generated getter method
-         * @return double
-         */
-        public double getValue() {
-            return localValue;
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param Value
-         */
-        public void setValue(double param) {
-            this.localValue = param;
-        }
-
-        /**
-         *
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
-        public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
-            return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
-                    this, parentQName));
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
-            serialize(parentQName, xmlWriter, false);
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
-            java.lang.String prefix = null;
-            java.lang.String namespace = null;
-
-            prefix = parentQName.getPrefix();
-            namespace = parentQName.getNamespaceURI();
-            writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
-
-            if (serializeType) {
-                java.lang.String namespacePrefix = registerPrefix(xmlWriter,
-                        "http://schemas.microsoft.com/2003/10/Serialization/Arrays");
-
-                if ((namespacePrefix != null) &&
-                        (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":KeyValueOfstringdouble_type0",
-                        xmlWriter);
-                } else {
-                    writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "KeyValueOfstringdouble_type0", xmlWriter);
-                }
-            }
-
-            namespace = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
-            writeStartElement(null, namespace, "Key", xmlWriter);
-
-            if (localKey == null) {
-                // write the nil attribute
-                writeAttribute("xsi",
-                    "http://www.w3.org/2001/XMLSchema-instance", "nil", "1",
-                    xmlWriter);
-            } else {
-                xmlWriter.writeCharacters(localKey);
-            }
-
-            xmlWriter.writeEndElement();
-
-            namespace = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
-            writeStartElement(null, namespace, "Value", xmlWriter);
-
-            if (java.lang.Double.isNaN(localValue)) {
-                throw new org.apache.axis2.databinding.ADBException(
-                    "Value cannot be null!!");
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                        localValue));
-            }
-
-            xmlWriter.writeEndElement();
-
-            xmlWriter.writeEndElement();
-        }
-
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://schemas.microsoft.com/2003/10/Serialization/Arrays")) {
-                return "ns2";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
-        /**
-         * Utility method to write an element start tag.
-         */
-        private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-
-            if (writerPrefix != null) {
-                xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
-            } else {
-                if (namespace.length() == 0) {
-                    prefix = "";
-                } else if (prefix == null) {
-                    prefix = generatePrefix(namespace);
-                }
-
-                xmlWriter.writeStartElement(prefix, localPart, namespace);
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-        }
-
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
-        private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-
-            if (writerPrefix != null) {
-                xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
-            } else {
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-                xmlWriter.writeAttribute(prefix, namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-
-            if (attributePrefix == null) {
-                attributePrefix = registerPrefix(xmlWriter, attributeNamespace);
-            }
-
-            java.lang.String attributeValue;
-
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
-            }
-        }
-
-        /**
-         *  method to handle Qnames
-         */
-        private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String namespaceURI = qname.getNamespaceURI();
-
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-
-                if (prefix == null) {
-                    prefix = generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                }
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                        qname));
-            }
-        }
-
-        private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-
-                    namespaceURI = qnames[i].getNamespaceURI();
-
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                qnames[i]));
-                    }
-                }
-
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-        }
-
-        /**
-         * Register a namespace prefix
-         */
-        private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = xmlWriter.getPrefix(namespace);
-
-            if (prefix == null) {
-                prefix = generatePrefix(namespace);
-
-                javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
-
-                while (true) {
-                    java.lang.String uri = nsContext.getNamespaceURI(prefix);
-
-                    if ((uri == null) || (uri.length() == 0)) {
-                        break;
-                    }
-
-                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-                }
-
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-
-            return prefix;
-        }
-
-        /**
-         *  Factory class that keeps the parse method
-         */
-        public static class Factory {
-            private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
-
-            /**
-             * static method to create the object
-             * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
-             * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
-            public static KeyValueOfstringdouble_type0 parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
-                KeyValueOfstringdouble_type0 object = new KeyValueOfstringdouble_type0();
-
-                int event;
-                javax.xml.namespace.QName currentQName = null;
-                java.lang.String nillableValue = null;
-                java.lang.String prefix = "";
-                java.lang.String namespaceuri = "";
-
-                try {
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    currentQName = reader.getName();
-
-                    if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                "type");
-
-                        if (fullTypeName != null) {
-                            java.lang.String nsPrefix = null;
-
-                            if (fullTypeName.indexOf(":") > -1) {
-                                nsPrefix = fullTypeName.substring(0,
-                                        fullTypeName.indexOf(":"));
-                            }
-
-                            nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
-
-                            java.lang.String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
-
-                            if (!"KeyValueOfstringdouble_type0".equals(type)) {
-                                //find namespace for the prefix
-                                java.lang.String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
-
-                                return (KeyValueOfstringdouble_type0) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
-                            }
-                        }
-                    }
-
-                    // Note all attributes that were handled. Used to differ normal attributes
-                    // from anyAttributes.
-                    java.util.Vector handledAttributes = new java.util.Vector();
-
-                    reader.next();
-
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    if (reader.isStartElement() &&
-                            new javax.xml.namespace.QName(
-                                "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
-                                "Key").equals(reader.getName())) {
-                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                "nil");
-
-                        if (!"true".equals(nillableValue) &&
-                                !"1".equals(nillableValue)) {
-                            java.lang.String content = reader.getElementText();
-
-                            object.setKey(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    content));
-                        } else {
-                            reader.getElementText(); // throw away text nodes if any.
-                        }
-
-                        reader.next();
-                    } // End of if for expected property start element
-
-                    else {
-                        // 1 - A start element we are not expecting indicates an invalid parameter was passed
-                        throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
-                    }
-
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    if (reader.isStartElement() &&
-                            new javax.xml.namespace.QName(
-                                "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
-                                "Value").equals(reader.getName())) {
-                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                "nil");
-
-                        if ("true".equals(nillableValue) ||
-                                "1".equals(nillableValue)) {
-                            throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "Value" + "  cannot be null");
-                        }
-
-                        java.lang.String content = reader.getElementText();
-
-                        object.setValue(org.apache.axis2.databinding.utils.ConverterUtil.convertToDouble(
-                                content));
-
-                        reader.next();
-                    } // End of if for expected property start element
-
-                    else {
-                        // 1 - A start element we are not expecting indicates an invalid parameter was passed
-                        throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
-                    }
-
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    if (reader.isStartElement()) {
-                        // 2 - A start element we are not expecting indicates a trailing invalid property
-                        throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
-                    }
-                } catch (javax.xml.stream.XMLStreamException e) {
-                    throw new java.lang.Exception(e);
-                }
-
-                return object;
-            }
-        } //end of factory class
-    }
-
     public static class UnsignedByte implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "unsignedByte", "ns4");
+                "unsignedByte", "ns3");
 
         /**
          * field for UnsignedByte
@@ -15144,7 +14251,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -15434,7 +14541,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class Login implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "Login", "ns6");
+                "Login", "ns5");
 
         /**
          * field for Value
@@ -15540,7 +14647,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -15854,7 +14961,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class QName implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "QName", "ns4");
+                "QName", "ns3");
 
         /**
          * field for QName
@@ -15941,7 +15048,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -16239,7 +15346,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class Gender implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Enums",
-                "Gender", "ns3");
+                "Gender", "ns2");
         private static java.util.HashMap _table_ = new java.util.HashMap();
         public static final java.lang.String _Male = org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                 "Male");
@@ -16340,7 +15447,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Enums")) {
-                return "ns3";
+                return "ns2";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -16676,15 +15783,15 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         protected boolean localAnimalTracker = false;
 
         /**
-         * field for CurrentGamePoints
+         * field for EatPoints
          */
-        protected ArrayOfKeyValueOfstringdouble localCurrentGamePoints;
+        protected int localEatPoints;
 
         /*  This tracker boolean wil be used to detect whether the user called the set method
          *   for this attribute. It will be used to determine whether to include this field
          *   in the serialized XML
          */
-        protected boolean localCurrentGamePointsTracker = false;
+        protected boolean localEatPointsTracker = false;
 
         /**
          * field for Gender
@@ -16730,6 +15837,28 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
          */
         protected boolean localOwnerTracker = false;
 
+        /**
+         * field for PlayPoints
+         */
+        protected int localPlayPoints;
+
+        /*  This tracker boolean wil be used to detect whether the user called the set method
+         *   for this attribute. It will be used to determine whether to include this field
+         *   in the serialized XML
+         */
+        protected boolean localPlayPointsTracker = false;
+
+        /**
+         * field for SleepPoints
+         */
+        protected int localSleepPoints;
+
+        /*  This tracker boolean wil be used to detect whether the user called the set method
+         *   for this attribute. It will be used to determine whether to include this field
+         *   in the serialized XML
+         */
+        protected boolean localSleepPointsTracker = false;
+
         public boolean isAnimalSpecified() {
             return localAnimalTracker;
         }
@@ -16752,26 +15881,27 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             this.localAnimal = param;
         }
 
-        public boolean isCurrentGamePointsSpecified() {
-            return localCurrentGamePointsTracker;
+        public boolean isEatPointsSpecified() {
+            return localEatPointsTracker;
         }
 
         /**
          * Auto generated getter method
-         * @return ArrayOfKeyValueOfstringdouble
+         * @return int
          */
-        public ArrayOfKeyValueOfstringdouble getCurrentGamePoints() {
-            return localCurrentGamePoints;
+        public int getEatPoints() {
+            return localEatPoints;
         }
 
         /**
          * Auto generated setter method
-         * @param param CurrentGamePoints
+         * @param param EatPoints
          */
-        public void setCurrentGamePoints(ArrayOfKeyValueOfstringdouble param) {
-            localCurrentGamePointsTracker = true;
+        public void setEatPoints(int param) {
+            // setting primitive attribute tracker to true
+            localEatPointsTracker = param != java.lang.Integer.MIN_VALUE;
 
-            this.localCurrentGamePoints = param;
+            this.localEatPoints = param;
         }
 
         public boolean isGenderSpecified() {
@@ -16860,6 +15990,52 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             localOwnerTracker = true;
 
             this.localOwner = param;
+        }
+
+        public boolean isPlayPointsSpecified() {
+            return localPlayPointsTracker;
+        }
+
+        /**
+         * Auto generated getter method
+         * @return int
+         */
+        public int getPlayPoints() {
+            return localPlayPoints;
+        }
+
+        /**
+         * Auto generated setter method
+         * @param param PlayPoints
+         */
+        public void setPlayPoints(int param) {
+            // setting primitive attribute tracker to true
+            localPlayPointsTracker = param != java.lang.Integer.MIN_VALUE;
+
+            this.localPlayPoints = param;
+        }
+
+        public boolean isSleepPointsSpecified() {
+            return localSleepPointsTracker;
+        }
+
+        /**
+         * Auto generated getter method
+         * @return int
+         */
+        public int getSleepPoints() {
+            return localSleepPoints;
+        }
+
+        /**
+         * Auto generated setter method
+         * @param param SleepPoints
+         */
+        public void setSleepPoints(int param) {
+            // setting primitive attribute tracker to true
+            localSleepPointsTracker = param != java.lang.Integer.MIN_VALUE;
+
+            this.localSleepPoints = param;
         }
 
         /**
@@ -16975,22 +16151,19 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                 }
             }
 
-            if (localCurrentGamePointsTracker) {
-                if (localCurrentGamePoints == null) {
-                    writeStartElement(null,
-                        "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models",
-                        "CurrentGamePoints", xmlWriter);
+            if (localEatPointsTracker) {
+                namespace = "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models";
+                writeStartElement(null, namespace, "EatPoints", xmlWriter);
 
-                    // write the nil attribute
-                    writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "nil",
-                        "1", xmlWriter);
-                    xmlWriter.writeEndElement();
+                if (localEatPoints == java.lang.Integer.MIN_VALUE) {
+                    throw new org.apache.axis2.databinding.ADBException(
+                        "EatPoints cannot be null!!");
                 } else {
-                    localCurrentGamePoints.serialize(new javax.xml.namespace.QName(
-                            "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models",
-                            "CurrentGamePoints"), xmlWriter);
+                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                            localEatPoints));
                 }
+
+                xmlWriter.writeEndElement();
             }
 
             if (localGenderTracker) {
@@ -17054,6 +16227,36 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                             "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models",
                             "Owner"), xmlWriter);
                 }
+            }
+
+            if (localPlayPointsTracker) {
+                namespace = "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models";
+                writeStartElement(null, namespace, "PlayPoints", xmlWriter);
+
+                if (localPlayPoints == java.lang.Integer.MIN_VALUE) {
+                    throw new org.apache.axis2.databinding.ADBException(
+                        "PlayPoints cannot be null!!");
+                } else {
+                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                            localPlayPoints));
+                }
+
+                xmlWriter.writeEndElement();
+            }
+
+            if (localSleepPointsTracker) {
+                namespace = "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models";
+                writeStartElement(null, namespace, "SleepPoints", xmlWriter);
+
+                if (localSleepPoints == java.lang.Integer.MIN_VALUE) {
+                    throw new org.apache.axis2.databinding.ADBException(
+                        "SleepPoints cannot be null!!");
+                } else {
+                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                            localSleepPoints));
+                }
+
+                xmlWriter.writeEndElement();
             }
 
             xmlWriter.writeEndElement();
@@ -17446,25 +16649,27 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
                                 "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models",
-                                "CurrentGamePoints").equals(reader.getName())) {
+                                "EatPoints").equals(reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
-                            object.setCurrentGamePoints(null);
-                            reader.next();
-
-                            reader.next();
-                        } else {
-                            object.setCurrentGamePoints(ArrayOfKeyValueOfstringdouble.Factory.parse(
-                                    reader));
-
-                            reader.next();
+                            throw new org.apache.axis2.databinding.ADBException(
+                                "The element: " + "EatPoints" +
+                                "  cannot be null");
                         }
+
+                        java.lang.String content = reader.getElementText();
+
+                        object.setEatPoints(org.apache.axis2.databinding.utils.ConverterUtil.convertToInt(
+                                content));
+
+                        reader.next();
                     } // End of if for expected property start element
 
                     else {
+                        object.setEatPoints(java.lang.Integer.MIN_VALUE);
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -17563,6 +16768,64 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
                     while (!reader.isStartElement() && !reader.isEndElement())
                         reader.next();
 
+                    if (reader.isStartElement() &&
+                            new javax.xml.namespace.QName(
+                                "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models",
+                                "PlayPoints").equals(reader.getName())) {
+                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                                "nil");
+
+                        if ("true".equals(nillableValue) ||
+                                "1".equals(nillableValue)) {
+                            throw new org.apache.axis2.databinding.ADBException(
+                                "The element: " + "PlayPoints" +
+                                "  cannot be null");
+                        }
+
+                        java.lang.String content = reader.getElementText();
+
+                        object.setPlayPoints(org.apache.axis2.databinding.utils.ConverterUtil.convertToInt(
+                                content));
+
+                        reader.next();
+                    } // End of if for expected property start element
+
+                    else {
+                        object.setPlayPoints(java.lang.Integer.MIN_VALUE);
+                    }
+
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
+
+                    if (reader.isStartElement() &&
+                            new javax.xml.namespace.QName(
+                                "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Models",
+                                "SleepPoints").equals(reader.getName())) {
+                        nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
+                                "nil");
+
+                        if ("true".equals(nillableValue) ||
+                                "1".equals(nillableValue)) {
+                            throw new org.apache.axis2.databinding.ADBException(
+                                "The element: " + "SleepPoints" +
+                                "  cannot be null");
+                        }
+
+                        java.lang.String content = reader.getElementText();
+
+                        object.setSleepPoints(org.apache.axis2.databinding.utils.ConverterUtil.convertToInt(
+                                content));
+
+                        reader.next();
+                    } // End of if for expected property start element
+
+                    else {
+                        object.setSleepPoints(java.lang.Integer.MIN_VALUE);
+                    }
+
+                    while (!reader.isStartElement() && !reader.isEndElement())
+                        reader.next();
+
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
@@ -17579,7 +16842,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class UnsignedLong implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "unsignedLong", "ns4");
+                "unsignedLong", "ns3");
 
         /**
          * field for UnsignedLong
@@ -17668,7 +16931,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -17958,7 +17221,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class GenderE implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Enums",
-                "Gender", "ns3");
+                "Gender", "ns2");
 
         /**
          * field for Gender
@@ -18025,7 +17288,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Enums")) {
-                return "ns3";
+                return "ns2";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -19671,7 +18934,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _int implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "int", "ns4");
+                "int", "ns3");
 
         /**
          * field for _int
@@ -19758,7 +19021,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -20051,7 +19314,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _double implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "double", "ns4");
+                "double", "ns3");
 
         /**
          * field for _double
@@ -20138,7 +19401,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -20431,7 +19694,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class Decimal implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "decimal", "ns4");
+                "decimal", "ns3");
 
         /**
          * field for Decimal
@@ -20519,7 +19782,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -20808,7 +20071,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class LoginMessageRequestE implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages",
-                "LoginMessageRequest", "ns5");
+                "LoginMessageRequest", "ns4");
 
         /**
          * field for LoginMessageRequest
@@ -20876,7 +20139,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -21168,7 +20431,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         /* This type was generated from the piece of schema that had
            name = MessageRequestOfUserModelNuLtuh91
            Namespace URI = http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages
-           Namespace Prefix = ns5
+           Namespace Prefix = ns4
          */
 
         /**
@@ -21323,7 +20586,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -21653,7 +20916,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class LoginMessageResponseE implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages",
-                "LoginMessageResponse", "ns5");
+                "LoginMessageResponse", "ns4");
 
         /**
          * field for LoginMessageResponse
@@ -21721,7 +20984,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -22011,7 +21274,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class Guid implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "guid", "ns4");
+                "guid", "ns3");
 
         /**
          * field for Guid
@@ -22107,7 +21370,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -22408,7 +21671,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class String implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "string", "ns4");
+                "string", "ns3");
 
         /**
          * field for String
@@ -22495,7 +21758,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -22784,7 +22047,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class UpdateAnimalResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "UpdateAnimalResponse", "ns6");
+                "UpdateAnimalResponse", "ns5");
 
         /**
          * field for UpdateAnimalResult
@@ -22892,7 +22155,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -23207,7 +22470,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class DateTime implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "dateTime", "ns4");
+                "dateTime", "ns3");
 
         /**
          * field for DateTime
@@ -23295,7 +22558,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -23585,7 +22848,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _byte implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "byte", "ns4");
+                "byte", "ns3");
 
         /**
          * field for _byte
@@ -23672,7 +22935,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -24900,7 +24163,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _boolean implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "boolean", "ns4");
+                "boolean", "ns3");
 
         /**
          * field for _boolean
@@ -24987,7 +24250,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -25275,368 +24538,9 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         } //end of factory class
     }
 
-    public static class ArrayOfKeyValueOfstringdoubleE implements org.apache.axis2.databinding.ADBBean {
-        public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/Arrays",
-                "ArrayOfKeyValueOfstringdouble", "ns2");
-
-        /**
-         * field for ArrayOfKeyValueOfstringdouble
-         */
-        protected ArrayOfKeyValueOfstringdouble localArrayOfKeyValueOfstringdouble;
-
-        /**
-         * Auto generated getter method
-         * @return ArrayOfKeyValueOfstringdouble
-         */
-        public ArrayOfKeyValueOfstringdouble getArrayOfKeyValueOfstringdouble() {
-            return localArrayOfKeyValueOfstringdouble;
-        }
-
-        /**
-         * Auto generated setter method
-         * @param param ArrayOfKeyValueOfstringdouble
-         */
-        public void setArrayOfKeyValueOfstringdouble(
-            ArrayOfKeyValueOfstringdouble param) {
-            this.localArrayOfKeyValueOfstringdouble = param;
-        }
-
-        /**
-         *
-         * @param parentQName
-         * @param factory
-         * @return org.apache.axiom.om.OMElement
-         */
-        public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
-            return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
-                    this, MY_QNAME));
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
-            serialize(parentQName, xmlWriter, false);
-        }
-
-        public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
-                org.apache.axis2.databinding.ADBException {
-            //We can safely assume an element has only one type associated with it
-            if (localArrayOfKeyValueOfstringdouble == null) {
-                java.lang.String namespace = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
-                writeStartElement(null, namespace,
-                    "ArrayOfKeyValueOfstringdouble", xmlWriter);
-
-                // write the nil attribute
-                writeAttribute("xsi",
-                    "http://www.w3.org/2001/XMLSchema-instance", "nil", "1",
-                    xmlWriter);
-                xmlWriter.writeEndElement();
-            } else {
-                localArrayOfKeyValueOfstringdouble.serialize(MY_QNAME, xmlWriter);
-            }
-        }
-
-        private static java.lang.String generatePrefix(
-            java.lang.String namespace) {
-            if (namespace.equals(
-                        "http://schemas.microsoft.com/2003/10/Serialization/Arrays")) {
-                return "ns2";
-            }
-
-            return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-        }
-
-        /**
-         * Utility method to write an element start tag.
-         */
-        private void writeStartElement(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-
-            if (writerPrefix != null) {
-                xmlWriter.writeStartElement(writerPrefix, localPart, namespace);
-            } else {
-                if (namespace.length() == 0) {
-                    prefix = "";
-                } else if (prefix == null) {
-                    prefix = generatePrefix(namespace);
-                }
-
-                xmlWriter.writeStartElement(prefix, localPart, namespace);
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-        }
-
-        /**
-         * Util method to write an attribute with the ns prefix
-         */
-        private void writeAttribute(java.lang.String prefix,
-            java.lang.String namespace, java.lang.String attName,
-            java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String writerPrefix = xmlWriter.getPrefix(namespace);
-
-            if (writerPrefix != null) {
-                xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
-            } else {
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-                xmlWriter.writeAttribute(prefix, namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeAttribute(java.lang.String namespace,
-            java.lang.String attName, java.lang.String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attValue);
-            } else {
-                xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
-            }
-        }
-
-        /**
-         * Util method to write an attribute without the ns prefix
-         */
-        private void writeQNameAttribute(java.lang.String namespace,
-            java.lang.String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String attributeNamespace = qname.getNamespaceURI();
-            java.lang.String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
-
-            if (attributePrefix == null) {
-                attributePrefix = registerPrefix(xmlWriter, attributeNamespace);
-            }
-
-            java.lang.String attributeValue;
-
-            if (attributePrefix.trim().length() > 0) {
-                attributeValue = attributePrefix + ":" + qname.getLocalPart();
-            } else {
-                attributeValue = qname.getLocalPart();
-            }
-
-            if (namespace.equals("")) {
-                xmlWriter.writeAttribute(attName, attributeValue);
-            } else {
-                registerPrefix(xmlWriter, namespace);
-                xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
-            }
-        }
-
-        /**
-         *  method to handle Qnames
-         */
-        private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String namespaceURI = qname.getNamespaceURI();
-
-            if (namespaceURI != null) {
-                java.lang.String prefix = xmlWriter.getPrefix(namespaceURI);
-
-                if (prefix == null) {
-                    prefix = generatePrefix(namespaceURI);
-                    xmlWriter.writeNamespace(prefix, namespaceURI);
-                    xmlWriter.setPrefix(prefix, namespaceURI);
-                }
-
-                if (prefix.trim().length() > 0) {
-                    xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                } else {
-                    // i.e this is the default namespace
-                    xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
-                }
-            } else {
-                xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                        qname));
-            }
-        }
-
-        private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
-            if (qnames != null) {
-                // we have to store this data until last moment since it is not possible to write any
-                // namespace data after writing the charactor data
-                java.lang.StringBuffer stringToWrite = new java.lang.StringBuffer();
-                java.lang.String namespaceURI = null;
-                java.lang.String prefix = null;
-
-                for (int i = 0; i < qnames.length; i++) {
-                    if (i > 0) {
-                        stringToWrite.append(" ");
-                    }
-
-                    namespaceURI = qnames[i].getNamespaceURI();
-
-                    if (namespaceURI != null) {
-                        prefix = xmlWriter.getPrefix(namespaceURI);
-
-                        if ((prefix == null) || (prefix.length() == 0)) {
-                            prefix = generatePrefix(namespaceURI);
-                            xmlWriter.writeNamespace(prefix, namespaceURI);
-                            xmlWriter.setPrefix(prefix, namespaceURI);
-                        }
-
-                        if (prefix.trim().length() > 0) {
-                            stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        } else {
-                            stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
-                        }
-                    } else {
-                        stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                qnames[i]));
-                    }
-                }
-
-                xmlWriter.writeCharacters(stringToWrite.toString());
-            }
-        }
-
-        /**
-         * Register a namespace prefix
-         */
-        private java.lang.String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            java.lang.String namespace)
-            throws javax.xml.stream.XMLStreamException {
-            java.lang.String prefix = xmlWriter.getPrefix(namespace);
-
-            if (prefix == null) {
-                prefix = generatePrefix(namespace);
-
-                javax.xml.namespace.NamespaceContext nsContext = xmlWriter.getNamespaceContext();
-
-                while (true) {
-                    java.lang.String uri = nsContext.getNamespaceURI(prefix);
-
-                    if ((uri == null) || (uri.length() == 0)) {
-                        break;
-                    }
-
-                    prefix = org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
-                }
-
-                xmlWriter.writeNamespace(prefix, namespace);
-                xmlWriter.setPrefix(prefix, namespace);
-            }
-
-            return prefix;
-        }
-
-        /**
-         *  Factory class that keeps the parse method
-         */
-        public static class Factory {
-            private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
-
-            /**
-             * static method to create the object
-             * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
-             * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
-             */
-            public static ArrayOfKeyValueOfstringdoubleE parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws java.lang.Exception {
-                ArrayOfKeyValueOfstringdoubleE object = new ArrayOfKeyValueOfstringdoubleE();
-
-                int event;
-                javax.xml.namespace.QName currentQName = null;
-                java.lang.String nillableValue = null;
-                java.lang.String prefix = "";
-                java.lang.String namespaceuri = "";
-
-                try {
-                    while (!reader.isStartElement() && !reader.isEndElement())
-                        reader.next();
-
-                    currentQName = reader.getName();
-
-                    nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                            "nil");
-
-                    if ("true".equals(nillableValue) ||
-                            "1".equals(nillableValue)) {
-                        // Skip the element and report the null value.  It cannot have subelements.
-                        while (!reader.isEndElement())
-                            reader.next();
-
-                        return object;
-                    }
-
-                    // Note all attributes that were handled. Used to differ normal attributes
-                    // from anyAttributes.
-                    java.util.Vector handledAttributes = new java.util.Vector();
-
-                    while (!reader.isEndElement()) {
-                        if (reader.isStartElement()) {
-                            if (reader.isStartElement() &&
-                                    new javax.xml.namespace.QName(
-                                        "http://schemas.microsoft.com/2003/10/Serialization/Arrays",
-                                        "ArrayOfKeyValueOfstringdouble").equals(
-                                        reader.getName())) {
-                                nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
-                                        "nil");
-
-                                if ("true".equals(nillableValue) ||
-                                        "1".equals(nillableValue)) {
-                                    object.setArrayOfKeyValueOfstringdouble(null);
-                                    reader.next();
-                                } else {
-                                    object.setArrayOfKeyValueOfstringdouble(ArrayOfKeyValueOfstringdouble.Factory.parse(
-                                            reader));
-                                }
-                            } // End of if for expected property start element
-
-                            else {
-                                // 3 - A start element we are not expecting indicates an invalid parameter was passed
-                                throw new org.apache.axis2.databinding.ADBException(
-                                    "Unexpected subelement " +
-                                    reader.getName());
-                            }
-                        } else {
-                            reader.next();
-                        }
-                    } // end of while loop
-                } catch (javax.xml.stream.XMLStreamException e) {
-                    throw new java.lang.Exception(e);
-                }
-
-                return object;
-            }
-        } //end of factory class
-    }
-
     public static class Base64Binary implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "base64Binary", "ns4");
+                "base64Binary", "ns3");
 
         /**
          * field for Base64Binary
@@ -25731,7 +24635,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -26022,7 +24926,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         /* This type was generated from the piece of schema that had
            name = MessageResponseOfUserModelNuLtuh91
            Namespace URI = http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages
-           Namespace Prefix = ns5
+           Namespace Prefix = ns4
          */
 
         /**
@@ -26182,7 +25086,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -26523,7 +25427,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class DeleteAnimal implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "DeleteAnimal", "ns6");
+                "DeleteAnimal", "ns5");
 
         /**
          * field for Value
@@ -26629,7 +25533,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -27454,7 +26358,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class MessageRequestOfUserModelNuLtuh91E implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages",
-                "MessageRequestOfUserModelNuLtuh91", "ns5");
+                "MessageRequestOfUserModelNuLtuh91", "ns4");
 
         /**
          * field for MessageRequestOfUserModelNuLtuh91
@@ -27524,7 +26428,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -28170,7 +27074,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class UpdateAnimal implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "UpdateAnimal", "ns6");
+                "UpdateAnimal", "ns5");
 
         /**
          * field for Value
@@ -28276,7 +27180,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -28591,7 +27495,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class CreateAnimalResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "CreateAnimalResponse", "ns6");
+                "CreateAnimalResponse", "ns5");
 
         /**
          * field for CreateAnimalResult
@@ -28699,7 +27603,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -29727,7 +28631,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class UpdateUser implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "UpdateUser", "ns6");
+                "UpdateUser", "ns5");
 
         /**
          * field for Value
@@ -29833,7 +28737,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -30148,7 +29052,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class UpdateUserResponse implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "UpdateUserResponse", "ns6");
+                "UpdateUserResponse", "ns5");
 
         /**
          * field for UpdateUserResult
@@ -30256,7 +29160,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -30571,7 +29475,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class AnyURI implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "anyURI", "ns4");
+                "anyURI", "ns3");
 
         /**
          * field for AnyURI
@@ -30659,7 +29563,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -30948,7 +29852,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _float implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "float", "ns4");
+                "float", "ns3");
 
         /**
          * field for _float
@@ -31035,7 +29939,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -31328,7 +30232,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class UnsignedInt implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "unsignedInt", "ns4");
+                "unsignedInt", "ns3");
 
         /**
          * field for UnsignedInt
@@ -31417,7 +30321,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -31707,7 +30611,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class _long implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "long", "ns4");
+                "long", "ns3");
 
         /**
          * field for _long
@@ -31794,7 +30698,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -32445,7 +31349,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class CreateAnimal implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "CreateAnimal", "ns6");
+                "CreateAnimal", "ns5");
 
         /**
          * field for Value
@@ -32551,7 +31455,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -32866,7 +31770,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class Duration implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "duration", "ns4");
+                "duration", "ns3");
 
         /**
          * field for Duration
@@ -32964,7 +31868,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -33266,7 +32170,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class GuidE implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "guid", "ns4");
+                "guid", "ns3");
 
         /**
          * field for Guid
@@ -33333,7 +32237,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -33620,7 +32524,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class CreateUser implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://tempuri.org/",
-                "CreateUser", "ns6");
+                "CreateUser", "ns5");
 
         /**
          * field for Value
@@ -33726,7 +32630,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         private static java.lang.String generatePrefix(
             java.lang.String namespace) {
             if (namespace.equals("http://tempuri.org/")) {
-                return "ns6";
+                return "ns5";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -34041,7 +32945,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
 
     public static class DurationE implements org.apache.axis2.databinding.ADBBean {
         public static final javax.xml.namespace.QName MY_QNAME = new javax.xml.namespace.QName("http://schemas.microsoft.com/2003/10/Serialization/",
-                "duration", "ns4");
+                "duration", "ns3");
 
         /**
          * field for Duration
@@ -34108,7 +33012,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.microsoft.com/2003/10/Serialization/")) {
-                return "ns4";
+                return "ns3";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();
@@ -34399,7 +33303,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
         /* This type was generated from the piece of schema that had
            name = LoginMessageResponse
            Namespace URI = http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages
-           Namespace Prefix = ns5
+           Namespace Prefix = ns4
          */
 
         /**
@@ -34602,7 +33506,7 @@ public class SOAPServiceStub extends org.apache.axis2.client.Stub {
             java.lang.String namespace) {
             if (namespace.equals(
                         "http://schemas.datacontract.org/2004/07/Tamagotchi.Common.Messages")) {
-                return "ns5";
+                return "ns4";
             }
 
             return org.apache.axis2.databinding.utils.BeanUtil.getUniquePrefix();

@@ -28,4 +28,5 @@
 
     <string name="store_title">Welcome to the store</string>
     <string name="store_subtitle">Animals available</string>
+    <string name="no_data_available">No data available</string>
 </resources>

@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class WebServiceFactory {
 
     val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:39052/api/") // awdwdw https://www.google.com/api/
+            .baseUrl("http://rest9052.azurewebsites.net/api/") // http://rest9052.azurewebsites.net/api/
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

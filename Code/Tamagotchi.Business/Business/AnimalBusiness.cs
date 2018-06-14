@@ -10,6 +10,7 @@ using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
 using System;
+using System.Linq;
 
 namespace Tamagotchi.Business.Business
 {
@@ -17,16 +18,31 @@ namespace Tamagotchi.Business.Business
     {
         // private readonly StorageService _storageService;
         private readonly ILogDAL _logDal;
-
+        private readonly IUserDAL userDAL;
         public AnimalBusiness(
             IAnimalDAL baseDal,
             ILogDAL logDal,
-            IMapper mapper// ,
+            IMapper mapper,
+            IUserDAL userDal
             // StorageService storageService
         ) : base(baseDal, mapper)
         {
             // _storageService = storageService;
             _logDal = logDal;
+            userDAL = userDal;
+        }
+
+        public override ICollection<AnimalModel> GetAll()
+        {
+            var models =  base.GetAll().ToList();
+            var results = models.Select(model =>
+            {
+                var user = userDAL.Get(Guid.Parse(model.User.Id));
+                model.User = Mapper.Map<UserModel>(user);
+                return model;
+            });
+
+            return results.ToArray();
         }
 
 

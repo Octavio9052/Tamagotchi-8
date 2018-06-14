@@ -14,6 +14,7 @@ import com.outlook.octavio.armenta.tamagotchi9052.models.Animal
 import com.outlook.octavio.armenta.tamagotchi9052.models.Login
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.MainActivity
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.StoreActivity
+import com.outlook.octavio.armenta.tamagotchi9052.views.activities.Token
 import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginRequest
 import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginResponse
 import com.outlook.octavio.armenta.tamagotchi9052.web.services.LoginService
@@ -21,6 +22,7 @@ import com.outlook.octavio.armenta.tamagotchi9052.web.services.WebServiceFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 
 class LoginFragment : Fragment() {
@@ -68,7 +70,11 @@ class LoginFragment : Fragment() {
 
     }
 
-    fun doLogin() {
+    fun doLogin() {/*
+        @JvmStatic
+        fun main(args: Array<String>) {
+            Token.getInstance()
+        }*/
         val intent = Intent(activity, StoreActivity::class.java)
         startActivity(intent)
     }

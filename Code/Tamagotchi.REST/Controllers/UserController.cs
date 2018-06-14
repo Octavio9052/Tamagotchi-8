@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Tamagotchi.Business.Business;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Messages;
@@ -11,6 +12,7 @@ using Tamagotchi.Common.Models;
 
 namespace Tamagotchi.REST.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UserController : BaseController<UserModel, IUserBusiness>
     {
         private readonly ILoginBusiness _loginBusiness;

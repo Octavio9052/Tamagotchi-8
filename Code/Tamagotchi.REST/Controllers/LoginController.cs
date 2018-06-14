@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Tamagotchi.Business.Interfaces;
 using Tamagotchi.Common.Messages;
 
 namespace Tamagotchi.REST.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
         private readonly ILoginBusiness _loginBusiness;
