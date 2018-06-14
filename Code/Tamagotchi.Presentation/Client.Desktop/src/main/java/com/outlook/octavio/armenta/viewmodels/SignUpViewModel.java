@@ -38,7 +38,7 @@ public class SignUpViewModel implements ViewModel {
     }
 
     private void doSignUp() {
-        this.authService.login(email.get(), password.get());
+        this.authService.signUp(username.get(),email.get(), password.get());
     }
 
     public String getUsername() {

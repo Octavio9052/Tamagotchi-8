@@ -13,7 +13,7 @@
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
          </padding>
-         <Label fx:id="usernameLabel" maxHeight="1.7976931348623157E308" text="Username"/>
+         <Label fx:id="usernameLabel" maxHeight="3.7976931348623157E308" text="Current Username"/>
          <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
          <Button fx:id="logOutButton" mnemonicParsing="false" text="Log Out"/>
       </HBox>

@@ -114,6 +114,7 @@ public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Init
 
             this.openFileChooser(filter, file -> {
                 viewModel.idleImageProperty().setValue(new Image(file.toURI().toString()));
+                viewModel.idleImageUriProperty().setValue(file.getAbsolutePath());
             });
         });
         viewModel.subscribe(PLAY_BROWSE, (s, objects) -> {
@@ -121,6 +122,7 @@ public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Init
 
             this.openFileChooser(filter, file -> {
                 viewModel.playImageProperty().setValue(new Image(file.toURI().toString()));
+                viewModel.playImageUriProperty().setValue(file.getAbsolutePath());
             });
         });
         viewModel.subscribe(SLEEP_BROWSE, (s, objects) -> {
@@ -128,6 +130,7 @@ public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Init
 
             this.openFileChooser(filter, file -> {
                 viewModel.sleepImageProperty().setValue(new Image(file.toURI().toString()));
+                viewModel.sleepImageUriProperty().setValue(file.getAbsolutePath());
             });
         });
         viewModel.subscribe(EAT_BROWSE, (s, objects) -> {
@@ -135,6 +138,7 @@ public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Init
 
             this.openFileChooser(filter, file -> {
                 viewModel.eatImageProperty().setValue(new Image(file.toURI().toString()));
+                viewModel.eatImageUriProperty().setValue(file.getAbsolutePath());
             });
         });
         viewModel.subscribe(PACKAGE_BROWSE, (s, objects) -> {
@@ -143,6 +147,7 @@ public class AnimalDetailsView implements FxmlView<AnimalDetailsViewModel>, Init
             this.openFileChooser(filter, file -> {
                 viewModel.packagePropertyProperty().setValue(file);
                 viewModel.packageFieldProperty().setValue(file.getName());
+                viewModel.packageUriProperty().setValue(file.getAbsolutePath());
             });
         });
     }
