@@ -41,7 +41,6 @@ namespace Tamagotchi.Business.Business
             animal.IsActive = true;
 
             var entity = Mapper.Map<Animal>(animal);
-
             entity = BaseDal.Create(entity);
             BaseDal.Save();
 

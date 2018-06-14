@@ -6,9 +6,7 @@ import com.outlook.octavio.armenta.tamagotchi9052.web.messages.MessageResponse
 import retrofit2.Call
 import retrofit2.http.*
 
-/**
- * @author J. Pichardo
- */
+
 interface AnimalService {
 
     @GET("animal/{id}")
