@@ -36,7 +36,10 @@ namespace Tamagotchi.SOAP
                 if (!IsEntityValid(value.Body, out error) && string.IsNullOrEmpty(userId))
                     throw new Exception(error);
 
-                value.Body.User.Id = userId;
+                value.Body.User = new UserModel
+                {
+                    Id = userId
+                };
 
                 messageResponse.Body = await _animalBusiness.Create(value.Body);
             }
