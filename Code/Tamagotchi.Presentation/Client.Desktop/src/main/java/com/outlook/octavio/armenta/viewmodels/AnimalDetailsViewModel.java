@@ -14,6 +14,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import javafx.scene.image.Image;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.axis2.Constants;
+import org.apache.axis2.client.Options;
+import org.apache.axis2.client.ServiceClient;
+import org.apache.axis2.transport.http.HTTPConstants;
 
 import java.io.*;
 import java.util.HashMap;
@@ -135,8 +139,17 @@ public class AnimalDetailsViewModel implements ViewModel {
         // TODO: UPLOAD ANIMAL TO SOAP
         try {
             SOAPServiceStub soapServiceStub = new SOAPServiceStub();
+            ServiceClient client = soapServiceStub._getServiceClient();
+            Options opt = client.getOptions();
+            opt.setProperty(Constants.Configuration.MESSAGE_TYPE,HTTPConstants.MEDIA_TYPE_APPLICATION_ECHO_XML);
+            opt.setProperty(Constants.Configuration.DISABLE_SOAP_ACTION,Boolean.TRUE);
+            opt.setProperty(HTTPConstants.CHUNKED, Constants.VALUE_FALSE);
+            client.setOptions(opt);
+
+            soapServiceStub._setServiceClient(client);
 
             SOAPServiceStub.MessageRequestOfAnimalModelNuLtuh91 mRequestAnimal = new SOAPServiceStub.MessageRequestOfAnimalModelNuLtuh91();
+
             SOAPServiceStub.AnimalModel animalModel = new SOAPServiceStub.AnimalModel();
 
             animalModel.setName(getNameField());
@@ -168,6 +181,7 @@ public class AnimalDetailsViewModel implements ViewModel {
             createAnimal.setValue(mRequestAnimal);
 
             SOAPServiceStub.CreateAnimalResponse caResponse = soapServiceStub.createAnimal(createAnimal);
+            System.out.println("New animal: " + caResponse.getCreateAnimalResult().getBody().getId());
 
             System.out.println("Error: " + caResponse.getCreateAnimalResult().getError());
 
@@ -182,9 +196,12 @@ public class AnimalDetailsViewModel implements ViewModel {
      */
     private static String encodeFileToBase64Binary(String path){
         String encodedFile = null;
+        StringBuilder strBuilder = new StringBuilder(path);
+        strBuilder.insert(strBuilder.lastIndexOf("."), 2);
+        File file = new File(strBuilder.toString());
         try {
-            FileInputStream fileInputStreamReader = new FileInputStream(path);
-            byte[] bytes = new byte[(int)path.length()];
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int)file.length()];
             fileInputStreamReader.read(bytes);
             encodedFile = new String(Base64.encodeBase64(bytes), "UTF-8");
         } catch (FileNotFoundException e) {
