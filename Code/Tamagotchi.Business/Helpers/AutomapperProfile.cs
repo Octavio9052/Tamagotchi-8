@@ -39,7 +39,9 @@ namespace Tamagotchi.Business.Helpers
 
             CreateMap<Animal, AnimalModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()))
-                .ForSourceMember(source => source.UserId, opt => opt.Ignore());
+                .ForSourceMember(source => source.UserId, opt => opt.Ignore())
+                .ForMember(dest => dest.User,
+                    opts => opts.MapFrom(source => source.User ?? new User {Id = source.UserId}));
 
             CreateMap<Login, LoginModel>(MemberList.Source)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
@@ -48,8 +50,6 @@ namespace Tamagotchi.Business.Helpers
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
             #endregion
-
-            
         }
     }
 }
