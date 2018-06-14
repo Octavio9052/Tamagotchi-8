@@ -29,7 +29,7 @@ class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         val myDataSet = arrayListOf<Animal>()
 
-        val webServiceFactory = WebServiceFactory().getService(Animal::class.java)
+        // val webServiceFactory = WebServiceFactory().getService(Animal::class.java)
         // Call<List<Animal>> calls =
 
 
@@ -75,18 +75,6 @@ class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         when (item.itemId) {
             R.id.nav_first_fragment -> {
                 startActivity(intent.setClass(this, MainActivity::class.java))
-            }
-            R.id.nav_second_fragment -> {
-                Toast.makeText(this, "PET TWO", Toast.LENGTH_LONG).show()
-            }
-            R.id.nav_third_fragment -> {
-                Toast.makeText(this, "PET THREE", Toast.LENGTH_LONG).show()
-            }
-            R.id.nav_fourth_fragment -> {
-                Toast.makeText(this, "PET FOURTH", Toast.LENGTH_LONG).show()
-            }
-            R.id.nav_send -> {
-                Toast.makeText(this, "OPEN STORE", Toast.LENGTH_LONG).show()
             }
         }
 

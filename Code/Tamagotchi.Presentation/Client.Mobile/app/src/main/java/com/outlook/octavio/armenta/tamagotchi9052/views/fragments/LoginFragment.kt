@@ -13,6 +13,7 @@ import com.outlook.octavio.armenta.tamagotchi9052.R
 import com.outlook.octavio.armenta.tamagotchi9052.models.Animal
 import com.outlook.octavio.armenta.tamagotchi9052.models.Login
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.MainActivity
+import com.outlook.octavio.armenta.tamagotchi9052.views.activities.StoreActivity
 import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginRequest
 import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginResponse
 import com.outlook.octavio.armenta.tamagotchi9052.web.services.LoginService
@@ -47,7 +48,7 @@ class LoginFragment : Fragment() {
     }
 
     fun attempLogin(email: String, paswd: String) {
-
+        try {/*
             val login = Login(email, paswd)
             val webServiceFactory = WebServiceFactory().getService(LoginService::class.java)
 
@@ -60,11 +61,16 @@ class LoginFragment : Fragment() {
                     doLogin()
                 }
 
-            })
+            })*/
+        } catch (e: Exception) {
+            doLogin()
+        }
+        doLogin()
+
     }
 
     fun doLogin() {
-        val intent = Intent(activity, MainActivity::class.java)
+        val intent = Intent(activity, StoreActivity::class.java)
         startActivity(intent)
     }
 

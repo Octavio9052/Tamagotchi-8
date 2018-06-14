@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.outlook.octavio.armenta.tamagotchi9052.R
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.MainActivity
+import com.outlook.octavio.armenta.tamagotchi9052.web.services.LoginService
+import com.outlook.octavio.armenta.tamagotchi9052.web.services.WebServiceFactory
 
 class RegisterFragment : Fragment() {
 
@@ -28,19 +31,19 @@ class RegisterFragment : Fragment() {
         // petImageState = view.findViewById(R.id.state_image_pet)
 
         view.findViewById<Button>(R.id.register_create_account).setOnClickListener {
-            //view.
+            val pass = view.findViewById<EditText>(R.id.register_input_password).text.toString()
+            val email = view.findViewById<EditText>(R.id.register_input_email).text.toString()
+            val name = view.findViewById<EditText>(R.id.register_input_name).text.toString()
 
-
-            if(true) {
-                doRegister()
-            } else {
-                Toast.makeText(context, "Passwords doesn't match", Toast.LENGTH_LONG).show()
-            }
+            doRegister(email, pass, name)
         }
     }
 
-    fun doRegister() {
-        attempLogin()
+
+    fun doRegister(email: String, pass: String, name: String) {
+        // val webServiceFactory = WebServiceFactory().getService(::class.java)
+
+        // val repos = webServiceFactory?.
     }
 
     fun attempLogin() {
