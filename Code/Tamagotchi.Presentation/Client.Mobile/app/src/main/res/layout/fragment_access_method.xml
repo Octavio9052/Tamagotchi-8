@@ -8,25 +8,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="30dp"
         android:layout_marginBottom="100dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/access_sign_in"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_login"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/button_login" />
 
         <Button
             android:id="@+id/access_sign_up"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_create_account"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/button_create_account" />
 
     </LinearLayout>
 

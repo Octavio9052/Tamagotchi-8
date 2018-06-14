@@ -2,19 +2,17 @@ package com.outlook.octavio.armenta.tamagotchi9052.views.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
-import kotlinx.android.synthetic.main.fragment_pet.view.*
-
-import com.bumptech.glide.Glide
 import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
-
+import com.bumptech.glide.Glide
 import com.outlook.octavio.armenta.tamagotchi9052.R
+import kotlinx.android.synthetic.main.fragment_pet.view.*
 
 class PetFragment : Fragment() {
 
@@ -54,7 +52,7 @@ class PetFragment : Fragment() {
         }
         view.findViewById<Button>(R.id.pet_action_eat).setOnClickListener {
             setPetEatAnimation()
-            changeFoodBar( (Math.random() * 50).toFloat())
+            changeFoodBar((Math.random() * 50).toFloat())
 
             changeFunBar(((Math.random() * -50).toFloat()))
 
@@ -115,21 +113,21 @@ class PetFragment : Fragment() {
     // com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
     fun changeFoodBar(number: Float) {
         val foodBar = view!!.findViewById<IconRoundCornerProgressBar>(R.id.pet_health_bar)
-        if( foodBar.progress + number > maxFood) foodBar.progress = 100f
+        if (foodBar.progress + number > maxFood) foodBar.progress = 100f
         else foodBar.progress += number
     }
 
     // TODO: Remove/change after service
     fun changeFunBar(number: Float) {
         val funBar = view!!.findViewById<IconRoundCornerProgressBar>(R.id.pet_fun_bar)
-        if( funBar.progress + number > maxFood) funBar.progress = 100f
+        if (funBar.progress + number > maxFood) funBar.progress = 100f
         else funBar.progress += number
     }
 
     // TODO: Remove/change after service
     fun changeRestBar(number: Float) {
         val restBar = view!!.findViewById<IconRoundCornerProgressBar>(R.id.pet_rest_bar)
-        if( restBar.progress + number > maxFood) restBar.progress = 100f
+        if (restBar.progress + number > maxFood) restBar.progress = 100f
         else restBar.progress += number
     }
 }

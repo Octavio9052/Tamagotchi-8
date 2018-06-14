@@ -34,10 +34,9 @@ class RegisterFragment : Fragment() {
     }
 
     fun attempLogin() {
-        if(checkCredential()){
+        if (checkCredential()) {
             doLogin()
-        }
-        else {
+        } else {
 
         }
     }

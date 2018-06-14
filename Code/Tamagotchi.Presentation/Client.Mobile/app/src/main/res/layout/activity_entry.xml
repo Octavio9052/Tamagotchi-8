@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    android:orientation="vertical"
     android:gravity="center_vertical"
+    android:orientation="vertical"
     tools:context=".views.activities.EntryActivity">
 
     <TextView
-        android:layout_margin="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="15dp"
         android:text="@string/welcome"
         android:textColor="@color/colorBackground"
         android:textSize="30sp"
@@ -28,7 +28,6 @@
     <FrameLayout
         android:id="@+id/login_or_register_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </FrameLayout>
+        android:layout_height="wrap_content"></FrameLayout>
 
 </LinearLayout>

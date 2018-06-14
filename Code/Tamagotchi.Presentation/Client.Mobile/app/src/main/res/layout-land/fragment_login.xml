@@ -9,37 +9,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="30dp"
         android:layout_marginBottom="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
+
         <EditText
             android:id="@+id/login_input_email"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorHint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/request_email"
             android:inputType="textEmailAddress"
+            android:nextFocusDown="@id/login_input_password"
             android:nextFocusForward="@id/login_input_password"
-            android:nextFocusDown="@id/login_input_password"/>
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorHint" />
 
         <EditText
             android:id="@+id/login_input_password"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorHint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/request_password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorHint" />
 
         <Button
             android:id="@+id/login_button_sign_in"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_login"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/button_login" />
     </LinearLayout>
 
 </FrameLayout>
