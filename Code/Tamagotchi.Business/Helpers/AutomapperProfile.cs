@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
@@ -13,38 +9,36 @@ namespace Tamagotchi.Business.Helpers
     {
         public AutomapperProfile()
         {
-
             CreateMap<PetModel, Pet>().ReverseMap();
 
             CreateMap<LogModel, Log>().ReverseMap();
 
             CreateMap<UserModel, User>()
-                .ForMember(x => x.Id,
-                           opt => opt.MapFrom(y => Guid.Parse(y.Id)));
+                .ForMember(dest => dest.Id,
+                    opt => opt.MapFrom(source => Guid.Parse(source.Id)));
 
             CreateMap<AnimalModel, Animal>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => Guid.Parse(y.Id)));
-
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(source => Guid.Parse(source.User.Id)));
 
             CreateMap<LoginModel, Login>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => Guid.Parse(y.Id)));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
 
             CreateMap<SessionModel, Session>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => Guid.Parse(y.Id)));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
 
             CreateMap<User, UserModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
             CreateMap<Animal, AnimalModel>(MemberList.Source)
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
             CreateMap<Login, LoginModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
 
             CreateMap<Session, SessionModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-
-       
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
+            
         }
     }
 }
