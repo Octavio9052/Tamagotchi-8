@@ -98,6 +98,10 @@
       <Project>{b6955fbd-af07-453b-93e6-c7ad3e293442}</Project>
       <Name>Tamagotchi.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tamagotchi.SDK\Tamagotchi.SDK.csproj">
+      <Project>{5438066c-31bd-4684-8371-4f6df0c0599b}</Project>
+      <Name>Tamagotchi.SDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -21,7 +21,7 @@ namespace Tamagotchi.Business.Services
             try
             {
                 // Create the CloudBlobClient, endpoint for the storage account. (blob)
-                CloudBlobClient cloudBlobClient = _storageAccount.CreateCloudBlobClient();
+                var cloudBlobClient = _storageAccount.CreateCloudBlobClient();
 
                 // Create a container called 'quickstartblobs' and append a GUID value to it to make the name unique. 
                 _cloudImageContainer = cloudBlobClient.GetContainerReference("images");
@@ -40,7 +40,7 @@ namespace Tamagotchi.Business.Services
         {
             try
             {
-                CloudBlockBlob cloudBlockBlob = _cloudImageContainer.GetBlockBlobReference(filename);
+                var cloudBlockBlob = _cloudImageContainer.GetBlockBlobReference(filename);
                 cloudBlockBlob.Properties.ContentType = "image";
                 await cloudBlockBlob.UploadFromStreamAsync(stream);
                 return cloudBlockBlob.Uri.ToString();
@@ -55,7 +55,7 @@ namespace Tamagotchi.Business.Services
         {
             try
             {
-                CloudBlockBlob cloudBlockBlob = _cloudFilesContainer.GetBlockBlobReference(filename);
+                var cloudBlockBlob = _cloudFilesContainer.GetBlockBlobReference(filename);
                 cloudBlockBlob.Properties.ContentType = "file";
                 await cloudBlockBlob.UploadFromStreamAsync(stream);
                 return cloudBlockBlob.Uri.ToString();

@@ -40,50 +40,37 @@ namespace Tamagotchi.Business.Business
         {
             animal.IsActive = true;
 
-            animal = await base.Create(animal);
+            var entity = Mapper.Map<Animal>(animal);
 
-            animal.PacketUri = await SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile);
-
-            animal.IsReady = true;
-
-            var animalModel = await base.Update(animal);
-
+            entity = BaseDal.Create(entity);
             BaseDal.Save();
 
-            return animalModel;
+            entity.PacketUri = await SaveFile(animal.PacketUri, $"{entity.Id}_packet", animal.PacketFile);
+            entity.IsReady = true;
+
+            entity = BaseDal.Update(entity);
+            BaseDal.Save();
+            
+            return Mapper.Map<AnimalModel>(entity);
         }
 
         public override async Task<AnimalModel> Update(AnimalModel animal)
+        
         {
-            animal.IsReady = false;
-
-            await Task.WhenAll(
-                SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile)
-                    .ContinueWith(async task => animal.PacketUri = await task),
-                SaveFile(animal.IdleUri, $"{animal.Id}_idle", animal.IdleImage)
-                    .ContinueWith(async task => animal.IdleUri = await task),
-                SaveFile(animal.PlayUri, $"{animal.Id}_play", animal.PlayImage)
-                    .ContinueWith(async task => animal.PlayUri = await task),
-                SaveFile(animal.EatUri, $"{animal.Id}_eat", animal.EatImage)
-                    .ContinueWith(async task => animal.EatUri = await task),
-                SaveFile(animal.SleepUri, $"{animal.Id}_sleep", animal.SleepImage)
-                    .ContinueWith(async task => animal.SleepUri = await task)
-            );
-
+            animal.PacketUri = await SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile);
             animal.IsReady = true;
 
-            var animalModel = await base.Update(animal);
-
+            var entity = BaseDal.Update(Mapper.Map<Animal>(animal));
             BaseDal.Save();
 
-            return animalModel;
+            return Mapper.Map<AnimalModel>(entity);
         }
 
         public override async void Delete(string id)
         {
             var animal = base.Get(id);
 
-            if (animal == null) throw new BusinessLayerExceptions("Animal Doesn't Exists");
+            if (animal == null) throw new BusinessLayerExceptions("AnimalImpl Doesn't Exists");
 
             animal.IsActive = false;
 
@@ -94,9 +81,9 @@ namespace Tamagotchi.Business.Business
         {
             var animal = base.Get(id);
 
-            if (animal == null) throw new BusinessLayerExceptions("Animal Doesn't Exists");
+            if (animal == null) throw new BusinessLayerExceptions("AnimalImpl Doesn't Exists");
 
-            if (!animal.IsActive) throw new BusinessLayerExceptions("Animal is desactivated");
+            if (!animal.IsActive) throw new BusinessLayerExceptions("AnimalImpl is desactivated");
 
             animal.Logs = LoadLogs(animal.Id);
 
@@ -108,8 +95,8 @@ namespace Tamagotchi.Business.Business
             var extension = Path.GetExtension(originalFileName);
 
             var fileName = $"{newFileName}.{extension}";
-            byte[] data = System.Convert.FromBase64String(base64Content);
-            MemoryStream ms = new MemoryStream(data);
+            var data = System.Convert.FromBase64String(base64Content);
+            var ms = new MemoryStream(data);
             await _storageService.ProcessFileFromStream(ms, fileName);
 
             return fileName;
