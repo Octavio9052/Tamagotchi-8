@@ -50,7 +50,7 @@ class LoginFragment : Fragment() {
 
             val login = Login(email, paswd)
             val webServiceFactory = WebServiceFactory().getService(LoginService::class.java)
-        
+
             val repos = webServiceFactory?.Login(LoginRequest(login, ""))?.enqueue(object : Callback<LoginResponse> {
                 override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
                     Toast.makeText(context, "Wrong credentials", Toast.LENGTH_LONG).show()

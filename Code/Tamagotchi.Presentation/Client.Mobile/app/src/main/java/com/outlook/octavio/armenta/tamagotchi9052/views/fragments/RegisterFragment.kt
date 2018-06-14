@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import com.outlook.octavio.armenta.tamagotchi9052.R
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.MainActivity
 
@@ -26,7 +27,16 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // petImageState = view.findViewById(R.id.state_image_pet)
 
-        view.findViewById<Button>(R.id.register_create_account).setOnClickListener { doRegister() }
+        view.findViewById<Button>(R.id.register_create_account).setOnClickListener {
+            //view.
+
+
+            if(true) {
+                doRegister()
+            } else {
+                Toast.makeText(context, "Passwords doesn't match", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun doRegister() {
@@ -48,6 +58,10 @@ class RegisterFragment : Fragment() {
     fun doLogin() {
         val intent = Intent(activity, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    fun passwordsMatch() {
+
     }
 
     fun getToken() {
