@@ -54,16 +54,16 @@ class LoginFragment : Fragment() {
 
             val repos = webServiceFactory?.Login(LoginRequest(login, ""))?.enqueue(object : Callback<LoginResponse> {
                 override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                    Toast.makeText(context, "Wrong credentials", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Couldn't reach server", Toast.LENGTH_LONG).show()
                 }
 
                 override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
-                    doLogin()
+                    if(response?.raw()!!.isSuccessful) doLogin() else Toast.makeText(context, "Wrong credentials", Toast.LENGTH_LONG).show()
                 }
 
             })
         } catch (e: Exception) {
-            println("Error" + e)
+
         }
 
     }

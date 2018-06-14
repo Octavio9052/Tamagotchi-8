@@ -9,11 +9,13 @@ import { AnimalService } from '../shared/services/AnimalService';
 export class DashboardComponent implements OnInit {
 
   animalsData;
+  animalsData2;
 
   constructor(private readonly animalService: AnimalService) { }
 
   ngOnInit() {
     this.animalsData = this.animalService.getAnimalCards();
+    this.animalsData2 = this.animalService.getTest();
   }
 
 }

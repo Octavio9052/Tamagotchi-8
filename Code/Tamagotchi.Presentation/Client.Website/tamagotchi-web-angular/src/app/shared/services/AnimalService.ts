@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 
 import { animalsMock } from '../mocks/animalsMock';
+import { AnimalModel } from '../models/AnimalModel';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AnimalService {
 
     private animals: any[] = [];
+    private allAnimals: AnimalModel[] = [];
 
-    constructor() { 
+    private apiAnimals = "http://localhost:65200/api/animal";
+
+    public test;
+
+    constructor(private http: HttpClient) { 
     }
 
     public pullAnimals(): void {
@@ -19,6 +26,9 @@ export class AnimalService {
         CALL TO REST SERVICE
 
          */
+        this.test = this.http.get(this.apiAnimals);
+
+
         
         this.animals = responseAnimals;
     }
@@ -28,6 +38,11 @@ export class AnimalService {
 
 
         return this.animals;
+    }
+
+    public getTest() {
+        this.pullAnimals();
+        return this.test;
     }
 
     public getAnimalCards() {

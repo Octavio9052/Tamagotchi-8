@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.outlook.octavio.armenta.tamagotchi9052.R
 import com.outlook.octavio.armenta.tamagotchi9052.models.Login
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.MainActivity
+import com.outlook.octavio.armenta.tamagotchi9052.views.activities.StoreActivity
 import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginRequest
 import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginResponse
 import com.outlook.octavio.armenta.tamagotchi9052.web.services.LoginService
@@ -54,11 +55,12 @@ class RegisterFragment : Fragment() {
 
         val repos = webServiceFactory?.Register(LoginRequest(login, name))?.enqueue(object : Callback<LoginResponse> {
             override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
-                Toast.makeText(context, "Failed attemp", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Couldn't reach server", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
-                doLogin()
+                if(response?.raw()!!.isSuccessful) doLogin() else Toast.makeText(context, "Couldn't create user", Toast.LENGTH_LONG).show()
+                println(response)
             }
         })
     }
@@ -76,7 +78,7 @@ class RegisterFragment : Fragment() {
     }
 
     fun doLogin() {
-        val intent = Intent(activity, MainActivity::class.java)
+        val intent = Intent(activity, StoreActivity::class.java)
         startActivity(intent)
     }
 

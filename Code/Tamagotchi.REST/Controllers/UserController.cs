@@ -22,6 +22,8 @@ namespace Tamagotchi.REST.Controllers
             _loginBusiness = loginBusiness;
         }
 
+        [Route("api/User/Create")]
+        [HttpPost]
         public IHttpActionResult Create(LoginMessageRequest request)
         {
             var response = new LoginMessageResponse();

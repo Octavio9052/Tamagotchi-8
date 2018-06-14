@@ -25,7 +25,7 @@ export class AnimalDetailsService {
 
         // TODO: Change log model to contain the same structure?
         var tableData: AnimalDetails[] = [
-            { username: 'Montreal', nickname: 'Morris', date: '2018/06/05', time: '14:05', message: singleAnimal.log[0] },
+            { username: 'Montreal', nickname: 'Morris', date: '2018/06/05', time: '14:05', message: "" },
             { username: 'Seudonimo', nickname: 'Nacho', date: '2018/06/05', time: '16:05', message: 'The dog was playing' },
             { username: 'Anivdelarev', nickname: 'Queso', date: '2018/06/05', time: '18:15', message: 'The fox was eating' },
             { username: 'Santiago', nickname: 'Salmon', date: '2018/06/05', time: '14:05', message: 'The cat was playing' },

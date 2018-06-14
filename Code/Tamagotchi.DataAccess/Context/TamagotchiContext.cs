@@ -5,7 +5,7 @@ namespace Tamagotchi.DataAccess.Context
 {
     public class TamagotchiContext : DbContext
     {
-        public TamagotchiContext() : base("name=Tamagotchi9052ConnString")
+        public TamagotchiContext() : base("name=TamagotchiRelational")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<TamagotchiContext>());
         }

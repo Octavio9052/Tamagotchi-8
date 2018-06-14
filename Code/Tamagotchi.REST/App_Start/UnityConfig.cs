@@ -51,8 +51,8 @@ namespace Tamagotchi.REST
 
             config.AssertConfigurationIsValid();
 
-            container.RegisterType<TamagotchiMongoClient>(ConfigurationManager
-                .ConnectionStrings["Tamagotchi9052ConnString"].ConnectionString);
+            container.RegisterInstance<TamagotchiMongoClient>( new TamagotchiMongoClient(ConfigurationManager
+                .ConnectionStrings["Tamagotchi9052MongoDBConnString"].ConnectionString));
                 
             container.RegisterInstance<IMapper>(config.CreateMapper());
 
