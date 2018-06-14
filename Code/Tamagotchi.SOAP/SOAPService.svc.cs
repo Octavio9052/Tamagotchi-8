@@ -100,7 +100,7 @@ namespace Tamagotchi.SOAP
             }
             catch (Exception e)
             {
-                messageResponse.Error = "An Error has ocurred." + e;
+                messageResponse.Error = "An Error has ocurred. " + e;
             }
 
             return messageResponse;
