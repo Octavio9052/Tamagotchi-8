@@ -48,7 +48,7 @@ class LoginFragment : Fragment() {
     }
 
     fun attempLogin(email: String, paswd: String) {
-        try {/*
+        try {
             val login = Login(email, paswd)
             val webServiceFactory = WebServiceFactory().getService(LoginService::class.java)
 
@@ -61,11 +61,10 @@ class LoginFragment : Fragment() {
                     doLogin()
                 }
 
-            })*/
+            })
         } catch (e: Exception) {
-            doLogin()
+            println("Error" + e)
         }
-        doLogin()
 
     }
 

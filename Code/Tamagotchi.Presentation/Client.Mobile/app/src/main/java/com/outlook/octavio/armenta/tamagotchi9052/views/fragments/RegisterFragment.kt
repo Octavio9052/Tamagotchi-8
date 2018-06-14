@@ -10,9 +10,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.outlook.octavio.armenta.tamagotchi9052.R
+import com.outlook.octavio.armenta.tamagotchi9052.models.Login
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.MainActivity
+import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginRequest
+import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginResponse
 import com.outlook.octavio.armenta.tamagotchi9052.web.services.LoginService
 import com.outlook.octavio.armenta.tamagotchi9052.web.services.WebServiceFactory
+
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RegisterFragment : Fragment() {
 
@@ -41,9 +48,19 @@ class RegisterFragment : Fragment() {
 
 
     fun doRegister(email: String, pass: String, name: String) {
-        // val webServiceFactory = WebServiceFactory().getService(::class.java)
+        val login = Login(email, pass)
 
-        // val repos = webServiceFactory?.
+        val webServiceFactory = WebServiceFactory().getService(LoginService::class.java)
+
+        val repos = webServiceFactory?.Register(LoginRequest(login, name))?.enqueue(object : Callback<LoginResponse> {
+            override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
+                Toast.makeText(context, "Failed attemp", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
+                doLogin()
+            }
+        })
     }
 
     fun attempLogin() {

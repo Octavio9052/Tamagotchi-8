@@ -29,9 +29,9 @@ namespace Tamagotchi.REST.Controllers
                 else
                     return Unauthorized();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return InternalServerError(new Exception("An error has occured"));
+                return InternalServerError(new Exception("An error has occured " + e));
             }
 
             return Ok(messageResponse);
