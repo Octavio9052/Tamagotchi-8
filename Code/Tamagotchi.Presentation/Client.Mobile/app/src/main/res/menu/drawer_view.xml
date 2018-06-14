@@ -9,8 +9,9 @@
         </menu>
     </item>
 
-    <group android:checkableBehavior="single"
-        android:id="@+id/user_owned_pets">
+    <group
+        android:id="@+id/user_owned_pets"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_first_fragment"
             android:icon="@drawable/ic_pets_black_24dp"
@@ -30,6 +31,6 @@
     </group>
 </menu>
 
-<!--
-tools:showIn="navigation_view">
--->
+    <!--
+    tools:showIn="navigation_view">
+    -->

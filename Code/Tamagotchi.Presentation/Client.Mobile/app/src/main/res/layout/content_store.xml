@@ -4,40 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".views.activities.StoreActivity"
     tools:showIn="@layout/app_bar_store">
 
     <TextView
-        android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/store_title"
+        android:layout_marginTop="10dp"
         android:gravity="center"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:text="@string/store_title"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
         android:text="@string/store_subtitle"
         android:textSize="15sp"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
 
     <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="10dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
         android:id="@+id/my_recycler_view"
-        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:scrollbars="vertical" />
 
 </LinearLayout>
