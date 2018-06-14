@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Security.Policy;
-using Tamagotchi.Common.Enums;
 using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Core.GameRules;
 using Tamagotchi.Core.PlayStatus;
@@ -19,10 +19,13 @@ namespace Tamagotchi.Business.Services
         public const string AssemblyErrorMessage = "Dll failed to load.";
         public const string DomainName = "New Domain";
 
-
-
-        private List<string> _errorMessages;
+        private readonly List<string> _errorMessages;
         private AssemblyLoaderService _loader;
+
+        public AssemblyExecuterService(List<string> errorMessages)
+        {
+            _errorMessages = errorMessages;
+        }
 
 
         public GameStatus ExecuteAssembly(string url, Action action, Pet pet)
@@ -44,31 +47,20 @@ namespace Tamagotchi.Business.Services
 
         private string GetMethod(Action action)
         {
-            var methods = typeof(IBaseGameRules).GetMethods();
-            if (action == Action.Init)
+            switch (action)
             {
-                return "Init";
+                case Action.Eat:
+                    return "Eat";
+                case Action.Sleep:
+                    return "Sleep";
+                case Action.Play:
+                    return "Play";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(action), action, null);
             }
-
-            if (action == Action.Eat)
-            {
-                return "Eat";
-            }
-
-            if (action == Action.Sleep)
-            {
-                return "Sleep";
-            }
-
-            if (action == Action.Play)
-            {
-                return "Play";
-            }
-
-            return null;
         }
 
-        private byte[] Load(string url)
+        private static byte[] Load(string url)
         {
             using (var client = new WebClient())
             {
@@ -93,7 +85,7 @@ namespace Tamagotchi.Business.Services
                 });
 
             _loader = (AssemblyLoaderService)newDomainName.CreateInstanceAndUnwrap(
-                Assembly.GetExecutingAssembly().FullName, typeof(AssemblyLoaderService).FullName);
+                Assembly.GetExecutingAssembly().FullName, typeof(AssemblyLoaderService).FullName ?? throw new Exception());
             return newDomainName;
         }
 
@@ -108,15 +100,7 @@ namespace Tamagotchi.Business.Services
         {
             var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-            foreach (var assembly in loadedAssemblies)
-            {
-                if (assembly.FullName == args.Name)
-                {
-                    return assembly;
-                }
-            }
-
-            return null;
+            return loadedAssemblies.FirstOrDefault(assembly => assembly.FullName == args.Name);
         }
 
         private GameStatus WorkClass(Pet pet, string method)
@@ -139,15 +123,6 @@ namespace Tamagotchi.Business.Services
             {
                 Nickname = "Test Data"
             };
-            testPet.CurrentGamePoints["MaxFood"] = 100;
-            testPet.CurrentGamePoints["MaxFun"] = 100;
-            testPet.CurrentGamePoints["MaxRest"] = 100;
-            testPet.CurrentGamePoints["Rest"] = 40;
-            testPet.CurrentGamePoints["Food"] = 60;
-            testPet.CurrentGamePoints["Fun"] = 80;
-            testPet.DateCreated = DateTime.Today;
-            testPet.LastModified = DateTime.Now;
-
 
             return testPet;
         }
@@ -168,7 +143,7 @@ namespace Tamagotchi.Business.Services
 
         }
 
-        private void UnloadAssembly(AppDomain domain)
+        private static void UnloadAssembly(AppDomain domain)
         {
             AppDomain.Unload(domain);
         }
