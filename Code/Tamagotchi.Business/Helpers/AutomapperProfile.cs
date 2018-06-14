@@ -21,7 +21,8 @@ namespace Tamagotchi.Business.Helpers
 
             CreateMap<AnimalModel, Animal>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(source => Guid.Parse(source.User.Id)));
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(source => Guid.Parse(source.User.Id)))
+                .ForMember(dest => dest.User, opt => opt.Ignore());
 
             CreateMap<LoginModel, Login>(MemberList.Destination)
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
