@@ -12,8 +12,10 @@ import android.widget.Toast
 import com.outlook.octavio.armenta.tamagotchi9052.R
 import com.outlook.octavio.armenta.tamagotchi9052.models.Animal
 import com.outlook.octavio.armenta.tamagotchi9052.views.adapters.StoreAdapter
+import com.outlook.octavio.armenta.tamagotchi9052.web.services.WebServiceFactory
 import kotlinx.android.synthetic.main.activity_store.*
 import kotlinx.android.synthetic.main.app_bar_store.*
+import retrofit2.Call
 
 class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -26,6 +28,13 @@ class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setContentView(R.layout.activity_store)
 
         val myDataSet = arrayListOf<Animal>()
+
+        val webServiceFactory = WebServiceFactory().getService(Animal::class.java)
+        // Call<List<Animal>> calls =
+
+
+
+        /*
         val animal = Animal("Fox", "Likes to read and sleep", "http://i.imgur.com/NNfje00.gif")
         val anima2 = Animal("Dog", "Likes to play and eat", "http://i.imgur.com/sumGNLN.gif")
         val anima3 = Animal("Turtle", "Likes to rest and play", "http://i.imgur.com/chU36ua.gif")
@@ -33,7 +42,7 @@ class StoreActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         myDataSet.add(animal)
         myDataSet.add(anima2)
         myDataSet.add(anima3)
-        myDataSet.add(anima4)
+        myDataSet.add(anima4)*/
         // getAnimalsAvailable
 
         viewManager = LinearLayoutManager(this)

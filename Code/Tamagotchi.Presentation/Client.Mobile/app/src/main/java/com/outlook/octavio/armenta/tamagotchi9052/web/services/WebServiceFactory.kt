@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 class WebServiceFactory {
 
     val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:3000")
+            .baseUrl("http://localhost:39052") // awdwdw https://www.google.com/api/
             .build()
 
     fun <T> getService(serviceType: Class<T>): T? {

@@ -1,4 +1,4 @@
 package com.outlook.octavio.armenta.tamagotchi9052.models
 
-class Login {
+data class Login(val email: String, val password: String) {
 }

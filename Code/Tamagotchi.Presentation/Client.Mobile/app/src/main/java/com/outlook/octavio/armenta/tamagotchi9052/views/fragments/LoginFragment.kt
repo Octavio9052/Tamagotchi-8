@@ -7,8 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import com.outlook.octavio.armenta.tamagotchi9052.R
+import com.outlook.octavio.armenta.tamagotchi9052.models.Animal
+import com.outlook.octavio.armenta.tamagotchi9052.models.Login
 import com.outlook.octavio.armenta.tamagotchi9052.views.activities.MainActivity
+import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginRequest
+import com.outlook.octavio.armenta.tamagotchi9052.web.messages.LoginResponse
+import com.outlook.octavio.armenta.tamagotchi9052.web.services.LoginService
+import com.outlook.octavio.armenta.tamagotchi9052.web.services.WebServiceFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginFragment : Fragment() {
@@ -28,19 +39,28 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // petImageState = view.findViewById(R.id.state_image_pet)
 
-        view.findViewById<Button>(R.id.login_button_sign_in).setOnClickListener { attempLogin() }
-    }
-
-    fun attempLogin() {
-        if (checkCredential()) {
-            doLogin()
-        } else {
-
+        view.findViewById<Button>(R.id.login_button_sign_in).setOnClickListener {
+            val email = view.findViewById<EditText>(R.id.login_input_email).text.toString()
+            val paswd = view.findViewById<EditText>(R.id.login_input_password).text.toString()
+            attempLogin(email, paswd)
         }
     }
 
-    fun checkCredential(): Boolean {
-        return true
+    fun attempLogin(email: String, paswd: String) {
+
+            val login = Login(email, paswd)
+            val webServiceFactory = WebServiceFactory().getService(LoginService::class.java)
+        
+            val repos = webServiceFactory?.Login(LoginRequest(login, ""))?.enqueue(object : Callback<LoginResponse> {
+                override fun onFailure(call: Call<LoginResponse>?, t: Throwable?) {
+                    Toast.makeText(context, "Wrong credentials", Toast.LENGTH_LONG).show()
+                }
+
+                override fun onResponse(call: Call<LoginResponse>?, response: Response<LoginResponse>?) {
+                    doLogin()
+                }
+
+            })
     }
 
     fun doLogin() {
