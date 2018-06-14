@@ -23,7 +23,7 @@ export class AnimalCardComponent implements OnInit {
   ngOnInit() {
     this.animalName = this.animalCard.name;
     this.numberDownloads = this.animalCard.numberDownloads;
-    this.creatorName = this.animalCard.creator;
+    this.creatorName = this.animalCard.UserId;
     this.idleUri = this.animalCard.idleUri;
   }
 

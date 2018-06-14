@@ -1,18 +1,19 @@
 import { AnimalModel } from "../../shared/models/AnimalModel";
 
 export const animalsMock: AnimalModel[] = [
-  {
+   ]
+    /*
     name: "Fox",
-    creator: "Octavio",
-    date: "2018/06/10",
-    log: "The" + name + "is playing",
+    UserId : "Octavio",
+    dateCreated : "2018/06/10",
+    l : "The" + name + "is playing",
     time: "10:02",
     numberDownloads: 42,
     idleUri: "https://i.imgur.com/NNfje00.gif"
   },
   {
     name: "Dog",
-    creator: "Jonathan",
+    UserId: "Jonathan",
     date: "2018/06/08",
     log: "The" + name + "is playing",
     time: "12:30",
@@ -21,7 +22,7 @@ export const animalsMock: AnimalModel[] = [
   },
   {
     name: "Turtle",
-    creator: "Alejandro",
+    UserId: "Alejandro",
     date: "2018/06/07",
     log: "The" + name + "is playing",
     time: "10:35",
@@ -30,7 +31,7 @@ export const animalsMock: AnimalModel[] = [
   },
   {
     name: "Cat",
-    creator: "Andrea",
+    UserId: "Andrea",
     date: "2018/06/05",
     log: "The" + name + "is playing",
     time: "11:04",
@@ -48,4 +49,4 @@ export var single = [
       "name": "Bear",
       "value": 5000000
     }
-  ];
+  ];*/
