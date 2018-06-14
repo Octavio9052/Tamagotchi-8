@@ -7,12 +7,23 @@ namespace Tamagotchi.DataAccess.DataModels
         [BsonElement("message")]
         [BsonRequired]
         public string Message { get; set; }
+
         [BsonElement("animalId")]
         [BsonRequired]
-        public int AnimalId { get; set; }
+        public string AnimalId { get; set; }
+        [BsonElement("animalName")]
+        public string AnimalName { get; set; }
+
         [BsonElement("userId")]
         [BsonRequired]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
+        [BsonElement("username")]
+        public string Username { get; set; }
+
+        [BsonElement("petId")]
+        public string PetId { get; set; }
+        [BsonElement("petName")]
+        public string PetName { get; set; }
 
         public override string ToString()
         {

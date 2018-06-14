@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
@@ -13,26 +9,46 @@ namespace Tamagotchi.Business.Helpers
     {
         public AutomapperProfile()
         {
-            CreateMap<UserModel, User>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-            CreateMap<AnimalModel, Animal>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-            CreateMap<LoginModel, Login>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-            CreateMap<SessionModel, Session>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-
-            CreateMap<User, UserModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-            CreateMap<Animal, AnimalModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-            CreateMap<Login, LoginModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-            CreateMap<Session, SessionModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => y.Id.ToString()));
-
             CreateMap<PetModel, Pet>().ReverseMap();
+
             CreateMap<LogModel, Log>().ReverseMap();
+
+            #region Model To Entity
+
+            CreateMap<UserModel, User>(MemberList.Destination)
+                .ForMember(dest => dest.Id,
+                    opt => opt.MapFrom(source => Guid.Parse(source.Id)));
+
+            CreateMap<AnimalModel, Animal>(MemberList.Destination)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(source => Guid.Parse(source.User.Id)));
+
+            CreateMap<LoginModel, Login>(MemberList.Destination)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
+
+            CreateMap<SessionModel, Session>(MemberList.Destination)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => Guid.Parse(source.Id)));
+
+            #endregion
+
+            #region Entity To Model
+
+            CreateMap<User, UserModel>(MemberList.Source)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
+
+            CreateMap<Animal, AnimalModel>(MemberList.Source)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()))
+                .ForSourceMember(source => source.UserId, opt => opt.Ignore());
+
+            CreateMap<Login, LoginModel>(MemberList.Source)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
+
+            CreateMap<Session, SessionModel>(MemberList.Source)
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.Id.ToString()));
+
+            #endregion
+
+            
         }
     }
 }

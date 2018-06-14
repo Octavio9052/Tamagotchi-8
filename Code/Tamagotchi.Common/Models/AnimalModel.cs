@@ -24,7 +24,7 @@ namespace Tamagotchi.Common.Models
         public string SleepUri { get; set; }
         [Required]
         public string PacketUri { get; set; }
-        
+
         [Required]
         public string PacketFile { get; set; }
         [Required]

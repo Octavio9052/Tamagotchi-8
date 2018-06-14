@@ -35,9 +35,9 @@ namespace Tamagotchi.SOAP
                 else
                     messageResponse.Error = error;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                messageResponse.Error = "An Error has ocurred.";
+                messageResponse.Error = "An Error has ocurred." + e;
             }
 
             return messageResponse;
@@ -168,9 +168,12 @@ namespace Tamagotchi.SOAP
             var validationResult = _sessionBusiness.ValidSession(userToken);
             error = null;
 
-            if (validationResult == null) return false;
+            if (validationResult == null)
+            {
+                error = "Session has expired";
+                return false;
+            }
 
-            error = "Session has expired";
             return true;
         }
     }

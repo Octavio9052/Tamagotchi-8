@@ -56,7 +56,7 @@ namespace Tamagotchi.SOAP.Helpers
         {
             Mapper.Initialize(config =>
             {
-                config.ConstructServicesUsing(type => context.Kernel.Get(type));
+                config.AddProfile(new AutomapperProfile());
 
             });
             return Mapper.Instance;

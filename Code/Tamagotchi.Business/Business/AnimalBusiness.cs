@@ -9,6 +9,7 @@ using Tamagotchi.Common.Exceptions;
 using Tamagotchi.Common.Models;
 using Tamagotchi.DataAccess.DataModels;
 using Tamagotchi.DataAccess.DALs.Interfaces;
+using System;
 
 namespace Tamagotchi.Business.Business
 {
@@ -39,10 +40,25 @@ namespace Tamagotchi.Business.Business
         {
             animal.IsActive = true;
 
-            animal = await base.Create(animal);
 
-//            _storageService.ProcessFileFromStream();
-            
+            animal = await base.Create(animal);
+            //var entity = new Animal
+            //{
+            //    DateCreated = DateTime.Now,
+            //    LastModified = DateTime.Now,
+            //    Description = animal.Description,
+            //    Name = animal.Name,
+            //    TimesDownloaded = 0,
+            //    UserId = Guid.Parse(animal.User.Id),
+            //    User = new User
+            //    {
+                    
+            //    }
+                
+            //};
+
+            //            _storageService.ProcessFileFromStream();
+
             await Task.WhenAll(
                 SaveFile(animal.PacketUri, $"{animal.Id}_packet", animal.PacketFile)
                     .ContinueWith(async packetTask => animal.PacketUri = await packetTask),
