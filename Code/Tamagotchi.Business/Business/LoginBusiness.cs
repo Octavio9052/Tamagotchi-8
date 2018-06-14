@@ -18,7 +18,7 @@ namespace Tamagotchi.Business.Business
 
         public Guid Login(LoginModel login)
         {
-            var existingLogin = ((ILoginDAL)BaseDal).Login(login.Email, login.Password);
+            var existingLogin = BaseDal.Login(login.Email, login.Password);
 
             if (existingLogin == null) return default(Guid);
             
